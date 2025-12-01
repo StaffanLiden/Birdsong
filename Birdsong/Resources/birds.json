@@ -1,0 +1,3170 @@
+[
+  {
+    "id": "SE_001",
+    "swedishName": "Smålom",
+    "latinName": "Gavia stellata",
+    "description": "Kacklande \"ka-ka-ka-ka\" i flykten; även klagande jamande läten.",
+    "difficulty": 3,
+    "group": "Lommar",
+    "habitats": [
+      "Skog",
+      "Hav & Kust"
+    ],
+    "imageName": "gavia_stellata",
+    "imageCredit": "Photo: Bouke ten Cate (CC BY 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC432117.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC432118.mp3",
+        "type": "flight call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_002",
+    "swedishName": "Storlom",
+    "latinName": "Gavia arctica",
+    "description": "Ödsligt, vittljudande och klagande ylande \"oo-ii-oo\".",
+    "difficulty": 2,
+    "group": "Lommar",
+    "habitats": [
+      "Skog",
+      "Hav & Kust"
+    ],
+    "imageName": "gavia_arctica",
+    "imageCredit": "Photo: Bengt Nyman (CC BY-SA 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC675952.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC610925.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_003",
+    "swedishName": "Skäggdopping",
+    "latinName": "Podiceps cristatus",
+    "description": "Hårda, rullande \"karrr-arrr\" och diverse knorrande ljud under spelet.",
+    "difficulty": 3,
+    "group": "Doppingar",
+    "habitats": [
+      "Hav & Kust",
+      "Stad"
+    ],
+    "imageName": "podiceps_cristatus",
+    "imageCredit": "Photo: Bengt Nyman (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC473226.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_004",
+    "swedishName": "Knölsvan",
+    "latinName": "Cygnus olor",
+    "description": "Väsande och fräsande ljud; vingarna \"sjunger\" med ett kraftigt vinande.",
+    "difficulty": 1,
+    "group": "Andfåglar",
+    "habitats": [
+      "Hav & Kust",
+      "Stad"
+    ],
+    "imageName": "cygnus_olor",
+    "imageCredit": "Photo: Bengt Nyman (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC716679.mp3",
+        "type": "wing flutter",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_005",
+    "swedishName": "Sångsvan",
+    "latinName": "Cygnus cygnus",
+    "description": "Starka, trumpetande rop, ofta i duett, som hörs mycket långt.",
+    "difficulty": 1,
+    "group": "Andfåglar",
+    "habitats": [
+      "Hav & Kust",
+      "Äng & Åker",
+      "Fjäll"
+    ],
+    "imageName": "cygnus_cygnus",
+    "imageCredit": "Photo: Bengt Nyman (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC982355.mp3",
+        "type": "flight call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC839286.mp3",
+        "type": "flight call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_006",
+    "swedishName": "Grågås",
+    "latinName": "Anser anser",
+    "description": "Grovt, hest kacklande \"gaaa-gaaa-ga\", den klassiska gås-rösten.",
+    "difficulty": 2,
+    "group": "Andfåglar",
+    "habitats": [
+      "Hav & Kust",
+      "Äng & Åker",
+      "Stad"
+    ],
+    "imageName": "anser_anser",
+    "imageCredit": "Photo: Bengt Nyman (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC830417.mp3",
+        "type": "flight call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_007",
+    "swedishName": "Kanadagås",
+    "latinName": "Branta canadensis",
+    "description": "Tvåstavigt, fanfar-liknande \"a-honk!\" med betoning på andra stavelsen.",
+    "difficulty": 1,
+    "group": "Andfåglar",
+    "habitats": [
+      "Hav & Kust",
+      "Äng & Åker",
+      "Stad"
+    ],
+    "imageName": "branta_canadensis",
+    "imageCredit": "Photo: Bengt Nyman (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC896926.mp3",
+        "type": "flight call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_008",
+    "swedishName": "Bläsand",
+    "latinName": "Mareca penelope",
+    "description": "Hanen har en karaktäristisk, ljus vissling: \"vii-o!\".",
+    "difficulty": 2,
+    "group": "Andfåglar",
+    "habitats": [
+      "Hav & Kust",
+      "Fjäll"
+    ],
+    "imageName": "mareca_penelope",
+    "imageCredit": "Photo: Åsa Berndtsson (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC718662.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_009",
+    "swedishName": "Gräsand",
+    "latinName": "Anas platyrhynchos",
+    "description": "Honans klassiska ”kvack-kvack”, hanens mjukare, nasala läten.",
+    "difficulty": 1,
+    "group": "Andfåglar",
+    "habitats": [
+      "Hav & Kust",
+      "Stad"
+    ],
+    "imageName": "anas_platyrhynchos",
+    "imageCredit": "Photo: Bengt Nyman (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC946811.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_010",
+    "swedishName": "Skedand",
+    "latinName": "Spatula clypeata",
+    "description": "Dova, korta läten; hanen har mjuka kvackliknande ljud.",
+    "difficulty": 2,
+    "group": "Andfåglar",
+    "habitats": [
+      "Hav & Kust",
+      "Äng & Åker"
+    ],
+    "imageName": "spatula_clypeata",
+    "imageCredit": "Photo: Matti Virtala (CC0 1.0)",
+    "audioClips": [
+      {
+        "fileName": "XC42544.mp3",
+        "type": "call",
+        "source": "Audio: Patrik Åberg (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_011",
+    "swedishName": "Kricka",
+    "latinName": "Anas crecca",
+    "description": "Hanen har ett ljust, tvåstavigt \"kripp-kripp\" (som en liten klocka).",
+    "difficulty": 2,
+    "group": "Andfåglar",
+    "habitats": [
+      "Skog",
+      "Hav & Kust",
+      "Fjäll"
+    ],
+    "imageName": "anas_crecca",
+    "imageCredit": "Photo: Bengt Nyman (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC808188.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_012",
+    "swedishName": "Vigg",
+    "latinName": "Aythya fuligula",
+    "description": "Dova, rullande \"korr-korr\" eller visslande ljud.",
+    "difficulty": 3,
+    "group": "Andfåglar",
+    "habitats": [
+      "Hav & Kust",
+      "Fjäll",
+      "Stad"
+    ],
+    "imageName": "aythya_fuligula",
+    "imageCredit": "Photo: Bengt Nyman (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC644316.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC912695.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_013",
+    "swedishName": "Ejder",
+    "latinName": "Somateria mollissima",
+    "description": "Hanens rop är ett mycket säreget, mjukt \"a-ooo-e\" (låter som en duva).",
+    "difficulty": 2,
+    "group": "Andfåglar",
+    "habitats": [
+      "Hav & Kust"
+    ],
+    "imageName": "somateria_mollissima",
+    "imageCredit": "Photo: Jakub Hałun (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC549046.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC448701.mp3",
+        "type": "call",
+        "source": "Audio: Patrik Åberg (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_014",
+    "swedishName": "Knipa",
+    "latinName": "Bucephala clangula",
+    "description": "Vingarnas vinande ljud i flykt samt korta, nasala läten.",
+    "difficulty": 2,
+    "group": "Andfåglar",
+    "habitats": [
+      "Skog",
+      "Hav & Kust",
+      "Stad"
+    ],
+    "imageName": "bucephala_clangula",
+    "imageCredit": "Photo: Bengt Nyman (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC718822.mp3",
+        "type": "flight call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC998354.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_015",
+    "swedishName": "Småskrake",
+    "latinName": "Mergus serrator",
+    "description": "Tystlåten, men har vissa raspiga och knarrande ljud vid spel.",
+    "difficulty": 3,
+    "group": "Andfåglar",
+    "habitats": [
+      "Hav & Kust",
+      "Fjäll"
+    ],
+    "imageName": "mergus_serrator",
+    "imageCredit": "Photo: Michal Klajban (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC801187.mp3",
+        "type": "flight call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_016",
+    "swedishName": "Storskrake",
+    "latinName": "Mergus merganser",
+    "description": "Grunt ”gack-gack” och vinande vingar när den flyger.",
+    "difficulty": 3,
+    "group": "Andfåglar",
+    "habitats": [
+      "Hav & Kust",
+      "Stad"
+    ],
+    "imageName": "mergus_merganser",
+    "imageCredit": "Photo: Bengt Nyman (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC644424.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC733125.mp3",
+        "type": "alarm call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_017",
+    "swedishName": "Järpe",
+    "latinName": "Tetrastes bonasia",
+    "description": "Mycket finstämd, högfrekvent vissling \"tii-tii-tii-tisi-tii\".",
+    "difficulty": 4,
+    "group": "Hönsfåglar",
+    "habitats": [
+      "Skog"
+    ],
+    "imageName": "tetrastes_bonasia",
+    "imageCredit": "Photo: Romek Sikin (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC946780.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_018",
+    "swedishName": "Dalripa",
+    "latinName": "Lagopus lagopus",
+    "description": "Ett skrattande, kacklande \"kobeck-kobeck\" som hörs vida omkring.",
+    "difficulty": 2,
+    "group": "Hönsfåglar",
+    "habitats": [
+      "Fjäll"
+    ],
+    "imageName": "lagopus_lagopus",
+    "imageCredit": "Photo: Fährtenleser (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC656449.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC731280.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_019",
+    "swedishName": "Fjällripa",
+    "latinName": "Lagopus muta",
+    "description": "Ett torrt, knarrande ljud, likt en groda eller snarkning.",
+    "difficulty": 3,
+    "group": "Hönsfåglar",
+    "habitats": [
+      "Fjäll"
+    ],
+    "imageName": "lagopus_muta",
+    "imageCredit": "Photo: Jan Frode Haugseth (CC BY-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC567563.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_020",
+    "swedishName": "Orre",
+    "latinName": "Lyrurus tetrix",
+    "description": "Bubblande, långvarigt \"choo-oo-oo...\" som avbryts av fräsande \"tjo-ysch!\".",
+    "difficulty": 2,
+    "group": "Hönsfåglar",
+    "habitats": [
+      "Skog",
+      "Äng & Åker"
+    ],
+    "imageName": "lyrurus_tetrix",
+    "imageCredit": "Photo: Spjutkastare (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC902547.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC1006574.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_021",
+    "swedishName": "Tjäder",
+    "latinName": "Tetrao urogallus",
+    "description": "Tystlåtet spel med tre delar: knäppningar, \"klunken\" och sisningar.",
+    "difficulty": 3,
+    "group": "Hönsfåglar",
+    "habitats": [
+      "Skog"
+    ],
+    "imageName": "tetrao_urogallus",
+    "imageCredit": "Photo: Ron Knight (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC186530.mp3",
+        "type": "song",
+        "source": "Audio: Patrik Åberg (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_022",
+    "swedishName": "Fasan",
+    "latinName": "Phasianus colchicus",
+    "description": "Högt, skrovligt, tvåstavigt \"kö-rreck!\" följt av bullrande vingslag.",
+    "difficulty": 2,
+    "group": "Hönsfåglar",
+    "habitats": [
+      "Äng & Åker",
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "phasianus_colchicus",
+    "imageCredit": "Photo: Ragnhild&Neil Crawford (CC BY-SA 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC153129.mp3",
+        "type": "song",
+        "source": "Audio: Patrik Åberg (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_023",
+    "swedishName": "Vit stork",
+    "latinName": "Ciconia ciconia",
+    "description": "Vuxna fåglar saknar röstmuskler men \"kläpprar\" ljudligt med näbben.",
+    "difficulty": 2,
+    "group": "Storkar",
+    "habitats": [
+      "Äng & Åker",
+      "Stad"
+    ],
+    "imageName": "ciconia_ciconia",
+    "imageCredit": "Photo: David Castor (CC0 1.0)",
+    "audioClips": [
+      {
+        "fileName": "XC27569.mp3",
+        "type": "bill clapping",
+        "source": "Audio: Patrik Åberg (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_024",
+    "swedishName": "Gråhäger",
+    "latinName": "Ardea cinerea",
+    "description": "Grovt, hest kraxande ”fraaak”, särskilt vid flygstart.",
+    "difficulty": 2,
+    "group": "Hägrar",
+    "habitats": [
+      "Hav & Kust",
+      "Äng & Åker",
+      "Stad"
+    ],
+    "imageName": "ardea_cinerea",
+    "imageCredit": "Photo: Bengt Nyman (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC671502.mp3",
+        "type": "flight call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_025",
+    "swedishName": "Fiskgjuse",
+    "latinName": "Pandion haliaetus",
+    "description": "Ljusa, korta visslingar \"pjyp-pjyp-pjyp\", överraskande klent för storleken.",
+    "difficulty": 3,
+    "group": "Rovfåglar",
+    "habitats": [
+      "Skog",
+      "Hav & Kust"
+    ],
+    "imageName": "pandion_haliaetus",
+    "imageCredit": "Photo: Bengt Nyman (CC BY-SA 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC924318.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC254278.mp3",
+        "type": "alarm call",
+        "source": "Audio: Teet Sirotkin (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_026",
+    "swedishName": "Havsörn",
+    "latinName": "Haliaeetus albicilla",
+    "description": "Kacklande, gällt \"klee-klee-klee\", ofta i duett.",
+    "difficulty": 2,
+    "group": "Rovfåglar",
+    "habitats": [
+      "Skog",
+      "Hav & Kust"
+    ],
+    "imageName": "haliaeetus_albicilla",
+    "imageCredit": "Photo: Bengt Nyman (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC648637.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_027",
+    "swedishName": "Kungsörn",
+    "latinName": "Aquila chrysaetos",
+    "description": "Tystlåten; ibland ett hundliknande skällande eller ljusa visslingar.",
+    "difficulty": 3,
+    "group": "Rovfåglar",
+    "habitats": [
+      "Skog",
+      "Fjäll"
+    ],
+    "imageName": "aquila_chrysaetos",
+    "imageCredit": "Photo: Giles Laurent (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC698030.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_028",
+    "swedishName": "Sparvhök",
+    "latinName": "Accipiter nisus",
+    "description": "En snabb, kacklande serie \"ki-ki-ki-ki-ki\".",
+    "difficulty": 3,
+    "group": "Rovfåglar",
+    "habitats": [
+      "Skog",
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "accipiter_nisus",
+    "imageCredit": "Photo: cazalegg (CC BY 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC736470.mp3",
+        "type": "alarm call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_029",
+    "swedishName": "Röd glada",
+    "latinName": "Milvus milvus",
+    "description": "En darrande, gnäggande vissling, påminner om en ung gråtrut.",
+    "difficulty": 2,
+    "group": "Rovfåglar",
+    "habitats": [
+      "Äng & Åker"
+    ],
+    "imageName": "milvus_milvus",
+    "imageCredit": "Photo: Noel Reynolds (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC153199.mp3",
+        "type": "begging call",
+        "source": "Audio: Patrik Åberg (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_030",
+    "swedishName": "Blå kärrhök",
+    "latinName": "Circus cyaneus",
+    "description": "Kacklande \"keck-keck-keck\" vid boet, annars tystlåten.",
+    "difficulty": 3,
+    "group": "Rovfåglar",
+    "habitats": [
+      "Äng & Åker"
+    ],
+    "imageName": "circus_cyaneus",
+    "imageCredit": "Photo: Александр Чегодаев (CC0 1.0)",
+    "audioClips": [
+      {
+        "fileName": "XC753263.mp3",
+        "type": "alarm call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_031",
+    "swedishName": "Ormvråk",
+    "latinName": "Buteo buteo",
+    "description": "Ett klagande, jamande \"piii-äääh\" (kattlikt) från kretsande fågel.",
+    "difficulty": 2,
+    "group": "Rovfåglar",
+    "habitats": [
+      "Skog",
+      "Äng & Åker"
+    ],
+    "imageName": "buteo_buteo",
+    "imageCredit": "Photo: Bengt Nyman (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC992136.mp3",
+        "type": "call",
+        "source": "#REF!"
+      }
+    ]
+  },
+  {
+    "id": "SE_032",
+    "swedishName": "Fjällvråk",
+    "latinName": "Buteo lagopus",
+    "description": "Liknar ormvråk men mer utdraget och klagande, \"piiii-äääh\".",
+    "difficulty": 2,
+    "group": "Rovfåglar",
+    "habitats": [
+      "Äng & Åker",
+      "Fjäll"
+    ],
+    "imageName": "buteo_lagopus",
+    "imageCredit": "Photo: Marton Berntsen (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC665961.mp3",
+        "type": "alarm call",
+        "source": "Audio: Tomas Berg (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_033",
+    "swedishName": "Tornfalk",
+    "latinName": "Falco tinnunculus",
+    "description": "Snabba, gälla \"ki-ki-ki-ki\" i serier.",
+    "difficulty": 3,
+    "group": "Rovfåglar",
+    "habitats": [
+      "Äng & Åker",
+      "Stad"
+    ],
+    "imageName": "falco_tinnunculus",
+    "imageCredit": "Photo: Jakub Hałun (CC BY 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC986901.mp3",
+        "type": "alarm call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_034",
+    "swedishName": "Pilgrimsfalk",
+    "latinName": "Falco peregrinus",
+    "description": "Grovt, hest kacklande \"räh-räh-räh\" vid boet.",
+    "difficulty": 2,
+    "group": "Rovfåglar",
+    "habitats": [
+      "Hav & Kust",
+      "Fjäll",
+      "Stad"
+    ],
+    "imageName": "falco_peregrinus",
+    "imageCredit": "Photo: Süd&Luft (CC BY-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC571136.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_035",
+    "swedishName": "Vattenrall",
+    "latinName": "Rallus aquaticus",
+    "description": "Ett besynnerligt \"grymtande\" som låter som en griskulting i vassen.",
+    "difficulty": 3,
+    "group": "Rallar",
+    "habitats": [
+      "Hav & Kust",
+      "Äng & Åker"
+    ],
+    "imageName": "rallus_aquaticus",
+    "imageCredit": "Photo: Mourad Harzallah (CC BY 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC648414.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_036",
+    "swedishName": "Sothöna",
+    "latinName": "Fulica atra",
+    "description": "Korta, pipiga ”kyk”-läten; mycket aktiv på vattenytan.",
+    "difficulty": 2,
+    "group": "Rallar",
+    "habitats": [
+      "Hav & Kust",
+      "Stad"
+    ],
+    "imageName": "fulica_atra",
+    "imageCredit": "Photo: Bengt Nyman (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC448653.mp3",
+        "type": "call",
+        "source": "Audio: Patrik Åberg (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_037",
+    "swedishName": "Rörhöna",
+    "latinName": "Gallinula chloropus",
+    "description": "Hårda kluckanden och pip, ofta dolda i vass.",
+    "difficulty": 3,
+    "group": "Rallar",
+    "habitats": [
+      "Hav & Kust",
+      "Stad"
+    ],
+    "imageName": "gallinula_chloropus",
+    "imageCredit": "Photo: Alexis Lours (CC BY 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC641754.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_038",
+    "swedishName": "Trana",
+    "latinName": "Grus grus",
+    "description": "Kraftfullt, trumpetande \"krorr!\" som hörs flera kilometer.",
+    "difficulty": 1,
+    "group": "Tranor",
+    "habitats": [
+      "Skog",
+      "Äng & Åker"
+    ],
+    "imageName": "grus_grus",
+    "imageCredit": "Photo: Charles J. Sharp (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC1037521.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_039",
+    "swedishName": "Strandskata",
+    "latinName": "Haematopus ostralegus",
+    "description": "Gällt, intensivt \"kbiik!\" eller snabba, drillande serier vid spel.",
+    "difficulty": 1,
+    "group": "Vadare",
+    "habitats": [
+      "Hav & Kust",
+      "Äng & Åker",
+      "Stad"
+    ],
+    "imageName": "haematopus_ostralegus",
+    "imageCredit": "Photo: Bengt Nyman (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC796415.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_040",
+    "swedishName": "Ljungpipare",
+    "latinName": "Pluvialis apricaria",
+    "description": "En mjuk, melankolisk vissling \"pyyy\". Spel i flykt.",
+    "difficulty": 2,
+    "group": "Vadare",
+    "habitats": [
+      "Äng & Åker",
+      "Fjäll"
+    ],
+    "imageName": "pluvialis_apricaria",
+    "imageCredit": "Photo: Hans Norelius (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC1005160.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_041",
+    "swedishName": "Tofsvipa",
+    "latinName": "Vanellus vanellus",
+    "description": "Nasalt, kastande \"vii-va, vii-va!\" samt vinande vingljud i flykten.",
+    "difficulty": 1,
+    "group": "Vadare",
+    "habitats": [
+      "Äng & Åker"
+    ],
+    "imageName": "vanellus_vanellus",
+    "imageCredit": "Photo: Bengt Nyman (CC BY-SA 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC801017.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC417392.mp3",
+        "type": "alarm call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_042",
+    "swedishName": "Morkulla",
+    "latinName": "Scolopax rusticola",
+    "description": "Unikt spel (\"draget\"): Djupt kurrande \"orr-orr-orr\" följt av ett skarpt \"pist!\".",
+    "difficulty": 2,
+    "group": "Vadare",
+    "habitats": [
+      "Skog"
+    ],
+    "imageName": "scolopax_rusticola",
+    "imageCredit": "Photo: Mike Pennington (CC BY-SA 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC924341.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_043",
+    "swedishName": "Enkelbeckasin",
+    "latinName": "Gallinago gallinago",
+    "description": "Mekaniskt \"gnäggande\" (brummande) ljud skapat av stjärtfjädrar i dykning.",
+    "difficulty": 2,
+    "group": "Vadare",
+    "habitats": [
+      "Hav & Kust",
+      "Äng & Åker",
+      "Fjäll"
+    ],
+    "imageName": "gallinago_gallinago",
+    "imageCredit": "Photo: Martin Mecnarowski (CC BY-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC799595.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_044",
+    "swedishName": "Storspov",
+    "latinName": "Numenius arquata",
+    "description": "Flöjtande, stigande visslingar som övergår i en rullande drill.",
+    "difficulty": 1,
+    "group": "Vadare",
+    "habitats": [
+      "Äng & Åker"
+    ],
+    "imageName": "numenius_arquata",
+    "imageCredit": "Photo: Åsa Berndtsson (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC803320.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_045",
+    "swedishName": "Drillsnäppa",
+    "latinName": "Actitis hypoleucos",
+    "description": "Högt, genomträngande \"hidi-dii-dii\" när den flyger lågt över vatten.",
+    "difficulty": 2,
+    "group": "Vadare",
+    "habitats": [
+      "Skog",
+      "Hav & Kust"
+    ],
+    "imageName": "actitis_hypoleucos",
+    "imageCredit": "Photo: Charles J. Sharp (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC918275.mp3",
+        "type": "alarm call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_046",
+    "swedishName": "Skogssnäppa",
+    "latinName": "Tringa ochropus",
+    "description": "Ett skarpt, visslande \"tlyit-vit-vit\" i flykten.",
+    "difficulty": 2,
+    "group": "Vadare",
+    "habitats": [
+      "Skog"
+    ],
+    "imageName": "tringa_ochropus",
+    "imageCredit": "Photo: Imran Shah (CC BY-SA 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC803363.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC916020.mp3",
+        "type": "alarm call",
+        "source": "Audio: Thomas Bergman (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_047",
+    "swedishName": "Grönbena",
+    "latinName": "Tringa glareola",
+    "description": "Ett joddlande \"liff-liff-liff\" i spelflykt. Varningslätet ett \"jipp-jipp-jipp\".",
+    "difficulty": 2,
+    "group": "Vadare",
+    "habitats": [
+      "Skog",
+      "Fjäll"
+    ],
+    "imageName": "tringa_glareola",
+    "imageCredit": "Photo: Bengt Nyman (CC BY-SA 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC808858.mp3",
+        "type": "alarm call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC903314.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_048",
+    "swedishName": "Skrattmås",
+    "latinName": "Chroicocephalus ridibundus",
+    "description": "Skrattande rop i kolonier; mycket ljudlig under häckning.",
+    "difficulty": 1,
+    "group": "Måsfåglar",
+    "habitats": [
+      "Hav & Kust",
+      "Stad"
+    ],
+    "imageName": "chroicocephalus_ridibundus",
+    "imageCredit": "Photo: ArildV (CC BY-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC605141.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_049",
+    "swedishName": "Fiskmås",
+    "latinName": "Larus canus",
+    "description": "Klara, genomträngande ”ki-aaa”, vanligt längs vatten och i stan.",
+    "difficulty": 1,
+    "group": "Måsfåglar",
+    "habitats": [
+      "Hav & Kust",
+      "Stad"
+    ],
+    "imageName": "larus_canus",
+    "imageCredit": "Photo: Bengt Nyman (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC803361.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_050",
+    "swedishName": "Gråtrut",
+    "latinName": "Larus argentatus",
+    "description": "Klagande rop \"klii-a\" och skrattande \"ga-ga-ga\".",
+    "difficulty": 2,
+    "group": "Måsfåglar",
+    "habitats": [
+      "Hav & Kust",
+      "Stad"
+    ],
+    "imageName": "larus_argentatus",
+    "imageCredit": "Photo: Bengt Nyman (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC896886.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_051",
+    "swedishName": "Havstrut",
+    "latinName": "Larus marinus",
+    "description": "Djupt, grovt skällande \"augh\" eller långsamma \"ga-ga-ga\".",
+    "difficulty": 2,
+    "group": "Måsfåglar",
+    "habitats": [
+      "Hav & Kust"
+    ],
+    "imageName": "larus_marinus",
+    "imageCredit": "Photo: Bengt Nyman (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC799430.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_052",
+    "swedishName": "Silvertärna",
+    "latinName": "Sterna paradisaea",
+    "description": "Kort, smattrande \"krria\" och \"kitt\".",
+    "difficulty": 2,
+    "group": "Måsfåglar",
+    "habitats": [
+      "Hav & Kust",
+      "Fjäll"
+    ],
+    "imageName": "sterna_paradisaea",
+    "imageCredit": "Photo: Bene Riobó (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC1022099.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_053",
+    "swedishName": "Fisktärna",
+    "latinName": "Sterna hirundo",
+    "description": "Ett utdraget \"kiii-arr\" och korta \"kitt\". Låter vassare än silvertärna.",
+    "difficulty": 2,
+    "group": "Måsfåglar",
+    "habitats": [
+      "Hav & Kust"
+    ],
+    "imageName": "sterna_hirundo",
+    "imageCredit": "Photo: Bengt Nyman (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC803167.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_054",
+    "swedishName": "Ringduva",
+    "latinName": "Columba palumbus",
+    "description": "Dova ”ho ho-ho ho” med lugn rytm; vanligt bakgrundsljud i parker.",
+    "difficulty": 1,
+    "group": "Duvor",
+    "habitats": [
+      "Skog",
+      "Äng & Åker",
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "columba_palumbus",
+    "imageCredit": "Photo: Stephan Sprinz (CC BY 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC511689.mp3",
+        "type": "song",
+        "source": "Audio: Patrik Åberg (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC42432.mp3",
+        "type": "song",
+        "source": "Audio: Patrik Åberg (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_055",
+    "swedishName": "Skogsduva",
+    "latinName": "Columba oenas",
+    "description": "Tvåstavigt, dovt \"ho-oo\". Mer monotont än ringduvan.",
+    "difficulty": 3,
+    "group": "Duvor",
+    "habitats": [
+      "Skog",
+      "Äng & Åker"
+    ],
+    "imageName": "columba_oenas",
+    "imageCredit": "Photo: Åsa Berndtsson (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC558811.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_056",
+    "swedishName": "Gök",
+    "latinName": "Cuculus canorus",
+    "description": "Klassiskt ”ko-ko” som hörs långt; en av de enklaste arterna att känna igen.",
+    "difficulty": 1,
+    "group": "Gökar",
+    "habitats": [
+      "Skog"
+    ],
+    "imageName": "cuculus_canorus",
+    "imageCredit": "Photo: Chris Romeiks (CC BY-NC-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC802623.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC916983.mp3",
+        "type": "call",
+        "source": "Audio: Esperanza Poveda (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_057",
+    "swedishName": "Berguv",
+    "latinName": "Bubo bubo",
+    "description": "Mycket djupt, tvåstavigt \"O-hooo\" som hörs långt (upp till 4 km).",
+    "difficulty": 2,
+    "group": "Ugglor",
+    "habitats": [
+      "Skog",
+      "Stad"
+    ],
+    "imageName": "bubo_bubo",
+    "imageCredit": "Photo: Martin Mecnarowski (CC BY-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC534612.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_058",
+    "swedishName": "Hökuggla",
+    "latinName": "Surnia ulula",
+    "description": "En rullande, bubblande drill \"ulululululu\", ofta dagaktiv.",
+    "difficulty": 3,
+    "group": "Ugglor",
+    "habitats": [
+      "Skog"
+    ],
+    "imageName": "surnia_ulula",
+    "imageCredit": "Photo: Dan Frendin (CC BY-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC705903.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_059",
+    "swedishName": "Sparvuggla",
+    "latinName": "Glaucidium passerinum",
+    "description": "En monoton, enstavig vissling \"hju... hju...\" i skymningen.",
+    "difficulty": 3,
+    "group": "Ugglor",
+    "habitats": [
+      "Skog"
+    ],
+    "imageName": "glaucidium_passerinum",
+    "imageCredit": "Photo: Bouke ten Cate (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC1058371.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_060",
+    "swedishName": "Kattuggla",
+    "latinName": "Strix aluco",
+    "description": "Darrande, ylande \"Hoooo... hu-hu-hooooo\". Honan ropar \"klä-vitt!\".",
+    "difficulty": 2,
+    "group": "Ugglor",
+    "habitats": [
+      "Skog",
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "strix_aluco",
+    "imageCredit": "Photo: Bohuš Číčel (CC BY-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC622582.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC918506.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_061",
+    "swedishName": "Slaguggla",
+    "latinName": "Strix uralensis",
+    "description": "Ett djupt, dovt skällande \"voff... voff... voff\".",
+    "difficulty": 3,
+    "group": "Ugglor",
+    "habitats": [
+      "Skog"
+    ],
+    "imageName": "strix_uralensis",
+    "imageCredit": "Photo: Alpsdake (CC BY-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC661941.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC1058363.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_062",
+    "swedishName": "Pärluggla",
+    "latinName": "Aegolius funereus",
+    "description": "Snabb serie av poppande \"po-po-po-po-po\", likt en motor som startar.",
+    "difficulty": 3,
+    "group": "Ugglor",
+    "habitats": [
+      "Skog"
+    ],
+    "imageName": "aegolius_funereus",
+    "imageCredit": "Photo: Christoph Moning (CC BY 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC756355.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC748029.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_063",
+    "swedishName": "Tornseglare",
+    "latinName": "Apus apus",
+    "description": "Skriande, gällt \"sriii-sriii\" från flockar som jagar högt i skyn.",
+    "difficulty": 2,
+    "group": "Seglare",
+    "habitats": [
+      "Stad"
+    ],
+    "imageName": "apus_apus",
+    "imageCredit": "Photo: Bengt Nyman (CC0 1.0)",
+    "audioClips": [
+      {
+        "fileName": "XC580591.mp3",
+        "type": "flight call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_064",
+    "swedishName": "Göktyta",
+    "latinName": "Jynx torquilla",
+    "description": "Lång serie av jämna, visslande toner ”ti-ti-ti-ti”.",
+    "difficulty": 2,
+    "group": "Hackspettar",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "jynx_torquilla",
+    "imageCredit": "Photo: Imran Shah (CC BY-SA 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC801185.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_065",
+    "swedishName": "Gråspett",
+    "latinName": "Picus canus",
+    "description": "Liknar gröngölingens skratt men är långsammare och faller mer i tonhöjd.",
+    "difficulty": 3,
+    "group": "Hackspettar",
+    "habitats": [
+      "Skog"
+    ],
+    "imageName": "picus_canus",
+    "imageCredit": "Photo: Бусел В.А. (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC882147.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_066",
+    "swedishName": "Gröngöling",
+    "latinName": "Picus viridis",
+    "description": "Skrattande serier med ljud som liknar ett högt, klingande skratt.",
+    "difficulty": 2,
+    "group": "Hackspettar",
+    "habitats": [
+      "Skog",
+      "Äng & Åker",
+      "Trädgård"
+    ],
+    "imageName": "picus_viridis",
+    "imageCredit": "Photo: Charles J. Sharp (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC343374.mp3",
+        "type": "song",
+        "source": "Audio: Patrik Åberg (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_067",
+    "swedishName": "Spillkråka",
+    "latinName": "Dryocopus martius",
+    "description": "Genomträngande skrik och kraftigt, långsamt trummande på trädstammar.",
+    "difficulty": 4,
+    "group": "Hackspettar",
+    "habitats": [
+      "Skog"
+    ],
+    "imageName": "dryocopus_martius",
+    "imageCredit": "Photo: Clément Bardot (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC922491.mp3",
+        "type": "song",
+        "source": "Audio: Teet Sirotkin (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC746884.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC1010666.mp3",
+        "type": "drumming",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_068",
+    "swedishName": "Större hackspett",
+    "latinName": "Dendrocopos major",
+    "description": "Kraftigt trummande och skarpa ”kik”-läten.",
+    "difficulty": 2,
+    "group": "Hackspettar",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "dendrocopos_major",
+    "imageCredit": "Photo: Bengt Nyman (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC982353.mp3",
+        "type": "drumming",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC912709.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_069",
+    "swedishName": "Mindre hackspett",
+    "latinName": "Dryobates minor",
+    "description": "Snabbt, ljusare trummande och tunna lockläten.",
+    "difficulty": 3,
+    "group": "Hackspettar",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "dryobates_minor",
+    "imageCredit": "Photo: Andrey Gulivanov (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC714649.mp3",
+        "type": "drumming",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC707037.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_070",
+    "swedishName": "Törnskata",
+    "latinName": "Lanius collurio",
+    "description": "Visslingar och raspiga fraser; sitter ofta exponerad i busktoppar.",
+    "difficulty": 3,
+    "group": "Törnskator",
+    "habitats": [
+      "Skog",
+      "Äng & Åker"
+    ],
+    "imageName": "lanius_collurio",
+    "imageCredit": "Photo: Charles J. Sharp (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC652853.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_071",
+    "swedishName": "Lavskrika",
+    "latinName": "Perisoreus infaustus",
+    "description": "Mjuka, jamande \"kjaa\" och diverse visslingar. Mycket orädd.",
+    "difficulty": 3,
+    "group": "Kråkfåglar",
+    "habitats": [
+      "Skog"
+    ],
+    "imageName": "perisoreus_infaustus",
+    "imageCredit": "Photo: Estormiz (CC0 1.0)",
+    "audioClips": [
+      {
+        "fileName": "XC750040.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_072",
+    "swedishName": "Nötskrika",
+    "latinName": "Garrulus glandarius",
+    "description": "Höga skränande ljud; ofta avslöjar den rovfågel med varningsrop.",
+    "difficulty": 1,
+    "group": "Kråkfåglar",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "garrulus_glandarius",
+    "imageCredit": "Photo: Luc Viatour (CC BY-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC742204.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_073",
+    "swedishName": "Skata",
+    "latinName": "Pica pica",
+    "description": "Skorrande ”rraaak-rraaaak”; mycket vanlig i stadsmiljö.",
+    "difficulty": 1,
+    "group": "Kråkfåglar",
+    "habitats": [
+      "Äng & Åker",
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "pica_pica",
+    "imageCredit": "Photo: Alexis Lours (CC BY 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC619921.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC685095.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_074",
+    "swedishName": "Kaja",
+    "latinName": "Coloeus monedula",
+    "description": "Kort, skarpt ”kjack”. Ses ofta i flock runt kyrkor och hus.",
+    "difficulty": 1,
+    "group": "Kråkfåglar",
+    "habitats": [
+      "Äng & Åker",
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "coloeus_monedula",
+    "imageCredit": "Photo: Karl Jonsson (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC761286.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC626576.mp3",
+        "type": "call",
+        "source": "Audio: Alan Dalton (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_075",
+    "swedishName": "Kråka",
+    "latinName": "Corvus cornix",
+    "description": "Grovt ”kraaa”; mycket anpassningsbar och vanlig runt människor.",
+    "difficulty": 1,
+    "group": "Kråkfåglar",
+    "habitats": [
+      "Skog",
+      "Hav & Kust",
+      "Äng & Åker",
+      "Fjäll",
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "corvus_cornix",
+    "imageCredit": "Photo: Jakub Hałun (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC1050904.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC880902.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_076",
+    "swedishName": "Råka",
+    "latinName": "Corvus frugilegus",
+    "description": "Djupa kraxande toner, något råare och mer nasala än kråka.",
+    "difficulty": 2,
+    "group": "Kråkfåglar",
+    "habitats": [
+      "Äng & Åker",
+      "Stad"
+    ],
+    "imageName": "corvus_frugilegus",
+    "imageCredit": "Photo: Andreas Trepte (CC BY-SA 2.5)",
+    "audioClips": [
+      {
+        "fileName": "XC715079.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_077",
+    "swedishName": "Korp",
+    "latinName": "Corvus corax",
+    "description": "Djupt, gutturalt och dovt \"korrrp\" eller \"klong\".",
+    "difficulty": 2,
+    "group": "Kråkfåglar",
+    "habitats": [
+      "Skog",
+      "Fjäll"
+    ],
+    "imageName": "corvus_corax",
+    "imageCredit": "Photo: R. Altenkamp (CC BY-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC921774.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC880911.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_078",
+    "swedishName": "Sidensvans",
+    "latinName": "Bombycilla garrulus",
+    "description": "Fint, ringande \"sirrrr\" som hörs från flockar i rönnar.",
+    "difficulty": 2,
+    "group": "Sidensvansar",
+    "habitats": [
+      "Skog",
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "bombycilla_garrulus",
+    "imageCredit": "Photo: Bengt Nyman (CC BY-SA 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC449650.mp3",
+        "type": "call",
+        "source": "Audio: Patrik Åberg (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_079",
+    "swedishName": "Tofsmes",
+    "latinName": "Lophophanes cristatus",
+    "description": "Rullande, purrande drill \"prrrrt\".",
+    "difficulty": 2,
+    "group": "Mesar",
+    "habitats": [
+      "Skog"
+    ],
+    "imageName": "lophophanes_cristatus",
+    "imageCredit": "Photo: Luc Viatour (CC BY-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC967836.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_080",
+    "swedishName": "Svartmes",
+    "latinName": "Periparus ater",
+    "description": "Pipiga toner och höga ”di-di-di”. Mindre än talgoxe, ofta i barrskogar.",
+    "difficulty": 2,
+    "group": "Mesar",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "periparus_ater",
+    "imageCredit": "Photo: Matvei Kiselev (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC110367.mp3",
+        "type": "song",
+        "source": "Audio: Patrik Åberg (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_081",
+    "swedishName": "Entita",
+    "latinName": "Poecile palustris",
+    "description": "Klar, visslande sång med entoniga fraser. Lik talltita men har annat läte.",
+    "difficulty": 3,
+    "group": "Mesar",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "poecile_palustris",
+    "imageCredit": "Photo: Ken Billington (CC BY-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC559280.mp3",
+        "type": "song",
+        "source": "Audio: Mikael Litsgård (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC110296.mp3",
+        "type": "call",
+        "source": "Audio: Patrik Åberg (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_082",
+    "swedishName": "Talltita",
+    "latinName": "Poecile montanus",
+    "description": "Mjuka, visslande ljud blandat med raspigare inslag, ofta i barrskog.",
+    "difficulty": 3,
+    "group": "Mesar",
+    "habitats": [
+      "Skog"
+    ],
+    "imageName": "poecile_montanus",
+    "imageCredit": "Photo: Estormiz (CC0 1.0)",
+    "audioClips": [
+      {
+        "fileName": "XC777577.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC974376.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_083",
+    "swedishName": "Blåmes",
+    "latinName": "Cyanistes caeruleus",
+    "description": "Ljusa, snabba ”tsi-tsi-tsi”-serier. Aktiv och ofta högljudd runt fågelbord.",
+    "difficulty": 1,
+    "group": "Mesar",
+    "habitats": [
+      "Skog",
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "cyanistes_caeruleus",
+    "imageCredit": "Photo: Alexis Lours (CC BY 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC781151.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC779745.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_084",
+    "swedishName": "Talgoxe",
+    "latinName": "Parus major",
+    "description": "Kraftig och tydlig två- eller trestavig sång, ofta beskriven som ”ti-ti-ta”.",
+    "difficulty": 1,
+    "group": "Mesar",
+    "habitats": [
+      "Skog",
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "parus_major",
+    "imageCredit": "Photo: Ron Knight (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC450650.mp3",
+        "type": "song",
+        "source": "Audio: Patrik Åberg (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC899637.mp3",
+        "type": "call",
+        "source": "Audio: Lennart Jeppsson (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_085",
+    "swedishName": "Stjärtmes",
+    "latinName": "Aegithalos caudatus",
+    "description": "Ljus, tunn ”si-si-si”, ofta i flockar med konstant kontaktläte.",
+    "difficulty": 2,
+    "group": "Stjärtmesar",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "aegithalos_caudatus",
+    "imageCredit": "Photo: Romzig (CC0 1.0)",
+    "audioClips": [
+      {
+        "fileName": "XC1045039.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC980798.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_086",
+    "swedishName": "Sånglärka",
+    "latinName": "Alauda arvensis",
+    "description": "Ihållande, drillande sång som framförs högt i luften över fälten.",
+    "difficulty": 2,
+    "group": "Lärkor",
+    "habitats": [
+      "Äng & Åker"
+    ],
+    "imageName": "alauda_arvensis",
+    "imageCredit": "Photo: Daniel Pettersson (CC BY-SA 2.5)",
+    "audioClips": [
+      {
+        "fileName": "XC27005.mp3",
+        "type": "song",
+        "source": "Audio: Patrik Åberg (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_087",
+    "swedishName": "Ladusvala",
+    "latinName": "Hirundo rustica",
+    "description": "Kvittrande, pladdrande sång med inslag av \"torra\" drillar.",
+    "difficulty": 2,
+    "group": "Svalor",
+    "habitats": [
+      "Äng & Åker",
+      "Trädgård"
+    ],
+    "imageName": "hirundo_rustica",
+    "imageCredit": "Photo: Stefan Berndtsson (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC727116.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_088",
+    "swedishName": "Hussvala",
+    "latinName": "Delichon urbicum",
+    "description": "Kort, torrt \"prritt\" och en enkel, tjattrande sång.",
+    "difficulty": 2,
+    "group": "Svalor",
+    "habitats": [
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "delichon_urbicum",
+    "imageCredit": "Photo: Andreas Trepte (CC BY-SA 2.5)",
+    "audioClips": [
+      {
+        "fileName": "XC659403.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC1022103.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_089",
+    "swedishName": "Grönsångare",
+    "latinName": "Phylloscopus sibilatrix",
+    "description": "Accelererande \"sipv-sipv-sipv-sirrrrrrr\" (som ett mynt på en marmorskiva).",
+    "difficulty": 3,
+    "group": "Sångare",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "phylloscopus_sibilatrix",
+    "imageCredit": "Photo: Steve Garvie (CC BY-SA 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC800038.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_090",
+    "swedishName": "Gransångare",
+    "latinName": "Phylloscopus collybita",
+    "description": "Monotont ”tjiff-tjaff tjiff-tjaff”; tidig sångare på våren.",
+    "difficulty": 1,
+    "group": "Sångare",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "phylloscopus_collybita",
+    "imageCredit": "Photo: Andreas Trepte (CC BY-SA 2.5)",
+    "audioClips": [
+      {
+        "fileName": "XC900489.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_091",
+    "swedishName": "Lövsångare",
+    "latinName": "Phylloscopus trochilus",
+    "description": "Mjuk, fallande ramsa i ett jämnt svep; mycket vanlig sommarfågel.",
+    "difficulty": 2,
+    "group": "Sångare",
+    "habitats": [
+      "Skog",
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "phylloscopus_trochilus",
+    "imageCredit": "Photo: Åsa Berndtsson (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC112689.mp3",
+        "type": "song",
+        "source": "Audio: Patrik Åberg (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_092",
+    "swedishName": "Rörsångare",
+    "latinName": "Acrocephalus scirpaceus",
+    "description": "Pratande, raspig sång med upprepningar och variation i vass.",
+    "difficulty": 4,
+    "group": "Sångare",
+    "habitats": [
+      "Hav & Kust",
+      "Äng & Åker"
+    ],
+    "imageName": "acrocephalus_scirpaceus",
+    "imageCredit": "Photo: Martien Brand (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC1009420.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_093",
+    "swedishName": "Sävsångare",
+    "latinName": "Acrocephalus schoenobaenus",
+    "description": "Mycket snabb, energisk och varierad sång från vass- och sävkanter.",
+    "difficulty": 4,
+    "group": "Sångare",
+    "habitats": [
+      "Hav & Kust",
+      "Äng & Åker"
+    ],
+    "imageName": "acrocephalus_schoenobaenus",
+    "imageCredit": "Photo: Billy Lindblom (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC1014935.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_094",
+    "swedishName": "Kärrsångare",
+    "latinName": "Acrocephalus palustris",
+    "description": "Extremt varierad, snabb sång som ofta härmar andra arter.",
+    "difficulty": 5,
+    "group": "Sångare",
+    "habitats": [
+      "Äng & Åker",
+      "Trädgård"
+    ],
+    "imageName": "acrocephalus_palustris",
+    "imageCredit": "Photo: Marek Szczepanek (CC BY-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC1006089.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_095",
+    "swedishName": "Härmsångare",
+    "latinName": "Hippolais icterina",
+    "description": "Nasal, skriande sång med mycket härmningar och \"hi-hi\"-ljud.",
+    "difficulty": 4,
+    "group": "Sångare",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "hippolais_icterina",
+    "imageCredit": "Photo: Marton Berntsen (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC726657.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_096",
+    "swedishName": "Svarthätta",
+    "latinName": "Sylvia atricapilla",
+    "description": "Börjar pratigt och lågmält, avslutas med en stark, klar flöjtmelodi.",
+    "difficulty": 2,
+    "group": "Sångare",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "sylvia_atricapilla",
+    "imageCredit": "Photo: Tony Smith (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC1011605.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_097",
+    "swedishName": "Trädgårdssångare",
+    "latinName": "Sylvia borin",
+    "description": "Lång, jämnbördig ramsa av porlande toner (\"bäck som rinner snabbt\").",
+    "difficulty": 3,
+    "group": "Sångare",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "sylvia_borin",
+    "imageCredit": "Photo: Biillyboy (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC1014945.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_098",
+    "swedishName": "Ärtsångare",
+    "latinName": "Curruca curruca",
+    "description": "Korta, torra strofer, ofta från busksnår.",
+    "difficulty": 3,
+    "group": "Sångare",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "sylvia_curruca",
+    "imageCredit": "Photo: Imran Shah (CC BY-SA 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC912711.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_099",
+    "swedishName": "Törnsångare",
+    "latinName": "Curruca communis",
+    "description": "Skrapig, energisk sång med korta fraser.",
+    "difficulty": 3,
+    "group": "Sångare",
+    "habitats": [
+      "Äng & Åker",
+      "Trädgård"
+    ],
+    "imageName": "sylvia_communis",
+    "imageCredit": "Photo: Imran Shah (CC BY-SA 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC733122.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_100",
+    "swedishName": "Kungsfågel",
+    "latinName": "Regulus regulus",
+    "description": "Mycket högt, fint \"sisisisi...\" som avslutas med en liten knorr.",
+    "difficulty": 3,
+    "group": "Kungsfåglar",
+    "habitats": [
+      "Skog"
+    ],
+    "imageName": "regulus_regulus",
+    "imageCredit": "Photo: Francis C. Franklin (CC BY-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC791898.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_101",
+    "swedishName": "Gärdsmyg",
+    "latinName": "Troglodytes troglodytes",
+    "description": "Explosiv, smattrande och mycket stark sång med långa drillar.",
+    "difficulty": 2,
+    "group": "Gärdsmygar",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "troglodytes_troglodytes",
+    "imageCredit": "Photo: Alexis Lours (CC BY 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC791898.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_102",
+    "swedishName": "Nötväcka",
+    "latinName": "Sitta europaea",
+    "description": "Hård, upprepad vissling ”tvit-tvit-tvit”. Rör sig klängande på stammar.",
+    "difficulty": 2,
+    "group": "Nötväckor",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "sitta_europaea",
+    "imageCredit": "Photo: Frank Vassen (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC785215.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC1056559.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_103",
+    "swedishName": "Trädkrypare",
+    "latinName": "Certhia familiaris",
+    "description": "Tunna toner och korta drillar; ofta mer hörd på nära håll än på avstånd.",
+    "difficulty": 3,
+    "group": "Trädkrypare",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "certhia_familiaris",
+    "imageCredit": "Photo: Stefan Berndtsson (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC540746.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC938051.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_104",
+    "swedishName": "Stare",
+    "latinName": "Sturnus vulgaris",
+    "description": "Härmar många andra fåglar, blandar klick, visslingar och skrap.",
+    "difficulty": 4,
+    "group": "Starar",
+    "habitats": [
+      "Äng & Åker",
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "sturnus_vulgaris",
+    "imageCredit": "Photo: blondinrikard (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC211962.mp3",
+        "type": "song",
+        "source": "Audio: Mikael Litsgård (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC67275.mp3",
+        "type": "alarm call",
+        "source": "Audio: Patrik Åberg (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC807146.mp3",
+        "type": "call",
+        "source": "Audio: Jocce Ekstrom (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_105",
+    "swedishName": "Koltrast",
+    "latinName": "Turdus merula",
+    "description": "Mjuk, flöjtande sång från taknockar och trädtoppar, lätt att känna igen.",
+    "difficulty": 1,
+    "group": "Trastar",
+    "habitats": [
+      "Skog",
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "turdus_merula",
+    "imageCredit": "Photo: Musicaline (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC923519.mp3",
+        "type": "song",
+        "source": "Audio: Dag Österlund (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC830202.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_106",
+    "swedishName": "Björktrast",
+    "latinName": "Turdus pilaris",
+    "description": "Skorrande och skrattande flockläten, ofta runt parker och gräsmattor.",
+    "difficulty": 2,
+    "group": "Trastar",
+    "habitats": [
+      "Skog",
+      "Äng & Åker",
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "turdus_pilaris",
+    "imageCredit": "Photo: Bengt Nyman (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC488796.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_107",
+    "swedishName": "Taltrast",
+    "latinName": "Turdus philomelos",
+    "description": "Varje fras upprepas 2–4 gånger i tydlig rytm.",
+    "difficulty": 2,
+    "group": "Trastar",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "turdus_philomelos",
+    "imageCredit": "Photo: Andreas Trepte (CC BY-SA 2.5)",
+    "audioClips": [
+      {
+        "fileName": "XC912710.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_108",
+    "swedishName": "Rödvingetrast",
+    "latinName": "Turdus iliacus",
+    "description": "Tvådelad sång: en fallande melodi följt av ett gnissligt kvitter.",
+    "difficulty": 3,
+    "group": "Trastar",
+    "habitats": [
+      "Skog",
+      "Fjäll"
+    ],
+    "imageName": "turdus_iliacus",
+    "imageCredit": "Photo: Andreas Trepte (CC BY-SA 2.5)",
+    "audioClips": [
+      {
+        "fileName": "XC1005147.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_109",
+    "swedishName": "Dubbeltrast",
+    "latinName": "Turdus viscivorus",
+    "description": "Högljudd sång, lik koltrast men mer pressad och mindre melodisk.",
+    "difficulty": 3,
+    "group": "Trastar",
+    "habitats": [
+      "Skog"
+    ],
+    "imageName": "turdus_viscivorus",
+    "imageCredit": "Photo: Imran Shah (CC BY-SA 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC733130.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_110",
+    "swedishName": "Grå flugsnappare",
+    "latinName": "Muscicapa striata",
+    "description": "Tystlåten; korta, sträva \"pst\" eller gnissliga ljud.",
+    "difficulty": 3,
+    "group": "Flugsnappare",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "muscicapa_striata",
+    "imageCredit": "Photo: Marton Berntsen (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC1014948.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_111",
+    "swedishName": "Rödhake",
+    "latinName": "Erithacus rubecula",
+    "description": "Oregelbundna, melodiska och ”silvriga” strofer, ofta tidigt och sent på dygnet.",
+    "difficulty": 3,
+    "group": "Flugsnappare",
+    "habitats": [
+      "Skog",
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "erithacus_rubecula",
+    "imageCredit": "Photo: Christoph Müller (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC733128.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC930155.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_112",
+    "swedishName": "Näktergal",
+    "latinName": "Luscinia luscinia",
+    "description": "Extremt stark, smattrande och \"kulsprute-lik\" sång nattetid.",
+    "difficulty": 3,
+    "group": "Flugsnappare",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "luscinia_luscinia",
+    "imageCredit": "Photo: Dion Art (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC478312.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_113",
+    "swedishName": "Blåhake",
+    "latinName": "Luscinia svecica",
+    "description": "Varierad sång med härmningar och metalliska \"ziing\"-ljud.",
+    "difficulty": 3,
+    "group": "Flugsnappare",
+    "habitats": [
+      "Fjäll"
+    ],
+    "imageName": "luscinia_svecica",
+    "imageCredit": "Photo: Ragnhild&Neil Crawford (CC BY-SA 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC1005155.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_114",
+    "swedishName": "Svartvit flugsnappare",
+    "latinName": "Ficedula hypoleuca",
+    "description": "Korta, rullande, melodiska strofer med varierad rytm.",
+    "difficulty": 3,
+    "group": "Flugsnappare",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "ficedula_hypoleuca",
+    "imageCredit": "Photo: Caroline Legg (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC803215.mp3",
+        "type": "song",
+        "source": "Audio: Mats Rellmar (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC918277.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_115",
+    "swedishName": "Halsbandsflugsnappare",
+    "latinName": "Ficedula albicollis",
+    "description": "Långsamt, gnissligt filande, saknar svartvit flugsnappares rytm.",
+    "difficulty": 4,
+    "group": "Flugsnappare",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "ficedula_albicollis",
+    "imageCredit": "Photo: Andrej Chudý (CC BY-SA 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC27514.mp3",
+        "type": "song",
+        "source": "Audio: Patrik Åberg (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_116",
+    "swedishName": "Rödstjärt",
+    "latinName": "Phoenicurus phoenicurus",
+    "description": "Korta, delvis skrapiga strofer blandade med klara visslingar.",
+    "difficulty": 3,
+    "group": "Flugsnappare",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "phoenicurus_phoenicurus",
+    "imageCredit": "Photo: Jerzy Strzelecki (CC BY-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC557476.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_117",
+    "swedishName": "Buskskvätta",
+    "latinName": "Saxicola rubetra",
+    "description": "Knäppande ljud och korta visslingar från stängsel och buskar.",
+    "difficulty": 3,
+    "group": "Flugsnappare",
+    "habitats": [
+      "Äng & Åker"
+    ],
+    "imageName": "saxicola_rubetra",
+    "imageCredit": "Photo: Caroline Legg (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC1015458.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC803189.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_118",
+    "swedishName": "Stenskvätta",
+    "latinName": "Oenanthe oenanthe",
+    "description": "Hårda, smattrande \"jipp-jipp\" och en knastrande, kvittrande sång.",
+    "difficulty": 3,
+    "group": "Flugsnappare",
+    "habitats": [
+      "Äng & Åker",
+      "Fjäll"
+    ],
+    "imageName": "oenanthe_oenanthe",
+    "imageCredit": "Photo: Hans Norelius (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC421765.mp3",
+        "type": "alarm call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC803318.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_119",
+    "swedishName": "Gråsparv",
+    "latinName": "Passer domesticus",
+    "description": "Enkel och monoton ”tschilp”, ofta i livliga grupper.",
+    "difficulty": 1,
+    "group": "Sparvfinkar",
+    "habitats": [
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "passer_domesticus",
+    "imageCredit": "Photo: Charles J. Sharp (CC BY-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC511607.mp3",
+        "type": "call",
+        "source": "Audio: Patrik Åberg (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_120",
+    "swedishName": "Pilfink",
+    "latinName": "Passer montanus",
+    "description": "Ljusa, korta ”tschip”. Vanlig vid gårdar och i villakvarter.",
+    "difficulty": 1,
+    "group": "Sparvfinkar",
+    "habitats": [
+      "Äng & Åker",
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "passer_montanus",
+    "imageCredit": "Photo: Jakub Hałun (CC BY 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC670877.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC704316.mp3",
+        "type": "alarm call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_121",
+    "swedishName": "Järnsparv",
+    "latinName": "Prunella modularis",
+    "description": "Tunn, gnisslig och snabb strof \"titti-titti-terrerett\".",
+    "difficulty": 2,
+    "group": "Järnsparvar",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "prunella_modularis",
+    "imageCredit": "Photo: Alexis Lours (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC991429.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_122",
+    "swedishName": "Gulärla",
+    "latinName": "Motacilla flava",
+    "description": "Tunna, ljusa kontaktläten; ofta på fuktiga marker och åkrar.",
+    "difficulty": 2,
+    "group": "Ärlor",
+    "habitats": [
+      "Äng & Åker",
+      "Fjäll"
+    ],
+    "imageName": "motacilla_flava",
+    "imageCredit": "Photo: Åsa Berndtsson (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC659398.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_123",
+    "swedishName": "Sädesärla",
+    "latinName": "Motacilla alba",
+    "description": "Kort, tydligt ”tsi-vitt”, ofta hörd när den springer på marken.",
+    "difficulty": 1,
+    "group": "Ärlor",
+    "habitats": [
+      "Äng & Åker",
+      "Fjäll",
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "motacilla_alba",
+    "imageCredit": "Photo: Stephan Sprinz (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC795253.mp3",
+        "type": "flight call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC794697.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_124",
+    "swedishName": "Trädpiplärka",
+    "latinName": "Anthus trivialis",
+    "description": "Sången framförs i dalande flykt och avslutas med ett \"sia-sia-sia\".",
+    "difficulty": 2,
+    "group": "Ärlor",
+    "habitats": [
+      "Skog",
+      "Fjäll"
+    ],
+    "imageName": "anthus_trivialis",
+    "imageCredit": "Photo: mvbhaktha (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC799571.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_125",
+    "swedishName": "Ängspiplärka",
+    "latinName": "Anthus pratensis",
+    "description": "Tunt, utdraget \"ist-ist-ist\" som övergår i en drill vid sångflykt.",
+    "difficulty": 2,
+    "group": "Ärlor",
+    "habitats": [
+      "Hav & Kust",
+      "Äng & Åker",
+      "Fjäll"
+    ],
+    "imageName": "anthus_pratensis",
+    "imageCredit": "Photo: Charles J. Sharp (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC374451.mp3",
+        "type": "song",
+        "source": "Audio: Mats Rellmar (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_126",
+    "swedishName": "Bofink",
+    "latinName": "Fringilla coelebs",
+    "description": "Fallande sångstrof som slutar i ett karaktäristiskt ”splash”.",
+    "difficulty": 1,
+    "group": "Finkar",
+    "habitats": [
+      "Skog",
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "fringilla_coelebs",
+    "imageCredit": "Photo: Andreas Trepte (CC BY-SA 2.5)",
+    "audioClips": [
+      {
+        "fileName": "XC794042.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC798795.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_127",
+    "swedishName": "Bergfink",
+    "latinName": "Fringilla montifringilla",
+    "description": "Nasalt, lite näbbigt kontaktläte ”näää” samt enkel sång.",
+    "difficulty": 2,
+    "group": "Finkar",
+    "habitats": [
+      "Skog",
+      "Fjäll"
+    ],
+    "imageName": "fringilla_montifringilla",
+    "imageCredit": "Photo: Kev Chapman (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC731031.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_128",
+    "swedishName": "Stenknäck",
+    "latinName": "Coccothraustes coccothraustes",
+    "description": "Hårt, metalliskt \"pix!\" eller \"zick!\".",
+    "difficulty": 3,
+    "group": "Finkar",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "coccothraustes_coccothraustes",
+    "imageCredit": "Photo: Бусел В.А. (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC662699.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_129",
+    "swedishName": "Domherre",
+    "latinName": "Pyrrhula pyrrhula",
+    "description": "Mjuka, sorgsna visslingar ”puu”, ofta i små flockar vintertid.",
+    "difficulty": 2,
+    "group": "Finkar",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "pyrrhula_pyrrhula",
+    "imageCredit": "Photo: Francis C. Franklin (CC BY-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC938052.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_130",
+    "swedishName": "Rosenfink",
+    "latinName": "Carpodacus erythrinus",
+    "description": "Mjuk vissling som låter som engelska frasen \"Nice to meet you\".",
+    "difficulty": 3,
+    "group": "Finkar",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "carpodacus_erythrinus",
+    "imageCredit": "Photo: Adam Kumiszcza (CC BY-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC805162.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_131",
+    "swedishName": "Grönfink",
+    "latinName": "Chloris chloris",
+    "description": "Nasala, utdragna ”dyyyh” och pingande ljud. Vanlig i villaträdgårdar.",
+    "difficulty": 1,
+    "group": "Finkar",
+    "habitats": [
+      "Skog",
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "chloris_chloris",
+    "imageCredit": "Photo: El Golli Mohamed (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC619924.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC783622.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_132",
+    "swedishName": "Hämpling",
+    "latinName": "Linaria cannabina",
+    "description": "Trillrande sång, ofta framförd från busktoppar eller i flykt.",
+    "difficulty": 3,
+    "group": "Finkar",
+    "habitats": [
+      "Äng & Åker",
+      "Trädgård"
+    ],
+    "imageName": "linaria_cannabina",
+    "imageCredit": "Photo: Alexis Lours (CC BY 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC1008473.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_133",
+    "swedishName": "Gråsiska",
+    "latinName": "Acanthis flammea",
+    "description": "Surrande, knattrande sång, ofta från flygande flock.",
+    "difficulty": 2,
+    "group": "Finkar",
+    "habitats": [
+      "Skog",
+      "Fjäll",
+      "Trädgård"
+    ],
+    "imageName": "acanthis_flammea",
+    "imageCredit": "Photo: Jyrki Salmi (CC BY-SA 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC704311.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC712649.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_134",
+    "swedishName": "Mindre korsnäbb",
+    "latinName": "Loxia curvirostra",
+    "description": "Hårda, metalliska \"glipp-glipp\" i flykten.",
+    "difficulty": 3,
+    "group": "Finkar",
+    "habitats": [
+      "Skog"
+    ],
+    "imageName": "loxia_curvirostra",
+    "imageCredit": "Photo: Francesco Veronesi (CC BY-SA 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC902188.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_135",
+    "swedishName": "Steglits",
+    "latinName": "Carduelis carduelis",
+    "description": "Snabb, bubblande sång med klingande inslag.",
+    "difficulty": 3,
+    "group": "Finkar",
+    "habitats": [
+      "Äng & Åker",
+      "Trädgård",
+      "Stad"
+    ],
+    "imageName": "carduelis_carduelis",
+    "imageCredit": "Photo: Francis C. Franklin (CC BY-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC712216.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC700803.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_136",
+    "swedishName": "Grönsiska",
+    "latinName": "Spinus spinus",
+    "description": "Oregelbundna, kvittrande partier och triller i luften.",
+    "difficulty": 3,
+    "group": "Finkar",
+    "habitats": [
+      "Skog",
+      "Trädgård"
+    ],
+    "imageName": "spinus_spinus",
+    "imageCredit": "Photo: Imran Shah (CC BY-SA 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC991444.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_137",
+    "swedishName": "Gulsparv",
+    "latinName": "Emberiza citrinella",
+    "description": "”En-två-tre-fyra-fem-sex-sjuuu”; mycket karakteristisk sång.",
+    "difficulty": 1,
+    "group": "Fältsparvar",
+    "habitats": [
+      "Skog",
+      "Äng & Åker"
+    ],
+    "imageName": "emberiza_citrinella",
+    "imageCredit": "Photo: Martin Mecnarowski (CC BY-SA 3.0)",
+    "audioClips": [
+      {
+        "fileName": "XC715853.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      },
+      {
+        "fileName": "XC793279.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_138",
+    "swedishName": "Sävsparv",
+    "latinName": "Emberiza schoeniclus",
+    "description": "Enkel, stammande strof \"sripp-sripp-sripp-sryyy\".",
+    "difficulty": 3,
+    "group": "Fältsparvar",
+    "habitats": [
+      "Hav & Kust",
+      "Äng & Åker"
+    ],
+    "imageName": "emberiza_schoeniclus",
+    "imageCredit": "Photo: MPF (CC BY-SA 4.0)",
+    "audioClips": [
+      {
+        "fileName": "XC798810.mp3",
+        "type": "song",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  },
+  {
+    "id": "SE_139",
+    "swedishName": "Snösparv",
+    "latinName": "Plectrophenax nivalis",
+    "description": "Rullande, kvittrande \"tirririrrr\" eller mjukt \"pjyy\".",
+    "difficulty": 3,
+    "group": "Fältsparvar",
+    "habitats": [
+      "Hav & Kust",
+      "Fjäll"
+    ],
+    "imageName": "plectrophenax_nivalis",
+    "imageCredit": "Photo: lwolfartist (CC BY 2.0)",
+    "audioClips": [
+      {
+        "fileName": "XC791767.mp3",
+        "type": "call",
+        "source": "Audio: Lars Edenius (CC BY-NC-SA 4.0)"
+      }
+    ]
+  }
+]
