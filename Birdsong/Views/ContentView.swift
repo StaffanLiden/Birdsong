@@ -1,28 +1,36 @@
 import SwiftUI
 
 struct ContentView: View {
-    // Se till att store skapas här eller skickas in via @main
-    // @StateObject var store = BirdStore() // Om du inte redan gör det i App-filen
+    // Ingen init() här - vi sköter det i BirdsongApp
     
     var body: some View {
         TabView {
-            // Tab 1: Listan
+            // Tab 1: Fälthandboken
             BirdListView()
                 .tabItem {
-                    Label("Lär dig", systemImage: "book")
+                    Label("Fälthandbok", systemImage: "book.closed.fill")
                 }
             
-            // Tab 2: Quiz
+            // Tab 2: Ljudquiz
             QuizView()
                 .tabItem {
-                    Label("Quiz", systemImage: "infinity.circle") // Bytte ikon till evighet
+                    Label("Ljudquiz", systemImage: "music.note.list")
                 }
             
-            // Tab 3: Statistik (Tidigare Settings)
+            // Tab 3: Bildquiz
+            ImageQuizView()
+                .tabItem {
+                    Label("Bildquiz", systemImage: "photo.on.rectangle")
+                }
+            
+            // Tab 4: Statistik
             StatisticsView()
                 .tabItem {
-                    Label("Statistik", systemImage: "chart.bar")
+                    Label("Statistik", systemImage: "chart.bar.xaxis")
                 }
         }
+        // Vi sätter bara tintfärgen här (färgen på den VALDA ikonen)
+        // Resten sköter BirdsongApp
+        .tint(Color.vintageLeather)
     }
 }
