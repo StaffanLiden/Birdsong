@@ -35,19 +35,24 @@ struct VintageTheme {
         // Mörk bakgrund (Läder)
         tabAppearance.backgroundColor = UIColor.vintageLeather
         
-        // EJ vald ikon: Lite genomskinligt papper
+        // EJ vald ikon
         let tabUnselected = UIColor.vintagePaper.withAlphaComponent(0.5)
         tabAppearance.stackedLayoutAppearance.normal.iconColor = tabUnselected
         tabAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: tabUnselected]
         
-        // VALD ikon: Helt vitt papper
+        // VALD ikon
         let tabSelected = UIColor.vintagePaper
         tabAppearance.stackedLayoutAppearance.selected.iconColor = tabSelected
         tabAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: tabSelected]
         
-        // Applicera på alla varianter
+        // Applicera
         UITabBar.appearance().standardAppearance = tabAppearance
         UITabBar.appearance().scrollEdgeAppearance = tabAppearance
+        
+        // FIXEN FRÅN CHATGPT: Tvinga bakgrundsfärgen
+        UITabBar.appearance().backgroundColor = UIColor.vintageLeather
+        UITabBar.appearance().tintColor = UIColor.vintagePaper // För säkerhets skull
+        
         
         // --- 2. NAVIGATION BAR (Rubriken) ---
         let navAppearance = UINavigationBarAppearance()
@@ -57,19 +62,28 @@ struct VintageTheme {
         navAppearance.backgroundColor = UIColor.vintagePaper
         navAppearance.shadowColor = .clear // Ingen linje
         
-        // Hårdkoda typsnittet till Georgia-Bold för att vara säker
-        // Om Georgia inte hittas (osannolikt), tar vi systemfonten.
-        let serifFontLarge = UIFont(name: "Georgia-Bold", size: 34) ?? UIFont.systemFont(ofSize: 34, weight: .bold)
-        let serifFontSmall = UIFont(name: "Georgia-Bold", size: 17) ?? UIFont.systemFont(ofSize: 17, weight: .bold)
+        // TYPSNITT: Vi använder System Serif (New York) för att matcha Ljudquiz exakt
+        // Detta är säkrare och snyggare än att hårdkoda Georgia
+        let largeFont: UIFont
+        let smallFont: UIFont
+        
+        if let descriptor = UIFont.systemFont(ofSize: 34, weight: .bold).fontDescriptor.withDesign(.serif) {
+            largeFont = UIFont(descriptor: descriptor, size: 34)
+            smallFont = UIFont(descriptor: descriptor.withSize(17), size: 17)
+        } else {
+            // Fallback till Georgia om system serif saknas
+            largeFont = UIFont(name: "Georgia-Bold", size: 34) ?? UIFont.boldSystemFont(ofSize: 34)
+            smallFont = UIFont(name: "Georgia-Bold", size: 17) ?? UIFont.boldSystemFont(ofSize: 17)
+        }
         
         // Applicera typsnitt och färg
         let largeAttrs: [NSAttributedString.Key: Any] = [
-            .font: serifFontLarge,
+            .font: largeFont,
             .foregroundColor: UIColor.vintageInk
         ]
         
         let smallAttrs: [NSAttributedString.Key: Any] = [
-            .font: serifFontSmall,
+            .font: smallFont,
             .foregroundColor: UIColor.vintageInk
         ]
         
@@ -80,8 +94,15 @@ struct VintageTheme {
         UINavigationBar.appearance().standardAppearance = navAppearance
         UINavigationBar.appearance().compactAppearance = navAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navAppearance
+        if #available(iOS 15.0, *) {
+            UINavigationBar.appearance().compactScrollEdgeAppearance = navAppearance
+        }
         
-        // Färga "Back"-knappar och länkar mörka
+        // NYCKELN TILL LÖSNINGEN (Samma princip som för Tab Bar)
+        // Tvinga SwiftUI att respektera bakgrundsfärgen även i NavigationStack
+        UINavigationBar.appearance().backgroundColor = UIColor.vintagePaper
+        
+        // Färga "Back"-knappar
         UINavigationBar.appearance().tintColor = UIColor.vintageInk
     }
 }

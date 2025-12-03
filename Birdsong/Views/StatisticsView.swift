@@ -3,125 +3,119 @@ import SwiftUI
 struct StatisticsView: View {
     @EnvironmentObject var store: BirdStore
     
-    // Data variabler
+    // Data variables
     @State private var birdsByLevel: [Int: [Bird]] = [:]
     @State private var statsByCategory: [String: (total: Int, learned: Int)] = [:]
     
     var body: some View {
-        NavigationStack {
-            ZStack {
-                // 1. BAKGRUND
-                Color.vintagePaper.ignoresSafeArea()
+        ScrollView {
+            VStack(spacing: 30) {
                 
-                ScrollView {
-                    VStack(spacing: 30) {
+                // --- TOTAL CIRCLE ---
+                VStack(spacing: 10) {
+                    ZStack {
+                        // Background ring (faint)
+                        Circle()
+                            .stroke(Color.vintageInk.opacity(0.1), lineWidth: 15)
                         
-                        // --- TOTAL CIRKEL ---
-                        VStack(spacing: 10) {
-                            ZStack {
-                                // Bakgrundsring (svag)
-                                Circle()
-                                    .stroke(Color.vintageInk.opacity(0.1), lineWidth: 15)
-                                
-                                // Framstegsring
-                                Circle()
-                                    .trim(from: 0.0, to: totalProgress)
-                                    .stroke(style: StrokeStyle(lineWidth: 15, lineCap: .round))
-                                    .foregroundColor(.vintageAccent)
-                                    .rotationEffect(.degrees(-90))
-                                    .animation(.easeOut, value: totalProgress)
-                                
-                                VStack {
-                                    Text(String(format: "%.0f%%", totalProgress * 100))
-                                        .font(.system(size: 44, weight: .bold, design: .serif))
-                                        .foregroundColor(.vintageInk)
-                                    Text("Avklarade")
-                                        .font(.system(.caption, design: .serif))
-                                        .foregroundColor(.vintageInk.opacity(0.6))
-                                }
-                            }
-                            .frame(width: 180, height: 180)
-                            .padding(.top, 20)
-                            
-                            Text("Totalt \(store.birds.count) arter i databasen")
-                                .font(.system(.body, design: .serif))
-                                .italic()
+                        // Progress ring
+                        Circle()
+                            .trim(from: 0.0, to: totalProgress)
+                            .stroke(style: StrokeStyle(lineWidth: 15, lineCap: .round))
+                            .foregroundColor(.vintageAccent)
+                            .rotationEffect(.degrees(-90))
+                            .animation(.easeOut, value: totalProgress)
+                        
+                        VStack {
+                            Text(String(format: "%.0f%%", totalProgress * 100))
+                                .font(.system(size: 44, weight: .bold, design: .serif))
+                                .foregroundColor(.vintageInk)
+                            Text("Avklarade")
+                                .font(.system(.caption, design: .serif))
                                 .foregroundColor(.vintageInk.opacity(0.6))
                         }
-                        
-                        // --- SEKTION 1: PER KATEGORI (NY!) ---
-                        VStack(alignment: .leading, spacing: 16) {
-                            Text("Framsteg per Grupp")
-                                .font(.system(.title2, design: .serif))
-                                .bold()
-                                .foregroundColor(.vintageLeather)
-                                .padding(.bottom, 4)
-                            
-                            // Vi loopar igenom kategorierna (sorterade)
-                            ForEach(statsByCategory.keys.sorted(), id: \.self) { category in
-                                if let stat = statsByCategory[category], stat.total > 0 {
-                                    CategoryProgressRow(category: category, learned: stat.learned, total: stat.total)
-                                }
-                            }
+                    }
+                    .frame(width: 180, height: 180)
+                    .padding(.top, 20)
+                    
+                    Text("Totalt \(store.birds.count) arter i databasen")
+                        .font(.system(.body, design: .serif))
+                        .italic()
+                        .foregroundColor(.vintageInk.opacity(0.6))
+                }
+                
+                // --- SECTION 1: PER CATEGORY ---
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("Framsteg per Grupp")
+                        .font(.system(.title2, design: .serif))
+                        .bold()
+                        .foregroundColor(.vintageLeather)
+                        .padding(.bottom, 4)
+                    
+                    ForEach(statsByCategory.keys.sorted(), id: \.self) { category in
+                        if let stat = statsByCategory[category], stat.total > 0 {
+                            CategoryProgressRow(category: category, learned: stat.learned, total: stat.total)
                         }
-                        .padding(24)
-                        .background(Color.white.opacity(0.4)) // Ljusare platta
-                        .cornerRadius(4)
-                        .padding(.horizontal)
-                        
-                        // --- SEKTION 2: JOURNAL (Nivåer) ---
-                        VStack(alignment: .leading, spacing: 16) {
-                            Text("Journal")
-                                .font(.system(.title2, design: .serif))
-                                .bold()
-                                .foregroundColor(.vintageLeather)
-                            
-                            // Nivå 3
-                            JournalSection(
-                                title: "Mästerlig (Klar)",
-                                icon: "star.fill",
-                                color: .vintageAccent,
-                                birds: birdsByLevel[3] ?? []
-                            )
-                            
-                            // Nivå 2
-                            JournalSection(
-                                title: "På god väg (2 rätt)",
-                                icon: "circle.circle.fill",
-                                color: Color(red: 0.8, green: 0.7, blue: 0.4), // Senapsgul
-                                birds: birdsByLevel[2] ?? []
-                            )
-                            
-                            // Nivå 1
-                            JournalSection(
-                                title: "Nybörjare (1 rätt)",
-                                icon: "circle.fill",
-                                color: Color(red: 0.85, green: 0.6, blue: 0.4), // Orange
-                                birds: birdsByLevel[1] ?? []
-                            )
-                            
-                            // Nivå 0
-                            JournalSection(
-                                title: "Olärt / 0 streak",
-                                icon: "circle",
-                                color: .vintageInk.opacity(0.3),
-                                birds: birdsByLevel[0] ?? []
-                            )
-                        }
-                        .padding(.horizontal)
-                        .padding(.bottom, 40)
                     }
                 }
+                .padding(24)
+                .background(Color.white.opacity(0.4)) // Lighter background plate
+                .cornerRadius(4)
+                .padding(.horizontal)
+                
+                // --- SECTION 2: JOURNAL (Levels) ---
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("Journal")
+                        .font(.system(.title2, design: .serif))
+                        .bold()
+                        .foregroundColor(.vintageLeather)
+                    
+                    // Level 3
+                    JournalSection(
+                        title: "Mästerlig (Klar)",
+                        icon: "star.fill",
+                        color: .vintageAccent,
+                        birds: birdsByLevel[3] ?? []
+                    )
+                    
+                    // Level 2
+                    JournalSection(
+                        title: "På god väg (2 rätt)",
+                        icon: "circle.circle.fill",
+                        color: Color(red: 0.8, green: 0.7, blue: 0.4), // Mustard yellow
+                        birds: birdsByLevel[2] ?? []
+                    )
+                    
+                    // Level 1
+                    JournalSection(
+                        title: "Nybörjare (1 rätt)",
+                        icon: "circle.fill",
+                        color: Color(red: 0.85, green: 0.6, blue: 0.4), // Orange
+                        birds: birdsByLevel[1] ?? []
+                    )
+                    
+                    // Level 0
+                    JournalSection(
+                        title: "Olärt / 0 streak",
+                        icon: "circle",
+                        color: .vintageInk.opacity(0.3),
+                        birds: birdsByLevel[0] ?? []
+                    )
+                }
+                .padding(.horizontal)
+                .padding(.bottom, 40)
             }
-            .navigationTitle("Min Loggbok")
-            .navigationBarTitleDisplayMode(.large)
-            .onAppear {
-                calculateStats()
-            }
+        }
+        .background(Color.vintagePaper.ignoresSafeArea())
+        .navigationTitle("Min Loggbok")
+        .navigationBarTitleDisplayMode(.large)
+        .navigationBarHidden(false)
+        .onAppear {
+            calculateStats()
         }
     }
     
-    // --- LOGIK ---
+    // --- LOGIC ---
     var totalProgress: Double {
         let learnedCount = Double(birdsByLevel[3]?.count ?? 0)
         let total = Double(store.birds.count)
@@ -130,7 +124,7 @@ struct StatisticsView: View {
     }
     
     func calculateStats() {
-        // 1. Nivåer
+        // 1. Levels
         var newMap: [Int: [Bird]] = [0: [], 1: [], 2: [], 3: []]
         for bird in store.birds {
             let streak = QuizPersistence.shared.getStreak(for: bird.id)
@@ -139,14 +133,14 @@ struct StatisticsView: View {
         }
         self.birdsByLevel = newMap
         
-        // 2. Kategorier
+        // 2. Categories
         var newCatStats: [String: (total: Int, learned: Int)] = [:]
         let allCategories = Set(store.birds.map { $0.broadCategory })
         
         for cat in allCategories {
             let birdsInCat = store.birds.filter { $0.broadCategory == cat }
             let total = birdsInCat.count
-            // Räknar "lärd" som streak >= 3
+            // Count "learned" as streak >= 3
             let learned = birdsInCat.filter { QuizPersistence.shared.getStreak(for: $0.id) >= 3 }.count
             newCatStats[cat] = (total: total, learned: learned)
         }
@@ -154,7 +148,7 @@ struct StatisticsView: View {
     }
 }
 
-// --- KOMPONENT: Kategori-rad ---
+// --- COMPONENT: Category row ---
 struct CategoryProgressRow: View {
     let category: String
     let learned: Int
@@ -194,7 +188,7 @@ struct CategoryProgressRow: View {
     }
 }
 
-// --- KOMPONENT: Journal-sektion ---
+// --- COMPONENT: Journal section ---
 struct JournalSection: View {
     let title: String
     let icon: String
