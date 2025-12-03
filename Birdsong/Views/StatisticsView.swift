@@ -51,7 +51,7 @@ struct StatisticsView: View {
                         
                         // --- SEKTION 1: PER KATEGORI (NY!) ---
                         VStack(alignment: .leading, spacing: 16) {
-                            Text("Framsteg per Familj")
+                            Text("Framsteg per Grupp")
                                 .font(.system(.title2, design: .serif))
                                 .bold()
                                 .foregroundColor(.vintageLeather)
@@ -114,7 +114,7 @@ struct StatisticsView: View {
                 }
             }
             .navigationTitle("Min Loggbok")
-            .toolbarBackground(Color.vintagePaper, for: .navigationBar)
+            .navigationBarTitleDisplayMode(.large)
             .onAppear {
                 calculateStats()
             }

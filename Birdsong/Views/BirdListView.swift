@@ -61,6 +61,7 @@ struct BirdListView: View {
             }
                         // ÄNDRA HÄR:
                         .navigationTitle("Fågelsång")
+                        .navigationBarTitleDisplayMode(.large)
                     }
         .onDisappear {
             stopPlayer()

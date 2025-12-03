@@ -39,6 +39,10 @@ struct QuizView: View {
             }
         }
         .onAppear { player?.stop() }
+        .onDisappear {
+                    // Stoppa ljudet om man byter flik
+                    player?.stop()
+                }
         .onChange(of: quizManager.isGameOver) { _, newValue in
             if newValue { player?.stop() }
         }

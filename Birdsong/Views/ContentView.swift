@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    // Ingen init() här - vi sköter det i BirdsongApp
     
     var body: some View {
         TabView {
@@ -29,8 +28,10 @@ struct ContentView: View {
                     Label("Statistik", systemImage: "chart.bar.xaxis")
                 }
         }
-        // Vi sätter bara tintfärgen här (färgen på den VALDA ikonen)
-        // Resten sköter BirdsongApp
-        .tint(Color.vintageLeather)
+        // 1. Färga den valda ikonen ljus (Papper)
+        .tint(Color.vintagePaper)
+        // 2. Tvinga bakgrunden till mörkbrun (Läder)
+        .toolbarBackground(Color.vintageLeather, for: .tabBar)
+        .toolbarBackground(.visible, for: .tabBar)
     }
 }
