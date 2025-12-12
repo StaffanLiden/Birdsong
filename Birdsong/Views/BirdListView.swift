@@ -14,28 +14,28 @@ struct BirdListView: View {
         NavigationStack {
             ZStack {
                 // 1. BAKGRUND
-                Color.vintagePaper
+                Color(red: 0.87, green: 0.81, blue: 0.68)
                     .ignoresSafeArea()
                 
                 // 2. LISTAN
                 ScrollView {
+                    // --- NY EGEN RUBRIK HÄR ---
+                    Text("Arter")
+                        .font(.system(size: 34, weight: .bold, design: .serif)) // Samma stil som korten
+                        .foregroundColor(.vintageInk)
+                        .frame(maxWidth: .infinity) // Detta centrerar texten
+                        .padding(.top, 20)
+                        .padding(.bottom, 10)
+                    // --------------------------
+
                     LazyVStack(spacing: 20) {
                         ForEach(store.birds) { bird in
-                            
-                            // Här är det nya upplägget:
-                            // Vi lägger kortet som en knapp för navigering,
-                            // MEN vi hanterar ljudknappen separat.
-                            
                             ZStack(alignment: .bottomTrailing) {
-                                
-                                // A. Själva kortet (Länken till detaljvyn)
                                 NavigationLink(destination: BirdDetailView(bird: bird)) {
                                     VintageCardOnlyVisual(bird: bird, isPlaying: playingBirdId == bird.id)
                                 }
-                                .buttonStyle(PlainButtonStyle()) // Tar bort blå länkfärg
+                                .buttonStyle(PlainButtonStyle())
                                 
-                                // B. Ljudknappen (Ligger OVANPÅ kortet)
-                                // Vi placerar den manuellt för att den ska vara "fri" från länken
                                 Button(action: {
                                     toggleSound(for: bird)
                                 }) {
@@ -45,24 +45,25 @@ struct BirdListView: View {
                                     }
                                     .font(.system(.caption2, design: .serif))
                                     .foregroundColor(playingBirdId == bird.id ? .vintageInk : .vintageAccent)
-                                    .padding(.horizontal, 12) // Lite större träffyta
+                                    .padding(.horizontal, 12)
                                     .padding(.vertical, 8)
                                     .background(
                                         (playingBirdId == bird.id ? Color.vintageAccent : Color.vintageAccent.opacity(0.1))
                                             .cornerRadius(4)
                                     )
                                 }
-                                .padding([.bottom, .trailing], 24) // Justera positionen så den hamnar rätt på kortet
+                                .padding([.bottom, .trailing], 24)
                             }
                         }
                     }
                     .padding()
                 }
             }
-                        // ÄNDRA HÄR:
-                        .navigationTitle("Fågelsång")
-                        .navigationBarTitleDisplayMode(.large)
-                    }
+            // --- ÄNDRA HÄR FÖR ATT DÖLJA SYSTEMRUBRIKEN ---
+            .navigationTitle("") // Sätt tom titel så systemet inte visar dubbelt
+            .navigationBarTitleDisplayMode(.inline) // Gör nav-baren liten
+            .toolbarBackground(.visible, for: .navigationBar)
+        }
         .onDisappear {
             stopPlayer()
         }
@@ -136,7 +137,7 @@ struct VintageCardOnlyVisual: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color.vintagePaper)
         .cornerRadius(2)
-        .shadow(color: .black.opacity(0.05), radius: 2, x: 0, y: 1)
+        .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
     }
     
     func safeImage(name: String?) -> Image {

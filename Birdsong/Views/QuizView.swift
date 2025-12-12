@@ -4,19 +4,20 @@ import AVFoundation
 
 struct QuizView: View {
     @EnvironmentObject var store: BirdStore
-    @StateObject private var quizManager = QuizManager(birds: [])
+    @StateObject private var quizManager = QuizManager(birds: [], mode: .audio)
     @State private var player: AVAudioPlayer?
     
     // Filter
     @State private var selectedHabitat: String = "Alla"
     let habitats = ["Alla", "Skog", "Hav & Kust", "Äng & Åker", "Fjäll", "Trädgård", "Stad"]
     @State private var selectedCategory: String = "Alla"
-    let categories = ["Alla", "Sångfåglar", "Vattenfåglar", "Rovfåglar & Ugglor", "Hackspettar", "Övriga Landfåglar", "Övriga"]
+    let categories = ["Alla", "Sångfåglar", "Vattenfåglar", "Rovfåglar & Ugglor", "Hackspettar", "Övriga Landfåglar"]
     
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.vintagePaper.ignoresSafeArea()
+                Color(red: 0.87, green: 0.81, blue: 0.68)
+                    .ignoresSafeArea()
                 
                 VStack {
                     if quizManager.isGameOver {
@@ -236,7 +237,7 @@ struct QuizView: View {
     }
     
     func streakDots(for bird: Bird) -> some View {
-        let streak = QuizPersistence.shared.getStreak(for: bird.id)
+        let streak = QuizPersistence.shared.getStreak(for: bird.id, mode: .audio)
         return HStack(spacing: 4) {
             ForEach(0..<3) { i in
                 Circle()

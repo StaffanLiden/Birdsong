@@ -2,33 +2,52 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var store: BirdStore
+    
+    // Håller koll på om vi ska visa startsidan eller appen
+    @State private var showStartScreen = true
 
     var body: some View {
+        Group {
+            if showStartScreen {
+                // VISA STARTSIDAN
+                StartView {
+                    // Detta körs när man klickar på knappen i StartView
+                    showStartScreen = false
+                }
+                .transition(.opacity) // Snygg toning när den försvinner
+            } else {
+                // VISA DEN VANLIGA APPEN (Tab Bar)
+                mainAppContent
+            }
+        }
+    }
+    
+    // Vi flyttar din gamla TabView hit för att hålla koden ren
+    var mainAppContent: some View {
         TabView {
-
             NavigationStack {
-                BirdListView()   // your first tab
+                BirdListView()
             }
             .tabItem {
-                Label("Fälthandbok", systemImage: "book.closed.fill")
+                Label("Arter", systemImage: "book.closed.fill")
             }
 
             NavigationStack {
-                QuizView()    // second tab
+                QuizView()
             }
             .tabItem {
                 Label("Ljudquiz", systemImage: "music.note.list")
             }
 
             NavigationStack {
-                ImageQuizView()    // third tab
+                ImageQuizView()
             }
             .tabItem {
                 Label("Bildquiz", systemImage: "photo.on.rectangle")
             }
 
             NavigationStack {
-                StatisticsView()   // THIS is where your statistics view goes
+                StatisticsView()
             }
             .tabItem {
                 Label("Statistik", systemImage: "chart.bar.xaxis")
