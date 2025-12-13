@@ -3,6 +3,7 @@ import SwiftUI
 struct ImageQuizView: View {
     @EnvironmentObject var store: BirdStore
     @StateObject private var quizManager = QuizManager(birds: [], mode: .image)
+    @State private var showHelp = false
     
     // Filter-variabler
         @State private var selectedHabitat: String = "Alla"
@@ -29,12 +30,18 @@ struct ImageQuizView: View {
             }
             .toolbarBackground(Color.vintagePaper, for: .navigationBar)
             .toolbar {
-                if quizManager.currentQuestion != nil && !quizManager.isGameOver {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button("Avsluta") { quizManager.quitSession() }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: { showHelp = true }) {
+                        Image(systemName: "info.circle")
                             .foregroundColor(.vintageInk)
                     }
                 }
+            }
+            // Lägg till detta precis efter .toolbar blocket:
+            .sheet(isPresented: $showHelp) {
+                HelpView()
+                    .presentationDetents([.medium]) // Gör att den bara täcker halva skärmen (snyggt!)
+                    .presentationDragIndicator(.visible)
             }
         }
     }

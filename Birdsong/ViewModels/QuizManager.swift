@@ -1,5 +1,6 @@
 import SwiftUI
 import Combine
+import UIKit
 
 struct QuizQuestion: Identifiable {
     let id = UUID()
@@ -73,14 +74,21 @@ class QuizManager: ObservableObject {
         selectedBird = bird
         questionsAnswered += 1
         
+        let generator = UINotificationFeedbackGenerator()
+                generator.prepare()
+        
         if bird.id == currentQ.correctBird.id {
             sessionScore += 1
             // NYTT: Skicka med mode
             QuizPersistence.shared.incrementStreak(for: bird.id, mode: self.mode)
+            
+            generator.notificationOccurred(.success)
         } else {
             // NYTT: Skicka med mode
             QuizPersistence.shared.resetStreak(for: currentQ.correctBird.id, mode: self.mode)
             QuizPersistence.shared.decreaseStreak(for: bird.id, mode: self.mode)
+            
+            generator.notificationOccurred(.error)
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {

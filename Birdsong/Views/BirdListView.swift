@@ -9,6 +9,7 @@ struct BirdListView: View {
     
     @State private var player: AVAudioPlayer?
     @State private var playingBirdId: String? = nil
+    @State private var searchText = ""
     
     var body: some View {
         NavigationStack {
@@ -29,7 +30,7 @@ struct BirdListView: View {
                     // --------------------------
 
                     LazyVStack(spacing: 20) {
-                        ForEach(store.birds) { bird in
+                        ForEach(filteredBirds) { bird in
                             ZStack(alignment: .bottomTrailing) {
                                 NavigationLink(destination: BirdDetailView(bird: bird)) {
                                     VintageCardOnlyVisual(bird: bird, isPlaying: playingBirdId == bird.id)
@@ -63,11 +64,23 @@ struct BirdListView: View {
             .navigationTitle("") // Sätt tom titel så systemet inte visar dubbelt
             .navigationBarTitleDisplayMode(.inline) // Gör nav-baren liten
             .toolbarBackground(.visible, for: .navigationBar)
+            .searchable(text: $searchText, prompt: "Sök art")
         }
         .onDisappear {
             stopPlayer()
         }
     }
+    
+    var filteredBirds: [Bird] {
+            if searchText.isEmpty {
+                return store.birds
+            } else {
+                return store.birds.filter { bird in
+                    bird.swedishName.localizedCaseInsensitiveContains(searchText) ||
+                    bird.latinName.localizedCaseInsensitiveContains(searchText)
+                }
+            }
+        }
     
     // --- LJUDLOGIK (Samma som förut) ---
     func toggleSound(for bird: Bird) {

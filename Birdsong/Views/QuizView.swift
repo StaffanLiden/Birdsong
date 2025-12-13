@@ -6,6 +6,7 @@ struct QuizView: View {
     @EnvironmentObject var store: BirdStore
     @StateObject private var quizManager = QuizManager(birds: [], mode: .audio)
     @State private var player: AVAudioPlayer?
+    @State private var showHelp = false
     
     // Filter
     @State private var selectedHabitat: String = "Alla"
@@ -31,13 +32,28 @@ struct QuizView: View {
             }
             .toolbarBackground(Color.vintagePaper, for: .navigationBar)
             .toolbar {
-                if quizManager.currentQuestion != nil && !quizManager.isGameOver {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button("Avsluta") { quizManager.quitSession() }
-                            .foregroundColor(.vintageInk)
-                    }
-                }
-            }
+                            // 1. AVSLUTA-KNAPPEN (Din gamla kod, visas bara under spel)
+                            if quizManager.currentQuestion != nil && !quizManager.isGameOver {
+                                ToolbarItem(placement: .topBarTrailing) {
+                                    Button("Avsluta") { quizManager.quitSession() }
+                                        .foregroundColor(.vintageInk)
+                                }
+                            }
+                            
+                            // 2. NYTT: INFO-KNAPPEN (Läggs också till i högra hörnet)
+                            ToolbarItem(placement: .topBarTrailing) {
+                                Button(action: { showHelp = true }) {
+                                    Image(systemName: "info.circle")
+                                        .foregroundColor(.vintageInk)
+                                }
+                            }
+                        }
+                        // 3. NYTT: SHEET FÖR ATT VISA RUTAN (Ligger precis efter .toolbar slutklammer)
+                        .sheet(isPresented: $showHelp) {
+                            HelpView()
+                                .presentationDetents([.medium]) // Gör rutan halvhög
+                                .presentationDragIndicator(.visible)
+                        }
         }
         .onAppear { player?.stop() }
         .onDisappear {
