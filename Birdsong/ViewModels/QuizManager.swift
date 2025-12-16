@@ -1,5 +1,6 @@
 import SwiftUI
 import Combine
+import UIKit
 
 struct QuizQuestion: Identifiable {
     let id = UUID()
@@ -9,18 +10,21 @@ struct QuizQuestion: Identifiable {
 
 class QuizManager: ObservableObject {
     @Published var currentQuestion: QuizQuestion?
-    @Published var sessionScore: Int = 0    // Antal rätt denna omgång
-    @Published var questionsAnswered: Int = 0 // Totalt antal frågor denna omgång
+    @Published var sessionScore: Int = 0
+    @Published var questionsAnswered: Int = 0
     @Published var isGameOver: Bool = false
     @Published var gameFinishedMessage: String = ""
-    
-    // Track selection
     @Published var selectedBird: Bird? = nil
     
     private var allBirds: [Bird] = []
     
-    init(birds: [Bird]) {
+    // NYTT: Vi sparar vilket mode vi kör
+    let mode: QuizMode
+    
+    // NYTT: Init tar nu emot mode
+    init(birds: [Bird], mode: QuizMode) {
         self.allBirds = birds
+        self.mode = mode
     }
     
     func setBirds(_ birds: [Bird]) {
@@ -36,70 +40,63 @@ class QuizManager: ObservableObject {
     }
     
     private func generateNextQuestion() {
-        // 1. Filtrera bort fåglar som saknar ljud
-        let playableBirds = allBirds.filter { !$0.audioClips.isEmpty }
+        // Filtrera bort fåglar som saknar ljud/bild beroende på mode?
+        // (Detta görs dock bäst i Vyn innan de skickas hit, men vi kollar streaks här)
         
+        let playableBirds = allBirds
         guard !playableBirds.isEmpty else {
-            finishGame(message: "Inga fåglar med ljud hittades.")
+            finishGame(message: "Inga fåglar i listan.")
             return
         }
         
-        // 2. Hitta fåglar som INTE är "lärda" än
-        let birdsToLearn = playableBirds.filter { !QuizPersistence.shared.isLearned(birdId: $0.id) }
+        // NYTT: Kolla streak för specifikt mode
+        let birdsToLearn = playableBirds.filter { !QuizPersistence.shared.isLearned(birdId: $0.id, mode: self.mode) }
         
-        // 3. Om alla är lärda – Grattis!
         guard !birdsToLearn.isEmpty else {
-            finishGame(message: "Grattis! Du har lärt dig alla fåglar i listan (3 rätt i rad på alla).")
+            finishGame(message: "Grattis! Du har klarat alla fåglar i denna kategori.")
             return
         }
         
-        // 4. Välj rätt svar (slumpa en av de vi inte kan än)
         guard let correctBird = birdsToLearn.randomElement() else { return }
         
-        // 5. Välj distraktioner
         let potentialDistractors = playableBirds.filter { $0.id != correctBird.id }
         let distractors = Array(potentialDistractors.shuffled().prefix(3))
-        
-        // 6. Blanda alternativen
         let options = (distractors + [correctBird]).shuffled()
         
-        // 7. Sätt frågan
         DispatchQueue.main.async {
             self.currentQuestion = QuizQuestion(correctBird: correctBird, options: options)
         }
     }
     
     func submitAnswer(_ bird: Bird) {
-        // Förhindra dubbelklick
         guard selectedBird == nil, let currentQ = currentQuestion else { return }
         
         selectedBird = bird
         questionsAnswered += 1
         
+        let generator = UINotificationFeedbackGenerator()
+                generator.prepare()
+        
         if bird.id == currentQ.correctBird.id {
-            // RÄTT SVAR
             sessionScore += 1
-            // Spara framsteg: Öka streak för den rätta fågeln
-            QuizPersistence.shared.incrementStreak(for: bird.id)
+            // NYTT: Skicka med mode
+            QuizPersistence.shared.incrementStreak(for: bird.id, mode: self.mode)
+            
+            generator.notificationOccurred(.success)
         } else {
-            // FEL SVAR
+            // NYTT: Skicka med mode
+            QuizPersistence.shared.resetStreak(for: currentQ.correctBird.id, mode: self.mode)
+            QuizPersistence.shared.decreaseStreak(for: bird.id, mode: self.mode)
             
-            // 1. Fågeln vi INTE kände igen (den som spelades) -> Nollställs
-            QuizPersistence.shared.resetStreak(for: currentQ.correctBird.id)
-            
-            // 2. Fågeln vi gissade FELAKTIGT på -> Straffas (sänks ett steg)
-            // Logik: Om jag tror att en Talgoxe är en Blåmes, kan jag inte Blåmesen tillräckligt bra heller.
-            QuizPersistence.shared.decreaseStreak(for: bird.id)
+            generator.notificationOccurred(.error)
         }
         
-        // Vänta lite och kör nästa fråga
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.selectedBird = nil
             self.generateNextQuestion()
         }
     }
     
-    // Manuell avslutning av spelet
     func quitSession() {
         finishGame(message: "Bra jobbat! Du fick \(sessionScore) rätt av \(questionsAnswered).")
     }

@@ -1,215 +1,323 @@
-//
-//  StatisticsView.swift
-//  Birdsong
-//
-//  Created by Staffan Liden on 2025-12-01.
-//
-
 import SwiftUI
 
 struct StatisticsView: View {
     @EnvironmentObject var store: BirdStore
     
-    // Istället för bara siffror, sparar vi nu listor med fåglar för varje nivå
-    @State private var birdsByLevel: [Int: [Bird]] = [:]
+    // Data variables
+    // Vi sorterar fortfarande huvudlistorna baserat på Ljud-kunskap (Level 0-3)
+    @State private var birdsByAudioLevel: [Int: [Bird]] = [:]
+    @State private var statsByCategory: [String: (total: Int, learned: Int)] = [:]
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(spacing: 30) {
-                    
-                    // Rubrik
-                    VStack(spacing: 10) {
-                        Text("Dina Framsteg")
-                            .font(.largeTitle)
-                            .bold()
-                        Text("Totalt \(store.birds.count) arter i databasen")
-                            .foregroundStyle(.secondary)
-                    }
-                    .padding(.top)
-                    
-                    Divider()
-                    
-                    // Cirkeldiagram (Total % klarade)
+        ScrollView {
+            // --- EGEN RUBRIK ---
+            Text("Min Loggbok")
+                .font(.system(size: 34, weight: .bold, design: .serif))
+                .foregroundColor(.vintageInk)
+                .frame(maxWidth: .infinity)
+                .padding(.top, 20)
+                .padding(.bottom, 10)
+            
+            VStack(spacing: 30) {
+                
+                // --- TOTAL CIRCLE (Ljudfokus) ---
+                VStack(spacing: 10) {
                     ZStack {
+                        // Background ring
                         Circle()
-                            .stroke(lineWidth: 20)
-                            .opacity(0.1)
-                            .foregroundColor(.blue)
+                            .stroke(Color.vintageInk.opacity(0.1), lineWidth: 15)
                         
+                        // Progress ring
                         Circle()
-                            .trim(from: 0.0, to: progressPercentage)
-                            .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
-                            .foregroundColor(.blue)
-                            .rotationEffect(Angle(degrees: 270.0))
-                            .animation(.linear, value: progressPercentage)
+                            .trim(from: 0.0, to: totalAudioProgress)
+                            .stroke(style: StrokeStyle(lineWidth: 15, lineCap: .round))
+                            .foregroundColor(.vintageAccent)
+                            .rotationEffect(.degrees(-90))
+                            .animation(.easeOut, value: totalAudioProgress)
                         
                         VStack {
-                            Text(String(format: "%.0f%%", min(progressPercentage, 1.0) * 100.0))
-                                .font(.system(size: 50, weight: .bold))
-                            Text("Avklarade")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
+                            Text(String(format: "%.0f%%", totalAudioProgress * 100))
+                                .font(.system(size: 44, weight: .bold, design: .serif))
+                                .foregroundColor(.vintageInk)
+                            Text("Ljud lärts in")
+                                .font(.system(.caption, design: .serif))
+                                .foregroundColor(.vintageInk.opacity(0.6))
                         }
                     }
-                    .frame(width: 200, height: 200)
-                    .padding()
+                    .frame(width: 180, height: 180)
+                    .padding(.top, 20)
                     
-                    // Detaljerad lista (Nu med utfällbara rader)
-                    VStack(alignment: .leading, spacing: 0) { // Spacing 0 för att det ska se ut som en sammanhängande lista
-                        HStack {
-                            Text("Detaljer")
-                                .font(.headline)
-                            Spacer()
-                            Text("Klicka för att se arter")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        }
-                        .padding()
-                        
-                        // Nivå 3: Mästerlig
-                        ExpandableStatRow(
-                            title: "Mästerlig (Klar)",
-                            birds: birdsByLevel[3] ?? [],
-                            color: .yellow,
-                            icon: "star.fill"
-                        )
-                        
-                        Divider()
-                        
-                        // Nivå 2: På god väg
-                        ExpandableStatRow(
-                            title: "På god väg (2 rätt)",
-                            birds: birdsByLevel[2] ?? [],
-                            color: .green,
-                            icon: "circle.fill"
-                        )
-                        
-                        Divider()
-                        
-                        // Nivå 1: Nybörjare
-                        ExpandableStatRow(
-                            title: "Nybörjare (1 rätt)",
-                            birds: birdsByLevel[1] ?? [],
-                            color: .green.opacity(0.5),
-                            icon: "circle.fill"
-                        )
-                        
-                        Divider()
-                        
-                        // Nivå 0: Olärt
-                        ExpandableStatRow(
-                            title: "Olärt / 0 streak",
-                            birds: birdsByLevel[0] ?? [],
-                            color: .gray.opacity(0.3),
-                            icon: "circle"
-                        )
-                    }
-                    .background(Color(.systemGray6))
-                    .cornerRadius(15)
-                    .padding(.horizontal)
-                    
-                    Spacer()
+                    Text("Totalt \(store.birds.count) arter i databasen")
+                        .font(.system(.body, design: .serif))
+                        .italic()
+                        .foregroundColor(.vintageInk.opacity(0.6))
                 }
+                
+                // --- SECTION 1: PER CATEGORY ---
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("Framsteg per Grupp (Ljud)")
+                        .font(.system(.title2, design: .serif))
+                        .bold()
+                        .foregroundColor(.vintageLeather)
+                        .padding(.bottom, 4)
+                    
+                    ForEach(statsByCategory.keys.sorted(), id: \.self) { category in
+                        if let stat = statsByCategory[category], stat.total > 0 {
+                            CategoryProgressRow(category: category, learned: stat.learned, total: stat.total)
+                        }
+                    }
+                }
+                .padding(24)
+                .background(Color.white.opacity(0.4))
+                .cornerRadius(4)
+                .padding(.horizontal)
+                
+                // --- SECTION 2: JOURNAL (Levels) ---
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("Journal")
+                        .font(.system(.title2, design: .serif))
+                        .bold()
+                        .foregroundColor(.vintageLeather)
+                    
+                    // Level 3 (Mästerlig på ljud)
+                    JournalSection(
+                        title: "Mästerlig (Ljud)",
+                        icon: "star.fill",
+                        color: .vintageAccent,
+                        birds: birdsByAudioLevel[3] ?? []
+                    )
+                    
+                    // Level 2
+                    JournalSection(
+                        title: "På god väg (2 rätt)",
+                        icon: "circle.circle.fill",
+                        color: Color(red: 0.8, green: 0.7, blue: 0.4), // Mustard yellow
+                        birds: birdsByAudioLevel[2] ?? []
+                    )
+                    
+                    // Level 1
+                    JournalSection(
+                        title: "Nybörjare (1 rätt)",
+                        icon: "circle.fill",
+                        color: Color(red: 0.85, green: 0.6, blue: 0.4), // Orange
+                        birds: birdsByAudioLevel[1] ?? []
+                    )
+                    
+                    // Level 0
+                    JournalSection(
+                        title: "Olärt / 0 streak",
+                        icon: "circle",
+                        color: .vintageInk.opacity(0.3),
+                        birds: birdsByAudioLevel[0] ?? []
+                    )
+                }
+                .padding(.horizontal)
+                .padding(.bottom, 40)
             }
-            .navigationTitle("Statistik")
-            .onAppear {
-                calculateStats()
-            }
+        }
+        .background(Color(red: 0.87, green: 0.81, blue: 0.68).ignoresSafeArea())
+        .navigationTitle("")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(.visible, for: .navigationBar)
+        .onAppear {
+            calculateStats()
         }
     }
     
-    // Räkna ut procent (baserat på nivå 3)
-    var progressPercentage: Double {
-        let learnedCount = Double(birdsByLevel[3]?.count ?? 0)
+    // --- LOGIC ---
+    var totalAudioProgress: Double {
+        let learnedCount = Double(birdsByAudioLevel[3]?.count ?? 0)
         let total = Double(store.birds.count)
         guard total > 0 else { return 0 }
         return learnedCount / total
     }
     
-    // Sortera in fåglarna i rätt "låda" baserat på deras streak
     func calculateStats() {
+        // 1. Levels (Sortera baserat på Ljud-streak)
         var newMap: [Int: [Bird]] = [0: [], 1: [], 2: [], 3: []]
-        
         for bird in store.birds {
-            let streak = QuizPersistence.shared.getStreak(for: bird.id)
-            // Om streak är > 3 räknas den ändå till nivå 3
+            let streak = QuizPersistence.shared.getStreak(for: bird.id, mode: .audio)
             let level = min(streak, 3)
             newMap[level]?.append(bird)
         }
+        self.birdsByAudioLevel = newMap
         
-        self.birdsByLevel = newMap
+        // 2. Categories
+        var newCatStats: [String: (total: Int, learned: Int)] = [:]
+        let allCategories = Set(store.birds.map { $0.broadCategory })
+        
+        for cat in allCategories {
+            let birdsInCat = store.birds.filter { $0.broadCategory == cat }
+            let total = birdsInCat.count
+            let learned = birdsInCat.filter { QuizPersistence.shared.getStreak(for: $0.id, mode: .audio) >= 3 }.count
+            newCatStats[cat] = (total: total, learned: learned)
+        }
+        self.statsByCategory = newCatStats
     }
 }
 
-// En ny sub-view för att hantera varje rad och dess "utfällda" läge
-struct ExpandableStatRow: View {
+// --- COMPONENT: Category row ---
+struct CategoryProgressRow: View {
+    let category: String
+    let learned: Int
+    let total: Int
+    
+    var progress: Double {
+        guard total > 0 else { return 0 }
+        return Double(learned) / Double(total)
+    }
+    
+    var body: some View {
+        VStack(spacing: 6) {
+            HStack {
+                Text(category)
+                    .font(.system(.body, design: .serif))
+                    .foregroundColor(.vintageInk)
+                Spacer()
+                Text("\(Int(progress * 100))%")
+                    .font(.system(.caption, design: .serif))
+                    .bold()
+                    .foregroundColor(.vintageAccent)
+            }
+            
+            GeometryReader { geo in
+                ZStack(alignment: .leading) {
+                    Rectangle()
+                        .fill(Color.vintageInk.opacity(0.1))
+                        .frame(height: 4)
+                    
+                    Rectangle()
+                        .fill(Color.vintageAccent)
+                        .frame(width: geo.size.width * progress, height: 4)
+                }
+            }
+            .frame(height: 4)
+        }
+    }
+}
+
+// --- COMPONENT: Journal section ---
+struct JournalSection: View {
     let title: String
-    let birds: [Bird]
-    let color: Color
     let icon: String
+    let color: Color
+    let birds: [Bird]
     
     @State private var isExpanded: Bool = false
     
     var body: some View {
         VStack(spacing: 0) {
-            // Huvudraden (Klickbar)
-            Button(action: {
-                withAnimation {
-                    isExpanded.toggle()
-                }
-            }) {
+            Button(action: { withAnimation { isExpanded.toggle() } }) {
                 HStack {
                     Image(systemName: icon)
-                        .foregroundStyle(color)
-                        .frame(width: 30)
+                        .foregroundColor(color)
+                        .frame(width: 24)
                     
                     Text(title)
-                        .foregroundStyle(.primary)
+                        .font(.system(.headline, design: .serif))
+                        .foregroundColor(.vintageInk)
                     
                     Spacer()
                     
-                    Text("\(birds.count) st")
+                    Text("\(birds.count)")
+                        .font(.system(.body, design: .serif))
                         .bold()
-                        .foregroundStyle(.secondary)
+                        .foregroundColor(.vintageInk.opacity(0.6))
+                        .padding(.trailing, 8)
                     
                     Image(systemName: "chevron.right")
                         .font(.caption)
-                        .foregroundStyle(.gray)
+                        .foregroundColor(.vintageInk.opacity(0.4))
                         .rotationEffect(.degrees(isExpanded ? 90 : 0))
-                        .padding(.leading, 5)
                 }
                 .padding()
-                .background(Color(.systemGray6))
+                .background(Color.white.opacity(0.6))
+                .cornerRadius(4)
             }
             .buttonStyle(PlainButtonStyle())
             
-            // Listan som visas när man fäller ut
             if isExpanded {
-                if birds.isEmpty {
-                    Text("Inga fåglar här än.")
-                        .font(.caption)
-                        .italic()
-                        .foregroundColor(.secondary)
-                        .padding()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(Color.white.opacity(0.5))
-                } else {
-                    // HÄR ÄR FIXEN: Vi anger "\Bird.id" explicit
-                    ForEach(birds) { bird in
-                        HStack {
-                            // Ändrat från bird.name till bird.swedishName
-                            Text(bird.swedishName)
-                            Spacer()
+                VStack(spacing: 0) {
+                    if birds.isEmpty {
+                        Text("Inga arter här.")
+                            .font(.system(.caption, design: .serif))
+                            .italic()
+                            .foregroundColor(.vintageInk.opacity(0.5))
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    } else {
+                        // NYHET: Klickbar rad med ikoner för både ljud och bild
+                        ForEach(birds) { bird in
+                            NavigationLink(destination: BirdDetailView(bird: bird)) {
+                                JournalRow(bird: bird)
+                            }
+                            .buttonStyle(PlainButtonStyle()) // Tar bort blå länkfärg
+                            
+                            Divider().background(Color.vintageInk.opacity(0.1))
                         }
-                        .padding(.vertical, 8)
-                        .padding(.horizontal)
-                        .background(Color.white.opacity(0.5))
-                        
-                        Divider()
                     }
                 }
+                .padding(.leading, 10)
             }
         }
+        .padding(.bottom, 8)
     }
+}
+
+// --- KOMPONENT: JournalRow (Nu med färgkodade nivåer) ---
+struct JournalRow: View {
+    let bird: Bird
+    
+    // Hämta exakt streak (0, 1, 2, eller 3+)
+    var audioStreak: Int {
+        QuizPersistence.shared.getStreak(for: bird.id, mode: .audio)
+    }
+    var imageStreak: Int {
+        QuizPersistence.shared.getStreak(for: bird.id, mode: .image)
+    }
+    
+    var body: some View {
+        HStack {
+            Text(bird.swedishName)
+                .font(.system(.body, design: .serif))
+                .foregroundColor(.vintageInk)
+            
+            Spacer()
+            
+            // Ljud-ikon (färgkodad)
+            statusIcon(streak: audioStreak, icon: "music.mic")
+            
+            // Bild-ikon (färgkodad)
+            statusIcon(streak: imageStreak, icon: "photo")
+                .padding(.leading, 8)
+            
+            Image(systemName: "chevron.right")
+                .font(.caption2)
+                .foregroundColor(.vintageInk.opacity(0.3))
+                .padding(.leading, 8)
+        }
+        .padding(.vertical, 12)
+        .padding(.horizontal)
+        .background(Color.white.opacity(0.3))
+    }
+    
+    func statusIcon(streak: Int, icon: String) -> some View {
+            // Bestäm färg baserat på streak
+            let color: Color
+            switch streak {
+            case 3...: color = .vintageAccent                       // Klar (Grön)
+            case 2:    color = Color(red: 0.8, green: 0.7, blue: 0.4) // På god väg (Gul/Senap)
+            case 1:    color = Color(red: 0.85, green: 0.6, blue: 0.4)// Nybörjare (Orange)
+            default:   color = .vintageInk.opacity(0.2)               // Ej startad (Grå)
+            }
+            
+            // Bestäm ikon (fylld om man har minst 1 rätt, annars ofylld)
+            let iconName = (streak > 0) ? icon + ".circle.fill" : icon
+            
+            return Image(systemName: iconName)
+                .font(.system(size: 18)) // Lite större fast storlek
+                .foregroundColor(color)
+                .frame(width: 24, height: 24) // Fast ram så de alltid tar lika stor plats
+                // Tog bort .scaleEffect härifrån
+        }
 }

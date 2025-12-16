@@ -46,26 +46,34 @@ extension Bird {
     
     // Den bredare gruppindelningen
     var broadCategory: String {
-        // OBS: Dessa strängar måste matcha vad du har i din JSON-fil under "group".
-        // Om du har "Mesar" i JSON men skriver "Mes" här, hamnar den i "Övriga".
-        switch group {
-        case "Mes", "Fink", "Sparv", "Trast", "Sångare", "Flugsnappare", "Svala", "Ärla", "Kråkfågel":
-            return "Sångfåglar"
-            
-        case "And", "Gås", "Svan", "Lom", "Dopping", "Mås", "Trut", "Vadare", "Häger", "Trana", "Skarv":
-            return "Vattenfåglar"
-            
-        case "Hök", "Vråk", "Örn", "Falk", "Uggla":
-            return "Rovfåglar & Ugglor"
-            
-        case "Hackspett", "Nötväcka", "Trädkrypare":
-            return "Hackspettar"
-            
-        case "Duva", "Gök", "Hönsfågel", "Seglare":
-            return "Övriga Landfåglar"
-            
-        default:
-            return "Övriga"
+            switch group {
+            // SÅNGFÅGLAR
+            case "Mesar", "Finkar", "Sparvfinkar", "Trastar", "Sångare",
+                 "Flugsnappare", "Svalor", "Ärlor", "Kråkfåglar", "Törnskator",
+                 "Sidensvansar", "Stjärtmesar", "Lärkor", "Kungsfåglar",
+                 "Gärdsmygar", "Nötväckor", "Trädkrypare", "Starar",
+                 "Järnsparvar", "Fältsparvar":
+                return "Sångfåglar"
+                
+            // VATTENFÅGLAR
+            case "Andfåglar", "Lommar", "Doppingar", "Måsfåglar",
+                 "Vadare", "Hägrar", "Tranor", "Rallar", "Storkar":
+                return "Vattenfåglar"
+                
+            // ROVFÅGLAR & UGGLOR (Här var felet förut)
+            case "Rovfåglar", "Ugglor":
+                return "Rovfåglar & Ugglor"
+                
+            // HACKSPETTAR
+            case "Hackspettar":
+                return "Hackspettar"
+                
+            // ÖVRIGA LANDFÅGLAR
+            case "Duvor", "Gökar", "Hönsfåglar", "Seglare":
+                return "Övriga Landfåglar"
+                
+            default:
+                return "Övriga"
+            }
         }
-    }
 }
