@@ -1,20 +1,15 @@
 import SwiftUI
 
-// Vi behåller layout-informationen separat här i Vyn
 struct MapLocation: Identifiable {
-    let id: Int // Kopplar till LevelData ID
+    let id: Int
     let x: CGFloat
     let y: CGFloat
 }
 
 struct LearningPathView: View {
     @EnvironmentObject var store: BirdStore
+    @AppStorage("highestUnlockedLevel") private var unlockedLevel = 1
     
-    // För att kunna uppdatera vyn när vi kommer tillbaka från quizet
-    // använder vi en "trigger" (enklast är att kolla upplåst nivå varje gång vyn visas)
-    @State private var unlockedLevel = QuizPersistence.shared.highestUnlockedLevel
-    
-    // Dina fina koordinater från Turn 11
     let locations: [MapLocation] = [
         MapLocation(id: 1, x: 0.35, y: 0.99), // Start
         MapLocation(id: 2, x: 0.39, y: 0.92), // Trädgården
@@ -38,33 +33,29 @@ struct LearningPathView: View {
             GeometryReader { geometry in
                 ScrollView(.vertical, showsIndicators: false) {
                     ZStack(alignment: .topLeading) {
+                        Image("learningMap").resizable().scaledToFit().frame(width: geometry.size.width)
                         
-                        // 1. Bakgrundskartan
-                        Image("learningMap")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: geometry.size.width)
-                        
-                        // 2. Placera ut knappar baserat på locations + LevelData
                         ForEach(locations) { loc in
-                            // Hämta data för denna nivå (om den finns definierad i LevelData)
                             if let levelData = LevelData.shared.getLevel(id: loc.id) {
-                                
                                 let isLocked = loc.id > unlockedLevel
                                 
-                                // Länken till Quizet
+                                // Calculate Status
+                                let birds = LevelData.shared.getBirdsForLevel(id: loc.id, allBirds: store.birds)
+                                let birdIds = birds.map { $0.id }
+                                let hasSilver = QuizPersistence.shared.hasSilver(birdIds: birdIds)
+                                let hasGold = QuizPersistence.shared.hasGold(birdIds: birdIds)
+                                
                                 NavigationLink(destination: QuizView(level: levelData)) {
                                     LevelButton(
                                         number: levelData.id,
                                         name: levelData.title,
-                                        isLocked: isLocked
+                                        isLocked: isLocked,
+                                        hasSilver: hasSilver,
+                                        hasGold: hasGold
                                     )
                                 }
-                                .position(
-                                    x: loc.x * geometry.size.width,
-                                    y: loc.y * (geometry.size.width * 3)
-                                )
-                                .disabled(isLocked) // Inaktivera klick om låst
+                                .position(x: loc.x * geometry.size.width, y: loc.y * (geometry.size.width * 3))
+                                .disabled(isLocked)
                             }
                         }
                     }
@@ -73,61 +64,57 @@ struct LearningPathView: View {
                 .defaultScrollAnchor(.bottom)
             }
         }
-        .onAppear {
-            // Uppdatera status när vi kommer tillbaka till kartan
-            unlockedLevel = QuizPersistence.shared.highestUnlockedLevel
-        }
     }
 }
 
-// Knapp-designen (Lätt justerad för att ta emot data direkt)
+// Ensure this Struct matches the arguments passed above!
 struct LevelButton: View {
     let number: Int
     let name: String
     let isLocked: Bool
+    let hasSilver: Bool
+    let hasGold: Bool
     
     var body: some View {
         VStack(spacing: 2) {
             ZStack {
-                // Cirkeln
                 Circle()
-                    .fill(isLocked ? Color.gray.opacity(0.7) : Color(red: 0.96, green: 0.89, blue: 0.76))
+                    .fill(buttonColor)
                     .frame(width: 35, height: 35)
                     .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: 2)
-                    .overlay(
-                        Circle()
-                            .stroke(Color(red: 0.36, green: 0.25, blue: 0.20), lineWidth: 2)
-                    )
+                    .overlay(Circle().stroke(borderColor, lineWidth: 2))
                 
-                // Innehåll
                 if isLocked {
-                    Image(systemName: "lock.fill")
-                        .font(.caption)
-                        .foregroundColor(.white.opacity(0.8))
+                    Image(systemName: "lock.fill").font(.caption).foregroundColor(.white.opacity(0.8))
+                } else if hasGold {
+                    Image(systemName: "star.fill").font(.caption).foregroundColor(.white)
+                } else if hasSilver {
+                    Text("Ljud").font(.caption2).bold().foregroundColor(.white)
                 } else {
-                    Text("\(number)")
-                        .font(.custom("AmericanTypewriter-Bold", size: 18))
-                        .foregroundColor(Color(red: 0.36, green: 0.25, blue: 0.20))
+                    Text("\(number)").font(.custom("AmericanTypewriter-Bold", size: 18)).foregroundColor(Color(red: 0.36, green: 0.25, blue: 0.20))
                 }
             }
             
-            // Textskylt
             Text(name)
                 .font(.custom("AmericanTypewriter", size: 11))
                 .fontWeight(.bold)
                 .padding(.horizontal, 8)
                 .padding(.vertical, 4)
-                .background(
-                    Capsule()
-                        .fill(Color(red: 0.36, green: 0.25, blue: 0.20).opacity(0.9))
-                )
+                .background(Capsule().fill(Color(red: 0.36, green: 0.25, blue: 0.20).opacity(0.9)))
                 .foregroundColor(Color(red: 0.96, green: 0.89, blue: 0.76))
                 .shadow(radius: 2)
         }
     }
-}
-
-#Preview {
-    LearningPathView()
-        .environmentObject(BirdStore()) // Preview behöver store
+    
+    var buttonColor: Color {
+        if isLocked { return Color.gray.opacity(0.7) }
+        if hasGold { return Color.yellow }
+        if hasSilver { return Color.gray }
+        return Color(red: 0.96, green: 0.89, blue: 0.76)
+    }
+    
+    var borderColor: Color {
+        if hasGold { return .orange }
+        return Color(red: 0.36, green: 0.25, blue: 0.20)
+    }
 }

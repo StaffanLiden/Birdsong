@@ -4,9 +4,11 @@ struct StatisticsView: View {
     @EnvironmentObject var store: BirdStore
     
     // Data variables
-    // Vi sorterar fortfarande huvudlistorna baserat på Ljud-kunskap (Level 0-3)
     @State private var birdsByAudioLevel: [Int: [Bird]] = [:]
     @State private var statsByCategory: [String: (total: Int, learned: Int)] = [:]
+    
+    // Alert state för Reset
+    @State private var showResetAlert = false
     
     var body: some View {
         ScrollView {
@@ -112,7 +114,28 @@ struct StatisticsView: View {
                     )
                 }
                 .padding(.horizontal)
+                
+                // FIX #7: RESET BUTTON
+                Button(action: { showResetAlert = true }) {
+                    Text("Nollställ all data")
+                        .font(.system(.caption, design: .serif))
+                        .foregroundColor(.red.opacity(0.7))
+                        .padding()
+                        .overlay(
+                            Capsule().stroke(Color.red.opacity(0.3), lineWidth: 1)
+                        )
+                }
+                .padding(.top, 20)
                 .padding(.bottom, 40)
+                .alert("Är du säker?", isPresented: $showResetAlert) {
+                    Button("Avbryt", role: .cancel) { }
+                    Button("Ja, radera allt", role: .destructive) {
+                        QuizPersistence.shared.resetAllData()
+                        calculateStats() // Uppdatera vyn direkt
+                    }
+                } message: {
+                    Text("Detta kommer radera alla dina framsteg och låsa alla nivåer igen. Det går inte att ångra.")
+                }
             }
         }
         .background(Color(red: 0.87, green: 0.81, blue: 0.68).ignoresSafeArea())

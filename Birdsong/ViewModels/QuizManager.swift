@@ -21,6 +21,9 @@ class QuizManager: ObservableObject {
     // NYTT: Vi sparar vilket mode vi kör
     let mode: QuizMode
     
+    // NYTT: För att förhindra repetition (Issue #2)
+    private var lastBirdId: String? = nil
+    
     // NYTT: Init tar nu emot mode
     init(birds: [Bird], mode: QuizMode) {
         self.allBirds = birds
@@ -36,20 +39,18 @@ class QuizManager: ObservableObject {
         questionsAnswered = 0
         isGameOver = false
         selectedBird = nil
+        lastBirdId = nil // Nollställ minnet vid ny omgång
         generateNextQuestion()
     }
     
     private func generateNextQuestion() {
-        // Filtrera bort fåglar som saknar ljud/bild beroende på mode?
-        // (Detta görs dock bäst i Vyn innan de skickas hit, men vi kollar streaks här)
-        
         let playableBirds = allBirds
         guard !playableBirds.isEmpty else {
             finishGame(message: "Inga fåglar i listan.")
             return
         }
         
-        // NYTT: Kolla streak för specifikt mode
+        // 1. Vilka fåglar har vi kvar att lära oss?
         let birdsToLearn = playableBirds.filter { !QuizPersistence.shared.isLearned(birdId: $0.id, mode: self.mode) }
         
         guard !birdsToLearn.isEmpty else {
@@ -57,8 +58,22 @@ class QuizManager: ObservableObject {
             return
         }
         
-        guard let correctBird = birdsToLearn.randomElement() else { return }
+        // 2. Filtrera kandidater (Issue #2: Undvik samma fågel två gånger i rad)
+        var candidates = birdsToLearn
         
+        // Om vi har fler än en fågel kvar att välja på, ta bort den vi nyss körde
+        if let lastId = lastBirdId, candidates.count > 1 {
+            candidates = candidates.filter { $0.id != lastId }
+        }
+        
+        // 3. Välj slumpmässig kandidat
+        guard let correctBird = candidates.randomElement() else { return }
+        
+        // Uppdatera minnet för nästa gång
+        lastBirdId = correctBird.id
+        
+        // 4. Skapa distractors (felaktiga svar)
+        // Dessa tar vi från HELA listan (playableBirds), inte bara de vi inte lärt oss
         let potentialDistractors = playableBirds.filter { $0.id != correctBird.id }
         let distractors = Array(potentialDistractors.shuffled().prefix(3))
         let options = (distractors + [correctBird]).shuffled()
@@ -107,3 +122,4 @@ class QuizManager: ObservableObject {
         self.currentQuestion = nil
     }
 }
+
