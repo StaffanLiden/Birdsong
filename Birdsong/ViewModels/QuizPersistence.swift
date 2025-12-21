@@ -9,6 +9,32 @@ class QuizPersistence {
     static let shared = QuizPersistence()
     private let defaults = UserDefaults.standard
     
+    // NYTT: Nyckel för att spara kart-framsteg
+        private let kHighestUnlockedLevel = "highestUnlockedLevel"
+        
+        private init() {}
+        
+        // --- NYA FUNKTIONER FÖR KARTAN ---
+        
+        // Hämta aktuell nivå (Startar på 1 om inget är sparat)
+        var highestUnlockedLevel: Int {
+            let level = defaults.integer(forKey: kHighestUnlockedLevel)
+            return level == 0 ? 1 : level
+        }
+        
+        // Lås upp nästa nivå
+        func unlockNextLevel(currentLevel: Int) {
+            if currentLevel >= highestUnlockedLevel {
+                defaults.set(currentLevel + 1, forKey: kHighestUnlockedLevel)
+            }
+        }
+    
+    // Återställ (bra för testning)
+        func resetProgress() {
+            defaults.set(1, forKey: kHighestUnlockedLevel)
+        }
+    
+    
     // Vi behåller "bird_streak_" för ljud för att inte tappa din gamla data.
     // Vi lägger till "bird_streak_img_" för bild.
     private func key(for birdId: String, mode: QuizMode) -> String {

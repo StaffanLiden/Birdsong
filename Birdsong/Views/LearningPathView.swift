@@ -1,44 +1,36 @@
 import SwiftUI
 
-struct Level: Identifiable {
-    let id = UUID()
-    let number: Int
-    let name: String
-    let x: CGFloat // 0.0 = Vänster, 1.0 = Höger
-    let y: CGFloat // 0.0 = Toppen, 1.0 = Botten
-    var isLocked: Bool
+// Vi behåller layout-informationen separat här i Vyn
+struct MapLocation: Identifiable {
+    let id: Int // Kopplar till LevelData ID
+    let x: CGFloat
+    let y: CGFloat
 }
 
 struct LearningPathView: View {
+    @EnvironmentObject var store: BirdStore
     
-    // Alla 14 stationer utplacerade längs stigen (nedifrån och upp)
-    // Du kan behöva finjustera x och y lite för att träffa stigen exakt!
-    let levels: [Level] = [
-        // ZON 1: Stugan & Trädgården (Längst ner)
-        Level(number: 1, name: "Stugan", x: 0.55, y: 0.94, isLocked: false),
-        Level(number: 2, name: "Trädgården", x: 0.35, y: 0.89, isLocked: false),
-        Level(number: 3, name: "Byn", x: 0.20, y: 0.84, isLocked: false),
-        
-        // ZON 2: Äng & Skog
-        Level(number: 4, name: "Lövskogen", x: 0.40, y: 0.78, isLocked: true),
-        Level(number: 5, name: "Öppna Landskap", x: 0.70, y: 0.72, isLocked: true),
-        Level(number: 6, name: "Barrskogen", x: 0.50, y: 0.65, isLocked: true),
-        
-        // ZON 3: Vatten & Vass
-        Level(number: 7, name: "Sjön", x: 0.35, y: 0.58, isLocked: true),
-        Level(number: 8, name: "Vassen", x: 0.55, y: 0.52, isLocked: true),
-        
-        // ZON 4: Kust & Klippor
-        Level(number: 9, name: "Kusten", x: 0.75, y: 0.45, isLocked: true),
-        Level(number: 10, name: "Klipporna", x: 0.55, y: 0.38, isLocked: true),
-        
-        // ZON 5: Specialisterna & Natten
-        Level(number: 11, name: "Rovfåglar", x: 0.35, y: 0.30, isLocked: true),
-        Level(number: 12, name: "Nattens ljud", x: 0.60, y: 0.22, isLocked: true),
-        
-        // ZON 6: Fjäll & Examen (Längst upp)
-        Level(number: 13, name: "Fjällen", x: 0.40, y: 0.12, isLocked: true),
-        Level(number: 14, name: "Toppen", x: 0.65, y: 0.05, isLocked: true)
+    // För att kunna uppdatera vyn när vi kommer tillbaka från quizet
+    // använder vi en "trigger" (enklast är att kolla upplåst nivå varje gång vyn visas)
+    @State private var unlockedLevel = QuizPersistence.shared.highestUnlockedLevel
+    
+    // Dina fina koordinater från Turn 11
+    let locations: [MapLocation] = [
+        MapLocation(id: 1, x: 0.35, y: 0.99), // Start
+        MapLocation(id: 2, x: 0.39, y: 0.92), // Trädgården
+        MapLocation(id: 3, x: 0.80, y: 0.87), // Byn
+        MapLocation(id: 4, x: 0.40, y: 0.78), // Ängen
+        MapLocation(id: 5, x: 0.70, y: 0.72), // Öppna Landskap
+        MapLocation(id: 6, x: 0.74, y: 0.63), // Gläntan
+        MapLocation(id: 7, x: 0.30, y: 0.58), // Lövskogen
+        MapLocation(id: 8, x: 0.75, y: 0.45), // Granskogen
+        MapLocation(id: 9, x: 0.25, y: 0.42), // Strandängen
+        MapLocation(id: 10, x: 0.55, y: 0.34), // Vassen
+        MapLocation(id: 11, x: 0.84, y: 0.25), // Rovfåglar
+        MapLocation(id: 12, x: 0.39, y: 0.27), // Kusten
+        MapLocation(id: 13, x: 0.40, y: 0.12), // Fjällen
+        MapLocation(id: 14, x: 0.58, y: 0.18), // Nattens ljud
+        MapLocation(id: 15, x: 0.65, y: 0.05)  // Nästa nivå
     ]
     
     var body: some View {
@@ -53,69 +45,83 @@ struct LearningPathView: View {
                             .scaledToFit()
                             .frame(width: geometry.size.width)
                         
-                        // 2. Nivå-knapparna
-                        ForEach(levels) { level in
-                            LevelButton(level: level)
-                                .position(
-                                    x: level.x * geometry.size.width,
-                                    y: level.y * (geometry.size.width * 3) // Anpassat för 1:3 format
-                                )
-                                // Lägg till en NavigationLink här senare!
-                                .onTapGesture {
-                                    if !level.isLocked {
-                                        print("Startar nivå \(level.name)")
-                                    }
+                        // 2. Placera ut knappar baserat på locations + LevelData
+                        ForEach(locations) { loc in
+                            // Hämta data för denna nivå (om den finns definierad i LevelData)
+                            if let levelData = LevelData.shared.getLevel(id: loc.id) {
+                                
+                                let isLocked = loc.id > unlockedLevel
+                                
+                                // Länken till Quizet
+                                NavigationLink(destination: QuizView(level: levelData)) {
+                                    LevelButton(
+                                        number: levelData.id,
+                                        name: levelData.title,
+                                        isLocked: isLocked
+                                    )
                                 }
+                                .position(
+                                    x: loc.x * geometry.size.width,
+                                    y: loc.y * (geometry.size.width * 3)
+                                )
+                                .disabled(isLocked) // Inaktivera klick om låst
+                            }
                         }
                     }
                 }
-                .ignoresSafeArea() // TAR BORT VITA FÄLTET I TOPPEN!
+                .ignoresSafeArea(edges: .top)
                 .defaultScrollAnchor(.bottom)
             }
+        }
+        .onAppear {
+            // Uppdatera status när vi kommer tillbaka till kartan
+            unlockedLevel = QuizPersistence.shared.highestUnlockedLevel
         }
     }
 }
 
-// Uppdaterad knapp-design
+// Knapp-designen (Lätt justerad för att ta emot data direkt)
 struct LevelButton: View {
-    let level: Level
+    let number: Int
+    let name: String
+    let isLocked: Bool
     
     var body: some View {
-        VStack(spacing: 2) { // Tajtare avstånd mellan knapp och text
+        VStack(spacing: 2) {
             ZStack {
-                // Cirkelns bakgrund
+                // Cirkeln
                 Circle()
-                    .fill(level.isLocked ? Color.gray.opacity(0.7) : Color(red: 0.96, green: 0.89, blue: 0.76))
-                    .frame(width: 35, height: 35) // Lite mindre, elegantare
+                    .fill(isLocked ? Color.gray.opacity(0.7) : Color(red: 0.96, green: 0.89, blue: 0.76))
+                    .frame(width: 35, height: 35)
                     .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: 2)
                     .overlay(
                         Circle()
                             .stroke(Color(red: 0.36, green: 0.25, blue: 0.20), lineWidth: 2)
                     )
                 
-                // Innehåll (Lås eller Siffra)
-                if level.isLocked {
+                // Innehåll
+                if isLocked {
                     Image(systemName: "lock.fill")
                         .font(.caption)
                         .foregroundColor(.white.opacity(0.8))
                 } else {
-                    Text("\(level.number)")
-                        .font(.custom("AmericanTypewriter-Bold", size: 18)) // RÄTT FONT!
+                    Text("\(number)")
+                        .font(.custom("AmericanTypewriter-Bold", size: 18))
                         .foregroundColor(Color(red: 0.36, green: 0.25, blue: 0.20))
                 }
             }
             
-            // Textskylt (Snyggare!)
-            Text(level.name)
-                .font(.custom("AmericanTypewriter", size: 11)) // RÄTT FONT!
+            // Textskylt
+            Text(name)
+                .font(.custom("AmericanTypewriter", size: 11))
                 .fontWeight(.bold)
                 .padding(.horizontal, 8)
                 .padding(.vertical, 4)
                 .background(
                     Capsule()
-                        .fill(Color(red: 0.36, green: 0.25, blue: 0.20).opacity(0.9)) // Mörkbrun bakgrund
+                        .fill(Color(red: 0.36, green: 0.25, blue: 0.20).opacity(0.9))
                 )
-                .foregroundColor(Color(red: 0.96, green: 0.89, blue: 0.76)) // Beige text
+                .foregroundColor(Color(red: 0.96, green: 0.89, blue: 0.76))
                 .shadow(radius: 2)
         }
     }
@@ -123,4 +129,5 @@ struct LevelButton: View {
 
 #Preview {
     LearningPathView()
+        .environmentObject(BirdStore()) // Preview behöver store
 }

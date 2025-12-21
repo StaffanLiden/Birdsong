@@ -1,57 +1,43 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var store: BirdStore
+    @State private var hasStarted = false
     
-    // Håller koll på om vi ska visa startsidan eller appen
-    @State private var showStartScreen = true
-
     var body: some View {
-        Group {
-            if showStartScreen {
-                // VISA STARTSIDAN
-                StartView {
-                    // Detta körs när man klickar på knappen i StartView
-                    showStartScreen = false
-                }
-                .transition(.opacity) // Snygg toning när den försvinner
-            } else {
-                // VISA DEN VANLIGA APPEN (Tab Bar)
-                mainAppContent
-            }
-        }
-    }
-    
-    // Vi flyttar din gamla TabView hit för att hålla koden ren
-    var mainAppContent: some View {
-        TabView {
-            NavigationStack {
-                BirdListView()
-            }
-            .tabItem {
-                Label("Arter", systemImage: "book.closed.fill")
-            }
-
-            NavigationStack {
+        if !hasStarted {
+            StartView(onStart: {
+                hasStarted = true
+            })
+        } else {
+            TabView {
+                // NYTT: Inlärningsresan är nu startpunkten!
+                LearningPathView()
+                    .tabItem {
+                        Label("Resan", systemImage: "map")
+                    }
+                
+                // Vi behåller det gamla quizet för den som vill "öva fritt"
                 QuizView()
-            }
-            .tabItem {
-                Label("Ljudquiz", systemImage: "music.note.list")
-            }
-
-            NavigationStack {
+                    .tabItem {
+                        Label("Fri träning", systemImage: "music.note")
+                    }
+                
                 ImageQuizView()
-            }
-            .tabItem {
-                Label("Bildquiz", systemImage: "photo.on.rectangle")
-            }
-
-            NavigationStack {
+                    .tabItem {
+                        Label("Bildquiz", systemImage: "photo")
+                    }
+                
+                BirdListView()
+                    .tabItem {
+                        Label("Fåglar", systemImage: "book")
+                    }
+                
                 StatisticsView()
+                    .tabItem {
+                        Label("Loggbok", systemImage: "chart.bar")
+                    }
             }
-            .tabItem {
-                Label("Statistik", systemImage: "chart.bar.xaxis")
-            }
+            .accentColor(.vintageAccent) // Din snygga accentfärg
         }
     }
 }
