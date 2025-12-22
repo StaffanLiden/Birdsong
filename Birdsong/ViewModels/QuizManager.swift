@@ -18,13 +18,14 @@ class QuizManager: ObservableObject {
     
     private var allBirds: [Bird] = []
     
-    // NYTT: Vi sparar vilket mode vi kör
-    let mode: QuizMode
+    // CHANGED: 'var' so we can switch mode dynamically
+    var mode: QuizMode
     
-    // NYTT: För att förhindra repetition (Issue #2)
+    // NEW: Flag to control behavior
+    var isFreePlay: Bool = false
+    
     private var lastBirdId: String? = nil
     
-    // NYTT: Init tar nu emot mode
     init(birds: [Bird], mode: QuizMode) {
         self.allBirds = birds
         self.mode = mode
@@ -39,7 +40,7 @@ class QuizManager: ObservableObject {
         questionsAnswered = 0
         isGameOver = false
         selectedBird = nil
-        lastBirdId = nil // Nollställ minnet vid ny omgång
+        lastBirdId = nil
         generateNextQuestion()
     }
     
@@ -50,30 +51,33 @@ class QuizManager: ObservableObject {
             return
         }
         
-        // 1. Vilka fåglar har vi kvar att lära oss?
-        let birdsToLearn = playableBirds.filter { !QuizPersistence.shared.isLearned(birdId: $0.id, mode: self.mode) }
+        let candidates: [Bird]
         
-        guard !birdsToLearn.isEmpty else {
-            finishGame(message: "Grattis! Du har klarat alla fåglar i denna kategori.")
-            return
+        if isFreePlay {
+            // FIX #1: In Free Play, we include ALL birds, even mastered ones.
+            candidates = playableBirds
+        } else {
+            // In Level Mode, we filter out birds we have already learned
+            let birdsToLearn = playableBirds.filter { !QuizPersistence.shared.isLearned(birdId: $0.id, mode: self.mode) }
+            
+            guard !birdsToLearn.isEmpty else {
+                finishGame(message: "Grattis! Du har klarat alla fåglar i denna kategori.")
+                return
+            }
+            candidates = birdsToLearn
         }
         
-        // 2. Filtrera kandidater (Issue #2: Undvik samma fågel två gånger i rad)
-        var candidates = birdsToLearn
-        
-        // Om vi har fler än en fågel kvar att välja på, ta bort den vi nyss körde
-        if let lastId = lastBirdId, candidates.count > 1 {
-            candidates = candidates.filter { $0.id != lastId }
+        // Avoid repeating the immediate last bird if possible
+        var finalCandidates = candidates
+        if let lastId = lastBirdId, finalCandidates.count > 1 {
+            finalCandidates = finalCandidates.filter { $0.id != lastId }
         }
         
-        // 3. Välj slumpmässig kandidat
-        guard let correctBird = candidates.randomElement() else { return }
-        
-        // Uppdatera minnet för nästa gång
+        // Pick Random
+        guard let correctBird = finalCandidates.randomElement() else { return }
         lastBirdId = correctBird.id
         
-        // 4. Skapa distractors (felaktiga svar)
-        // Dessa tar vi från HELA listan (playableBirds), inte bara de vi inte lärt oss
+        // Create Distractors (from the full list)
         let potentialDistractors = playableBirds.filter { $0.id != correctBird.id }
         let distractors = Array(potentialDistractors.shuffled().prefix(3))
         let options = (distractors + [correctBird]).shuffled()
@@ -90,18 +94,23 @@ class QuizManager: ObservableObject {
         questionsAnswered += 1
         
         let generator = UINotificationFeedbackGenerator()
-                generator.prepare()
+        generator.prepare()
         
         if bird.id == currentQ.correctBird.id {
             sessionScore += 1
-            // NYTT: Skicka med mode
-            QuizPersistence.shared.incrementStreak(for: bird.id, mode: self.mode)
+            
+            // FIX #2: Only update Persistence (Map Progress) if NOT Free Play
+            if !isFreePlay {
+                QuizPersistence.shared.incrementStreak(for: bird.id, mode: self.mode)
+            }
             
             generator.notificationOccurred(.success)
         } else {
-            // NYTT: Skicka med mode
-            QuizPersistence.shared.resetStreak(for: currentQ.correctBird.id, mode: self.mode)
-            QuizPersistence.shared.decreaseStreak(for: bird.id, mode: self.mode)
+            // Only update Persistence if NOT Free Play
+            if !isFreePlay {
+                QuizPersistence.shared.resetStreak(for: currentQ.correctBird.id, mode: self.mode)
+                QuizPersistence.shared.decreaseStreak(for: bird.id, mode: self.mode)
+            }
             
             generator.notificationOccurred(.error)
         }
@@ -122,4 +131,3 @@ class QuizManager: ObservableObject {
         self.currentQuestion = nil
     }
 }
-

@@ -78,23 +78,39 @@ struct LevelButton: View {
     var body: some View {
         VStack(spacing: 2) {
             ZStack {
+                // Background Circle
                 Circle()
                     .fill(buttonColor)
                     .frame(width: 35, height: 35)
                     .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: 2)
                     .overlay(Circle().stroke(borderColor, lineWidth: 2))
                 
+                // Icon / Text Overlay
                 if isLocked {
-                    Image(systemName: "lock.fill").font(.caption).foregroundColor(.white.opacity(0.8))
+                    Image(systemName: "lock.fill")
+                        .font(.caption)
+                        .foregroundColor(.white.opacity(0.8))
                 } else if hasGold {
-                    Image(systemName: "star.fill").font(.caption).foregroundColor(.white)
+                    // Gold Star
+                    Image(systemName: "star.fill")
+                        .font(.system(size: 18))
+                        .foregroundColor(.white)
+                        .shadow(color: .orange, radius: 1)
                 } else if hasSilver {
-                    Text("Ljud").font(.caption2).bold().foregroundColor(.white)
+                    // Silver Star
+                    Image(systemName: "star.fill")
+                        .font(.system(size: 18))
+                        .foregroundColor(.white)
+                        .shadow(color: .gray, radius: 1)
                 } else {
-                    Text("\(number)").font(.custom("AmericanTypewriter-Bold", size: 18)).foregroundColor(Color(red: 0.36, green: 0.25, blue: 0.20))
+                    // Regular Level Number
+                    Text("\(number)")
+                        .font(.custom("AmericanTypewriter-Bold", size: 18))
+                        .foregroundColor(Color(red: 0.36, green: 0.25, blue: 0.20))
                 }
             }
             
+            // Level Label
             Text(name)
                 .font(.custom("AmericanTypewriter", size: 11))
                 .fontWeight(.bold)
@@ -108,13 +124,14 @@ struct LevelButton: View {
     
     var buttonColor: Color {
         if isLocked { return Color.gray.opacity(0.7) }
-        if hasGold { return Color.yellow }
-        if hasSilver { return Color.gray }
-        return Color(red: 0.96, green: 0.89, blue: 0.76)
+        if hasGold { return Color(red: 1.0, green: 0.84, blue: 0.0) } // Gold
+        if hasSilver { return Color(red: 0.75, green: 0.75, blue: 0.75) } // Silver
+        return Color(red: 0.96, green: 0.89, blue: 0.76) // Beige (Default)
     }
     
     var borderColor: Color {
-        if hasGold { return .orange }
+        if hasGold { return Color.orange }
+        if hasSilver { return Color.gray }
         return Color(red: 0.36, green: 0.25, blue: 0.20)
     }
 }

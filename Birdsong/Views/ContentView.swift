@@ -22,11 +22,11 @@ struct ContentView: View {
                         Label("Fri träning", systemImage: "music.note")
                     }
                 
-                ImageQuizView()
+                /*ImageQuizView()
                     .tabItem {
                         Label("Bildquiz", systemImage: "photo")
                     }
-                
+                */
                 BirdListView()
                     .tabItem {
                         Label("Fåglar", systemImage: "book")
