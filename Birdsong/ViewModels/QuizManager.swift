@@ -18,12 +18,15 @@ class QuizManager: ObservableObject {
     
     private var allBirds: [Bird] = []
     
-    // CHANGED: 'var' so we can switch mode dynamically
+    // CHANGED: 'var' allows us to switch from Silver (Image) to Gold (Audio)
     var mode: QuizMode
     
-    // NEW: Flag to control behavior
+    // NEW: Flags for "Radio Dashboard" / Free Play
     var isFreePlay: Bool = false
+    var useImages: Bool = true
+    var useSimilarSpecies: Bool = false
     
+    // To prevent immediate repetition
     private var lastBirdId: String? = nil
     
     init(birds: [Bird], mode: QuizMode) {
@@ -53,11 +56,12 @@ class QuizManager: ObservableObject {
         
         let candidates: [Bird]
         
+        // --- 1. DETERMINE CANDIDATES ---
         if isFreePlay {
-            // FIX #1: In Free Play, we include ALL birds, even mastered ones.
+            // Free Play: We practice on ALL birds, even mastered ones.
             candidates = playableBirds
         } else {
-            // In Level Mode, we filter out birds we have already learned
+            // Level Mode: Only practice birds we haven't mastered yet for this mode.
             let birdsToLearn = playableBirds.filter { !QuizPersistence.shared.isLearned(birdId: $0.id, mode: self.mode) }
             
             guard !birdsToLearn.isEmpty else {
@@ -73,12 +77,30 @@ class QuizManager: ObservableObject {
             finalCandidates = finalCandidates.filter { $0.id != lastId }
         }
         
-        // Pick Random
+        // Pick Random Correct Bird
         guard let correctBird = finalCandidates.randomElement() else { return }
         lastBirdId = correctBird.id
         
-        // Create Distractors (from the full list)
-        let potentialDistractors = playableBirds.filter { $0.id != correctBird.id }
+        // --- 2. GENERATE DISTRACTORS (WRONG ANSWERS) ---
+        var potentialDistractors: [Bird]
+        
+        if useSimilarSpecies {
+            // HARD MODE: Filter distractors to be in the same 'broadCategory' (Family)
+            potentialDistractors = playableBirds.filter {
+                $0.id != correctBird.id && $0.broadCategory == correctBird.broadCategory
+            }
+            
+            // Fallback: If category is too small (e.g., Cuckoos), fill up with random birds
+            if potentialDistractors.count < 3 {
+                let others = playableBirds.filter { $0.id != correctBird.id && $0.broadCategory != correctBird.broadCategory }
+                potentialDistractors.append(contentsOf: others)
+            }
+        } else {
+            // NORMAL MODE: Distractors can be any other bird in the list
+            potentialDistractors = playableBirds.filter { $0.id != correctBird.id }
+        }
+        
+        // Shuffle and pick 3
         let distractors = Array(potentialDistractors.shuffled().prefix(3))
         let options = (distractors + [correctBird]).shuffled()
         
@@ -99,14 +121,14 @@ class QuizManager: ObservableObject {
         if bird.id == currentQ.correctBird.id {
             sessionScore += 1
             
-            // FIX #2: Only update Persistence (Map Progress) if NOT Free Play
+            // Only update Persistence (Map Progress) if we are NOT in Free Play
             if !isFreePlay {
                 QuizPersistence.shared.incrementStreak(for: bird.id, mode: self.mode)
             }
             
             generator.notificationOccurred(.success)
         } else {
-            // Only update Persistence if NOT Free Play
+            // Only update Persistence if NOT in Free Play
             if !isFreePlay {
                 QuizPersistence.shared.resetStreak(for: currentQ.correctBird.id, mode: self.mode)
                 QuizPersistence.shared.decreaseStreak(for: bird.id, mode: self.mode)
