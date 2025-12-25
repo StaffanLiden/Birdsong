@@ -70,7 +70,7 @@
 		47643B4E2EDD06D6005E117B /* XC254278.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 476439AB2EDCFF70005E117B /* XC254278.mp3 */; };
 		47643B4F2EDD06D6005E117B /* XC716679.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 476439E52EDCFF70005E117B /* XC716679.mp3 */; };
 		47643B502EDD06D6005E117B /* XC982355.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 47643A3D2EDCFF70005E117B /* XC982355.mp3 */; };
-		47643B512EDD06D6005E117B /* XC807146.wav in Resources */ = {isa = PBXBuildFile; fileRef = 47643A162EDCFF70005E117B /* XC807146.wav */; };
+		47643B512EDD06D6005E117B /* XC807146.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 47643A162EDCFF70005E117B /* XC807146.mp3 */; };
 		47643B522EDD06D6005E117B /* XC880911.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 47643A1D2EDCFF70005E117B /* XC880911.mp3 */; };
 		47643B532EDD06D6005E117B /* XC794042.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 47643A002EDCFF70005E117B /* XC794042.mp3 */; };
 		47643B542EDD06D6005E117B /* XC896886.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 47643A1F2EDCFF70005E117B /* XC896886.mp3 */; };
@@ -95,7 +95,7 @@
 		47643B672EDD06D6005E117B /* XC991429.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 47643A3F2EDCFF70005E117B /* XC991429.mp3 */; };
 		47643B682EDD06D6005E117B /* XC1008473.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 47643A482EDCFF70005E117B /* XC1008473.mp3 */; };
 		47643B692EDD06D6005E117B /* XC343374.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 476439AC2EDCFF70005E117B /* XC343374.mp3 */; };
-		47643B6A2EDD06D6005E117B /* XC916983.wav in Resources */ = {isa = PBXBuildFile; fileRef = 47643A2B2EDCFF70005E117B /* XC916983.wav */; };
+		47643B6A2EDD06D6005E117B /* XC916983.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 47643A2B2EDCFF70005E117B /* XC916983.mp3 */; };
 		47643B6B2EDD06D6005E117B /* XC417392.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 476439AE2EDCFF70005E117B /* XC417392.mp3 */; };
 		47643B6C2EDD06D6005E117B /* XC946811.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 47643A382EDCFF70005E117B /* XC946811.mp3 */; };
 		47643B6D2EDD06D6005E117B /* XC992136.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 47643A412EDCFF70005E117B /* XC992136.mp3 */; };
@@ -193,6 +193,7 @@
 		47643BC92EDD06D6005E117B /* XC622582.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 476439C82EDCFF70005E117B /* XC622582.mp3 */; };
 		47643BCA2EDD06D6005E117B /* XC67275.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 476439A32EDCFF70005E117B /* XC67275.mp3 */; };
 		47643BCB2EDD06D6005E117B /* XC619924.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 476439C72EDCFF70005E117B /* XC619924.mp3 */; };
+		47643BE62EDFA789005E117B /* XC1014918.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 47643BE52EDFA789005E117B /* XC1014918.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -316,7 +317,7 @@
 		47643A132EDCFF70005E117B /* XC803361.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = XC803361.mp3; sourceTree = "<group>"; };
 		47643A142EDCFF70005E117B /* XC803363.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = XC803363.mp3; sourceTree = "<group>"; };
 		47643A152EDCFF70005E117B /* XC805162.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = XC805162.mp3; sourceTree = "<group>"; };
-		47643A162EDCFF70005E117B /* XC807146.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = XC807146.wav; sourceTree = "<group>"; };
+		47643A162EDCFF70005E117B /* XC807146.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = XC807146.mp3; sourceTree = "<group>"; };
 		47643A172EDCFF70005E117B /* XC808188.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = XC808188.mp3; sourceTree = "<group>"; };
 		47643A182EDCFF70005E117B /* XC808858.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = XC808858.mp3; sourceTree = "<group>"; };
 		47643A192EDCFF70005E117B /* XC830202.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = XC830202.mp3; sourceTree = "<group>"; };
@@ -337,7 +338,7 @@
 		47643A282EDCFF70005E117B /* XC912710.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = XC912710.mp3; sourceTree = "<group>"; };
 		47643A292EDCFF70005E117B /* XC912711.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = XC912711.mp3; sourceTree = "<group>"; };
 		47643A2A2EDCFF70005E117B /* XC916020.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = XC916020.mp3; sourceTree = "<group>"; };
-		47643A2B2EDCFF70005E117B /* XC916983.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = XC916983.wav; sourceTree = "<group>"; };
+		47643A2B2EDCFF70005E117B /* XC916983.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = XC916983.mp3; sourceTree = "<group>"; };
 		47643A2C2EDCFF70005E117B /* XC918275.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = XC918275.mp3; sourceTree = "<group>"; };
 		47643A2D2EDCFF70005E117B /* XC918277.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = XC918277.mp3; sourceTree = "<group>"; };
 		47643A2E2EDCFF70005E117B /* XC918506.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = XC918506.mp3; sourceTree = "<group>"; };
@@ -382,6 +383,7 @@
 		47643A552EDCFF70005E117B /* XC1056559.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = XC1056559.mp3; sourceTree = "<group>"; };
 		47643A562EDCFF70005E117B /* XC1058363.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = XC1058363.mp3; sourceTree = "<group>"; };
 		47643A572EDCFF70005E117B /* XC1058371.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = XC1058371.mp3; sourceTree = "<group>"; };
+		47643BE52EDFA789005E117B /* XC1014918.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = XC1014918.mp3; sourceTree = "<group>"; };
 		479E93A62ED39818009E019F /* Birdsong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Birdsong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -544,7 +546,7 @@
 				47643A132EDCFF70005E117B /* XC803361.mp3 */,
 				47643A142EDCFF70005E117B /* XC803363.mp3 */,
 				47643A152EDCFF70005E117B /* XC805162.mp3 */,
-				47643A162EDCFF70005E117B /* XC807146.wav */,
+				47643A162EDCFF70005E117B /* XC807146.mp3 */,
 				47643A172EDCFF70005E117B /* XC808188.mp3 */,
 				47643A182EDCFF70005E117B /* XC808858.mp3 */,
 				47643A192EDCFF70005E117B /* XC830202.mp3 */,
@@ -565,7 +567,7 @@
 				47643A282EDCFF70005E117B /* XC912710.mp3 */,
 				47643A292EDCFF70005E117B /* XC912711.mp3 */,
 				47643A2A2EDCFF70005E117B /* XC916020.mp3 */,
-				47643A2B2EDCFF70005E117B /* XC916983.wav */,
+				47643A2B2EDCFF70005E117B /* XC916983.mp3 */,
 				47643A2C2EDCFF70005E117B /* XC918275.mp3 */,
 				47643A2D2EDCFF70005E117B /* XC918277.mp3 */,
 				47643A2E2EDCFF70005E117B /* XC918506.mp3 */,
@@ -588,6 +590,7 @@
 				47643A3F2EDCFF70005E117B /* XC991429.mp3 */,
 				47643A402EDCFF70005E117B /* XC991444.mp3 */,
 				47643A412EDCFF70005E117B /* XC992136.mp3 */,
+				47643BE52EDFA789005E117B /* XC1014918.mp3 */,
 				47643A422EDCFF70005E117B /* XC998354.mp3 */,
 				47643A432EDCFF70005E117B /* XC1005147.mp3 */,
 				47643A442EDCFF70005E117B /* XC1005155.mp3 */,
@@ -741,7 +744,7 @@
 				47643B4E2EDD06D6005E117B /* XC254278.mp3 in Resources */,
 				47643B4F2EDD06D6005E117B /* XC716679.mp3 in Resources */,
 				47643B502EDD06D6005E117B /* XC982355.mp3 in Resources */,
-				47643B512EDD06D6005E117B /* XC807146.wav in Resources */,
+				47643B512EDD06D6005E117B /* XC807146.mp3 in Resources */,
 				47643B522EDD06D6005E117B /* XC880911.mp3 in Resources */,
 				47643B532EDD06D6005E117B /* XC794042.mp3 in Resources */,
 				47643B542EDD06D6005E117B /* XC896886.mp3 in Resources */,
@@ -766,7 +769,7 @@
 				47643B672EDD06D6005E117B /* XC991429.mp3 in Resources */,
 				47643B682EDD06D6005E117B /* XC1008473.mp3 in Resources */,
 				47643B692EDD06D6005E117B /* XC343374.mp3 in Resources */,
-				47643B6A2EDD06D6005E117B /* XC916983.wav in Resources */,
+				47643B6A2EDD06D6005E117B /* XC916983.mp3 in Resources */,
 				47643B6B2EDD06D6005E117B /* XC417392.mp3 in Resources */,
 				47643B6C2EDD06D6005E117B /* XC946811.mp3 in Resources */,
 				47643B6D2EDD06D6005E117B /* XC992136.mp3 in Resources */,
@@ -826,6 +829,7 @@
 				47643BA32EDD06D6005E117B /* XC795253.mp3 in Resources */,
 				47643BA42EDD06D6005E117B /* XC1009420.mp3 in Resources */,
 				47643BA52EDD06D6005E117B /* XC534612.mp3 in Resources */,
+				47643BE62EDFA789005E117B /* XC1014918.mp3 in Resources */,
 				47643BA62EDD06D6005E117B /* XC705903.mp3 in Resources */,
 				47643BA72EDD06D6005E117B /* XC571136.mp3 in Resources */,
 				47643BA82EDD06D6005E117B /* XC899637.mp3 in Resources */,
@@ -1014,7 +1018,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1023,12 +1029,16 @@
 				PRODUCT_BUNDLE_IDENTIFIER = sta.Birdsong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1045,7 +1055,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1054,12 +1066,16 @@
 				PRODUCT_BUNDLE_IDENTIFIER = sta.Birdsong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

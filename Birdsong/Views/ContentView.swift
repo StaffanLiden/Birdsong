@@ -1,28 +1,43 @@
 import SwiftUI
 
 struct ContentView: View {
-    // Se till att store skapas här eller skickas in via @main
-    // @StateObject var store = BirdStore() // Om du inte redan gör det i App-filen
+    @State private var hasStarted = false
     
     var body: some View {
-        TabView {
-            // Tab 1: Listan
-            BirdListView()
-                .tabItem {
-                    Label("Lär dig", systemImage: "book")
-                }
-            
-            // Tab 2: Quiz
-            QuizView()
-                .tabItem {
-                    Label("Quiz", systemImage: "infinity.circle") // Bytte ikon till evighet
-                }
-            
-            // Tab 3: Statistik (Tidigare Settings)
-            StatisticsView()
-                .tabItem {
-                    Label("Statistik", systemImage: "chart.bar")
-                }
+        if !hasStarted {
+            StartView(onStart: {
+                hasStarted = true
+            })
+        } else {
+            TabView {
+                // NYTT: Inlärningsresan är nu startpunkten!
+                LearningPathView()
+                    .tabItem {
+                        Label("Resan", systemImage: "map")
+                    }
+                
+                // Vi behåller det gamla quizet för den som vill "öva fritt"
+                QuizView()
+                    .tabItem {
+                        Label("Fri träning", systemImage: "music.note")
+                    }
+                
+                /*ImageQuizView()
+                    .tabItem {
+                        Label("Bildquiz", systemImage: "photo")
+                    }
+                */
+                BirdListView()
+                    .tabItem {
+                        Label("Fåglar", systemImage: "book")
+                    }
+                
+                StatisticsView()
+                    .tabItem {
+                        Label("Loggbok", systemImage: "chart.bar")
+                    }
+            }
+            .accentColor(.vintageAccent) // Din snygga accentfärg
         }
     }
 }

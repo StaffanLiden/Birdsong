@@ -1,73 +1,91 @@
-//
-//  QuizPersistence.swift
-//  Birdsong
-//
-//  Created by Staffan Liden on 2025-12-01.
-//
-
 import Foundation
+
+// 1. Define QuizMode globally so all Views and Managers can see it
+enum QuizMode: String, Codable {
+    case audio
+    case image
+}
 
 class QuizPersistence {
     static let shared = QuizPersistence()
     private let defaults = UserDefaults.standard
-    private let streakKeyPrefix = "bird_streak_"
     
-    // Hur många rätt i rad krävs för att den ska räknas som "lärd"?
-    private let requiredStreak = 3
+    // Keys
+    private let kHighestUnlockedLevel = "highestUnlockedLevel"
+    private let requiredStreak = 3 // How many correct in a row to count as "Mastered"
     
-    // Hämta nuvarande streak för en fågel
-    func getStreak(for birdId: String) -> Int {
-        return defaults.integer(forKey: streakKeyPrefix + birdId)
+    private init() {}
+        
+    // --- LEVEL PROGRESSION ---
+        
+    var highestUnlockedLevel: Int {
+        let level = defaults.integer(forKey: kHighestUnlockedLevel)
+        return level == 0 ? 1 : level
+    }
+        
+    func unlockNextLevel(currentLevel: Int) {
+        if currentLevel >= highestUnlockedLevel {
+            defaults.set(currentLevel + 1, forKey: kHighestUnlockedLevel)
+        }
     }
     
-    // Öka streak (vid rätt svar)
-    func incrementStreak(for birdId: String) {
-        let current = getStreak(for: birdId)
-        defaults.set(current + 1, forKey: streakKeyPrefix + birdId)
+    // --- MASTERY LOGIC (Silver/Gold) ---
+    
+    // Silver = Visual Mastery (Image Mode) of 7+ birds
+    func hasSilver(birdIds: [String]) -> Bool {
+        return countMastered(birdIds: birdIds, mode: .image) >= 7
     }
     
-    // NY FUNKTION: Sänk streak (vid felaktig gissning på denna fågel)
-    // Vi sänker med 1, men går aldrig under 0.
-    func decreaseStreak(for birdId: String) {
-        let current = getStreak(for: birdId)
+    // Gold = Audio Mastery (Audio Mode) of 7+ birds
+    func hasGold(birdIds: [String]) -> Bool {
+        return countMastered(birdIds: birdIds, mode: .audio) >= 7
+    }
+    
+    // Helper to count how many birds in a list are mastered
+    func countMastered(birdIds: [String], mode: QuizMode) -> Int {
+        return birdIds.filter { getStreak(for: $0, mode: mode) >= requiredStreak }.count
+    }
+    
+    // --- STREAK MANAGEMENT ---
+    
+    private func key(for birdId: String, mode: QuizMode) -> String {
+        switch mode {
+        case .audio: return "bird_streak_" + birdId
+        case .image: return "bird_streak_img_" + birdId
+        }
+    }
+    
+    func getStreak(for birdId: String, mode: QuizMode) -> Int {
+        return defaults.integer(forKey: key(for: birdId, mode: mode))
+    }
+    
+    func incrementStreak(for birdId: String, mode: QuizMode) {
+        let current = getStreak(for: birdId, mode: mode)
+        defaults.set(current + 1, forKey: key(for: birdId, mode: mode))
+    }
+    
+    func decreaseStreak(for birdId: String, mode: QuizMode) {
+        let current = getStreak(for: birdId, mode: mode)
         if current > 0 {
-            defaults.set(current - 1, forKey: streakKeyPrefix + birdId)
+            defaults.set(current - 1, forKey: key(for: birdId, mode: mode))
         }
     }
     
-    // Nollställ streak (när man misslyckas med att identifiera denna fågel)
-    func resetStreak(for birdId: String) {
-        defaults.set(0, forKey: streakKeyPrefix + birdId)
+    func resetStreak(for birdId: String, mode: QuizMode) {
+        defaults.set(0, forKey: key(for: birdId, mode: mode))
     }
     
-    // Är fågeln "lärd"? (dvs streak >= 3)
-    func isLearned(birdId: String) -> Bool {
-        return getStreak(for: birdId) >= requiredStreak
+    func isLearned(birdId: String, mode: QuizMode) -> Bool {
+        return getStreak(for: birdId, mode: mode) >= requiredStreak
     }
     
-    // Hämta en lista på alla IDn som är "lärda"
-    func getAllLearnedIds(allBirds: [Bird]) -> Set<String> {
-        let learned = allBirds.filter { isLearned(birdId: $0.id) }
-        return Set(learned.map { $0.id })
-    }
+    // --- RESET ---
     
-    // Debug: Rensa all data (bra för testning)
-    func resetAllProgress(allBirds: [Bird]) {
-        for bird in allBirds {
-            defaults.removeObject(forKey: streakKeyPrefix + bird.id)
+    func resetAllData() {
+        defaults.set(1, forKey: kHighestUnlockedLevel)
+        if let bundleID = Bundle.main.bundleIdentifier {
+            defaults.removePersistentDomain(forName: bundleID)
+            defaults.synchronize()
         }
-    }
-    
-    // Hämta statistik
-    func getStats(allBirds: [Bird]) -> [Int: Int] {
-        var stats = [0: 0, 1: 0, 2: 0, 3: 0]
-        
-        for bird in allBirds {
-            let streak = getStreak(for: bird.id)
-            let level = min(streak, requiredStreak)
-            stats[level, default: 0] += 1
-        }
-        
-        return stats
     }
 }
