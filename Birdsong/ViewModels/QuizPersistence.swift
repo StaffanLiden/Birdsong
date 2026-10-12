@@ -1,4 +1,5 @@
 import Foundation
+import Combine
 
 // 1. Define QuizMode globally so all Views and Managers can see it
 enum QuizMode: String, Codable {
@@ -6,7 +7,7 @@ enum QuizMode: String, Codable {
     case image
 }
 
-class QuizPersistence {
+class QuizPersistence: ObservableObject {
     static let shared = QuizPersistence()
     private let defaults = UserDefaults.standard
     
@@ -26,6 +27,7 @@ class QuizPersistence {
     func unlockNextLevel(currentLevel: Int) {
         if currentLevel >= highestUnlockedLevel {
             defaults.set(currentLevel + 1, forKey: kHighestUnlockedLevel)
+            notifyChange()
         }
     }
     
@@ -62,17 +64,20 @@ class QuizPersistence {
     func incrementStreak(for birdId: String, mode: QuizMode) {
         let current = getStreak(for: birdId, mode: mode)
         defaults.set(current + 1, forKey: key(for: birdId, mode: mode))
+        notifyChange()
     }
     
     func decreaseStreak(for birdId: String, mode: QuizMode) {
         let current = getStreak(for: birdId, mode: mode)
         if current > 0 {
             defaults.set(current - 1, forKey: key(for: birdId, mode: mode))
+            notifyChange()
         }
     }
     
     func resetStreak(for birdId: String, mode: QuizMode) {
         defaults.set(0, forKey: key(for: birdId, mode: mode))
+        notifyChange()
     }
     
     func isLearned(birdId: String, mode: QuizMode) -> Bool {
@@ -82,10 +87,17 @@ class QuizPersistence {
     // --- RESET ---
     
     func resetAllData() {
-        defaults.set(1, forKey: kHighestUnlockedLevel)
         if let bundleID = Bundle.main.bundleIdentifier {
             defaults.removePersistentDomain(forName: bundleID)
             defaults.synchronize()
+        }
+        defaults.set(1, forKey: kHighestUnlockedLevel)
+        notifyChange()
+    }
+    
+    private func notifyChange() {
+        DispatchQueue.main.async {
+            self.objectWillChange.send()
         }
     }
 }

@@ -8,7 +8,12 @@ struct MapLocation: Identifiable {
 
 struct LearningPathView: View {
     @EnvironmentObject var store: BirdStore
+    @ObservedObject private var persistence = QuizPersistence.shared
     @AppStorage("highestUnlockedLevel") private var unlockedLevel = 1
+    
+    // State för att visa hjälp
+    @State private var showHelp = false
+    @State private var refreshID = UUID()
     
     let locations: [MapLocation] = [
         MapLocation(id: 1, x: 0.35, y: 0.99), // Start
@@ -31,38 +36,60 @@ struct LearningPathView: View {
     var body: some View {
         NavigationStack {
             GeometryReader { geometry in
-                ScrollView(.vertical, showsIndicators: false) {
-                    ZStack(alignment: .topLeading) {
-                        Image("learningMap").resizable().scaledToFit().frame(width: geometry.size.width)
-                        
-                        ForEach(locations) { loc in
-                            if let levelData = LevelData.shared.getLevel(id: loc.id) {
-                                let isLocked = loc.id > unlockedLevel
-                                
-                                // Calculate Status
-                                let birds = LevelData.shared.getBirdsForLevel(id: loc.id, allBirds: store.birds)
-                                let birdIds = birds.map { $0.id }
-                                let hasSilver = QuizPersistence.shared.hasSilver(birdIds: birdIds)
-                                let hasGold = QuizPersistence.shared.hasGold(birdIds: birdIds)
-                                
-                                NavigationLink(destination: QuizView(level: levelData)) {
-                                    LevelButton(
-                                        number: levelData.id,
-                                        name: levelData.title,
-                                        isLocked: isLocked,
-                                        hasSilver: hasSilver,
-                                        hasGold: hasGold
-                                    )
+                ZStack(alignment: .topTrailing) { // ZStack för att lägga knapp ovanpå
+                    
+                    // 1. KARTAN (Ligger i botten)
+                    ScrollView(.vertical, showsIndicators: false) {
+                        ZStack(alignment: .topLeading) {
+                            Image("learningMap").resizable().scaledToFit().frame(width: geometry.size.width)
+                            
+                            ForEach(locations) { loc in
+                                if let levelData = LevelData.shared.getLevel(id: loc.id) {
+                                    let isLocked = loc.id > unlockedLevel
+                                    
+                                    // Calculate Status
+                                    let birds = LevelData.shared.getBirdsForLevel(id: loc.id, allBirds: store.birds)
+                                    let birdIds = birds.map { $0.id }
+                                    let hasSilver = persistence.hasSilver(birdIds: birdIds)
+                                    let hasGold = persistence.hasGold(birdIds: birdIds)
+                                    
+                                    NavigationLink(destination: QuizView(level: levelData)) {
+                                        LevelButton(
+                                            number: levelData.id,
+                                            name: levelData.title,
+                                            isLocked: isLocked,
+                                            hasSilver: hasSilver,
+                                            hasGold: hasGold
+                                        )
+                                    }
+                                    .position(x: loc.x * geometry.size.width, y: loc.y * (geometry.size.width * 3))
+                                    .disabled(isLocked)
                                 }
-                                .position(x: loc.x * geometry.size.width, y: loc.y * (geometry.size.width * 3))
-                                .disabled(isLocked)
                             }
                         }
                     }
+                    .ignoresSafeArea(edges: .top) // Kartan går hela vägen upp!
+                    .defaultScrollAnchor(.bottom)
+                    
+                    // 2. FLYTANDE HJÄLP-KNAPP (Ovanpå kartan)
+                    Button(action: { showHelp = true }) {
+                        Image(systemName: "info.circle.fill")
+                            .font(.system(size: 30))
+                            .foregroundColor(.vintageLeather)
+                            .background(Circle().fill(Color.vintagePaper).frame(width: 28, height: 28)) // Liten bakgrund så den syns
+                            .shadow(radius: 3)
+                    }
+                    .padding(.top, 50) // Justera så den inte krockar med klockan/status bar
+                    .padding(.trailing, 20)
                 }
-                .ignoresSafeArea(edges: .top)
-                .defaultScrollAnchor(.bottom)
+                .sheet(isPresented: $showHelp) {
+                    HelpView(isFreePlay: false) // Vi är i Level Mode
+                }
             }
+        }
+        .id(refreshID)
+        .onAppear {
+            refreshID = UUID()
         }
     }
 }
@@ -91,11 +118,11 @@ struct LevelButton: View {
                         .font(.caption)
                         .foregroundColor(.white.opacity(0.8))
                 } else if hasGold {
-                    // Gold Star
+                    // Gold Star (distinct vibrant gold star with warm shadow)
                     Image(systemName: "star.fill")
                         .font(.system(size: 18))
                         .foregroundColor(.white)
-                        .shadow(color: .orange, radius: 1)
+                        .shadow(color: Color(red: 0.6, green: 0.4, blue: 0.0), radius: 2)
                 } else if hasSilver {
                     // Silver Star
                     Image(systemName: "star.fill")
@@ -106,7 +133,7 @@ struct LevelButton: View {
                     // Regular Level Number
                     Text("\(number)")
                         .font(.custom("AmericanTypewriter-Bold", size: 18))
-                        .foregroundColor(Color(red: 0.36, green: 0.25, blue: 0.20))
+                        .foregroundColor(.vintageLeather)
                 }
             }
             
@@ -116,22 +143,22 @@ struct LevelButton: View {
                 .fontWeight(.bold)
                 .padding(.horizontal, 8)
                 .padding(.vertical, 4)
-                .background(Capsule().fill(Color(red: 0.36, green: 0.25, blue: 0.20).opacity(0.9)))
-                .foregroundColor(Color(red: 0.96, green: 0.89, blue: 0.76))
+                .background(Capsule().fill(Color.vintageLeather.opacity(0.9)))
+                .foregroundColor(.vintagePaper)
                 .shadow(radius: 2)
         }
     }
     
     var buttonColor: Color {
         if isLocked { return Color.gray.opacity(0.7) }
-        if hasGold { return Color(red: 1.0, green: 0.84, blue: 0.0) } // Gold
-        if hasSilver { return Color(red: 0.75, green: 0.75, blue: 0.75) } // Silver
-        return Color(red: 0.96, green: 0.89, blue: 0.76) // Beige (Default)
+        if hasGold { return Color(red: 0.95, green: 0.77, blue: 0.18) } // Rich glowing Gold
+        if hasSilver { return Color(red: 0.72, green: 0.74, blue: 0.77) } // Silver
+        return Color.vintagePaper
     }
     
     var borderColor: Color {
-        if hasGold { return Color.orange }
-        if hasSilver { return Color.gray }
-        return Color(red: 0.36, green: 0.25, blue: 0.20)
+        if hasGold { return Color(red: 0.75, green: 0.52, blue: 0.05) } // Deep Gold border
+        if hasSilver { return Color.white }
+        return Color.vintageLeather
     }
 }
