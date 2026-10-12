@@ -4,9 +4,11 @@ struct StatisticsView: View {
     @EnvironmentObject var store: BirdStore
     
     // Data variables
-    // Vi sorterar fortfarande huvudlistorna baserat på Ljud-kunskap (Level 0-3)
     @State private var birdsByAudioLevel: [Int: [Bird]] = [:]
     @State private var statsByCategory: [String: (total: Int, learned: Int)] = [:]
+    
+    // Alert state för Reset
+    @State private var showResetAlert = false
     
     var body: some View {
         ScrollView {
@@ -51,6 +53,88 @@ struct StatisticsView: View {
                         .font(.system(.body, design: .serif))
                         .italic()
                         .foregroundColor(.vintageInk.opacity(0.6))
+                }
+                
+                // --- SECTION 1: PER CATEGORY ---
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("Framsteg per Grupp (Ljud)")
+                        .font(.system(.title2, design: .serif))
+                        .bold()
+                        .foregroundColor(.vintageLeather)
+                        .padding(.bottom, 4)
+                    
+                    ForEach(statsByCategory.keys.sorted(), id: \.self) { category in
+                        if let stat = statsByCategory[category], stat.total > 0 {
+                            CategoryProgressRow(category: category, learned: stat.learned, total: stat.total)
+                        }
+                    }
+                }
+                .padding(24)
+                .background(Color.white.opacity(0.4))
+                .cornerRadius(4)
+                .padding(.horizontal)
+                
+                // --- SECTION 2: JOURNAL (Levels) ---
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("Journal")
+                        .font(.system(.title2, design: .serif))
+                        .bold()
+                        .foregroundColor(.vintageLeather)
+                    
+                    // Level 3 (Mästerlig på ljud)
+                    JournalSection(
+                        title: "Mästerlig (Ljud)",
+                        icon: "star.fill",
+                        color: .vintageAccent,
+                        birds: birdsByAudioLevel[3] ?? []
+                    )
+                    
+                    // Level 2
+                    JournalSection(
+                        title: "På god väg (2 rätt)",
+                        icon: "circle.circle.fill",
+                        color: Color(red: 0.8, green: 0.7, blue: 0.4), // Mustard yellow
+                        birds: birdsByAudioLevel[2] ?? []
+                    )
+                    
+                    // Level 1
+                    JournalSection(
+                        title: "Nybörjare (1 rätt)",
+                        icon: "circle.fill",
+                        color: Color(red: 0.85, green: 0.6, blue: 0.4), // Orange
+                        birds: birdsByAudioLevel[1] ?? []
+                    )
+                    
+                    // Level 0
+                    JournalSection(
+                        title: "Olärt / 0 streak",
+                        icon: "circle",
+                        color: .vintageInk.opacity(0.3),
+                        birds: birdsByAudioLevel[0] ?? []
+                    )
+                }
+                .padding(.horizontal)
+                
+                // FIX #7: RESET BUTTON
+                Button(action: { showResetAlert = true }) {
+                    Text("Nollställ all data")
+                        .font(.system(.caption, design: .serif))
+                        .foregroundColor(.red.opacity(0.7))
+                        .padding()
+                        .overlay(
+                            Capsule().stroke(Color.red.opacity(0.3), lineWidth: 1)
+                        )
+                }
+                .padding(.top, 20)
+                .padding(.bottom, 40)
+                .alert("Är du säker?", isPresented: $showResetAlert) {
+                    Button("Avbryt", role: .cancel) { }
+                    Button("Ja, radera allt", role: .destructive) {
+                        QuizPersistence.shared.resetAllData()
+                        calculateStats() // Uppdatera vyn direkt
+                    }
+                } message: {
+                    Text("Detta kommer radera alla dina framsteg och låsa alla nivåer igen. Det går inte att ångra.")
                 }
                 
                 // --- SECTION 1: PER CATEGORY ---

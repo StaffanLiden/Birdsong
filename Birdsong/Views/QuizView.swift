@@ -4,27 +4,44 @@ import AVFoundation
 
 struct QuizView: View {
     @EnvironmentObject var store: BirdStore
-    @StateObject private var quizManager = QuizManager(birds: [], mode: .audio)
+    @Environment(\.dismiss) private var dismiss
+    
+    // Default to image mode, but will be re-configured in startQuiz
+    @StateObject private var quizManager = QuizManager(birds: [], mode: .image)
     @State private var player: AVAudioPlayer?
     @State private var showHelp = false
     
-    // Filter
-    @State private var selectedHabitat: String = "Alla"
-    let habitats = ["Alla", "Skog", "Hav & Kust", "Äng & Åker", "Fjäll", "Trädgård", "Stad"]
-    @State private var selectedCategory: String = "Alla"
-    let categories = ["Alla", "Sångfåglar", "Vattenfåglar", "Rovfåglar & Ugglor", "Hackspettar", "Övriga Landfåglar"]
+    // The specific level to play (if coming from Map). Nil = Free Play.
+    var level: GameLevel? = nil
+    
+    // --- FREE PLAY SETTINGS ---
+    @State private var selectedLevelId: Int = 0 // 0 = "Alla"
+    @State private var selectedBroadCategory: String = "Alla"
+    @State private var switchVisuals: Bool = true
+    @State private var switchComplexity: Bool = false
+    
+    // Helper for Picker
+    var categoryOptions: [String] {
+        let categories = store.birds.map { $0.broadCategory }
+        let unique = Array(Set(categories)).sorted()
+        return ["Alla"] + unique
+    }
     
     var body: some View {
         NavigationStack {
             ZStack {
-                Color(red: 0.87, green: 0.81, blue: 0.68)
-                    .ignoresSafeArea()
+                Color.vintagePaper.ignoresSafeArea()
                 
                 VStack {
                     if quizManager.isGameOver {
                         gameOverView
                     } else if quizManager.currentQuestion == nil {
-                        startView
+                        // Choose between Map Level Start or Free Play Dashboard
+                        if level != nil {
+                            levelStartView
+                        } else {
+                            freePlayStartView
+                        }
                     } else {
                         activeGameView
                     }
@@ -32,68 +49,184 @@ struct QuizView: View {
             }
             .toolbarBackground(Color.vintagePaper, for: .navigationBar)
             .toolbar {
-                            // 1. AVSLUTA-KNAPPEN (Din gamla kod, visas bara under spel)
-                            if quizManager.currentQuestion != nil && !quizManager.isGameOver {
-                                ToolbarItem(placement: .topBarTrailing) {
-                                    Button("Avsluta") { quizManager.quitSession() }
-                                        .foregroundColor(.vintageInk)
-                                }
-                            }
-                            
-                            // 2. NYTT: INFO-KNAPPEN (Läggs också till i högra hörnet)
-                            ToolbarItem(placement: .topBarTrailing) {
-                                Button(action: { showHelp = true }) {
-                                    Image(systemName: "info.circle")
-                                        .foregroundColor(.vintageInk)
-                                }
-                            }
-                        }
-                        // 3. NYTT: SHEET FÖR ATT VISA RUTAN (Ligger precis efter .toolbar slutklammer)
-                        .sheet(isPresented: $showHelp) {
-                            HelpView()
-                                .presentationDetents([.medium]) // Gör rutan halvhög
-                                .presentationDragIndicator(.visible)
-                        }
-        }
-        .onAppear { player?.stop() }
-        .onDisappear {
-                    // Stoppa ljudet om man byter flik
-                    player?.stop()
+                // "Avsluta" Button
+                if quizManager.currentQuestion != nil && !quizManager.isGameOver {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button("Avsluta") { quizManager.quitSession() }
+                            .font(.system(.body, design: .serif))
+                            .foregroundColor(.vintageInk)
+                    }
                 }
+                // Help Button
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: { showHelp = true }) {
+                        Image(systemName: "info.circle").foregroundColor(.vintageInk)
+                    }
+                }
+            }
+            .sheet(isPresented: $showHelp) { HelpView(isFreePlay: level == nil) }
+        }
+        .onAppear {
+            player?.stop()
+        }
+        .onDisappear { player?.stop() }
         .onChange(of: quizManager.isGameOver) { _, newValue in
-            if newValue { player?.stop() }
+            if newValue {
+                player?.stop()
+                checkUnlocks()
+            }
         }
     }
     
-    // --- STARTSKÄRM ---
-    var startView: some View {
-        VStack(spacing: 30) {
+    // MARK: - VIEWS
+    
+    // --- 1. CLEAN FREE PLAY DASHBOARD ---
+    var freePlayStartView: some View {
+        VStack(spacing: 20) {
             Spacer()
             
-            Image(systemName: "music.mic.circle.fill") // En symbol för ljud
+            // Header Icon
+            Image(systemName: "slider.horizontal.3")
+                .font(.system(size: 60))
+                .foregroundStyle(Color.vintageAccent)
+                .padding(.bottom, 10)
+            
+            Text("Fri Träning")
+                .font(.system(size: 40, weight: .bold, design: .serif))
+                .foregroundColor(.vintageInk)
+            
+            Text("Skräddarsy din övning")
+                .font(.subheadline)
+                .italic()
+                .foregroundColor(.vintageInk.opacity(0.6))
+            
+            // CONTROLS CONTAINER
+            VStack(spacing: 24) {
+                
+                // A. FILTERS
+                VStack(spacing: 12) {
+                    Text("FILTRERA")
+                        .font(.caption).bold().foregroundColor(.vintageInk.opacity(0.5))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    // Area Picker
+                    HStack {
+                        Text("Område")
+                            .foregroundColor(.vintageInk)
+                        Spacer()
+                        Picker("Område", selection: $selectedLevelId) {
+                            Text("Alla").tag(0)
+                            ForEach(LevelData.shared.levels.filter { $0.id != 15 }) { lvl in
+                                Text(lvl.title).tag(lvl.id)
+                            }
+                        }
+                        .tint(.vintageAccent)
+                        .pickerStyle(.menu)
+                    }
+                    
+                    Divider()
+                    
+                    // Category Picker
+                    HStack {
+                        Text("Familj")
+                            .foregroundColor(.vintageInk)
+                        Spacer()
+                        Picker("Familj", selection: $selectedBroadCategory) {
+                            Text("Alla").tag("Alla")
+                            ForEach(categoryOptions, id: \.self) { cat in
+                                Text(cat).tag(cat)
+                            }
+                        }
+                        .tint(.vintageAccent)
+                        .pickerStyle(.menu)
+                    }
+                }
+                .padding()
+                .background(Color.white.opacity(0.5))
+                .cornerRadius(12)
+                
+                // B. SETTINGS
+                VStack(spacing: 12) {
+                    Text("INSTÄLLNINGAR")
+                        .font(.caption).bold().foregroundColor(.vintageInk.opacity(0.5))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    // Visuals Toggle
+                    Toggle(isOn: $switchVisuals) {
+                        Text("Visa Bilder")
+                            .foregroundColor(.vintageInk)
+                    }
+                    .tint(.vintageAccent)
+                    
+                    Divider()
+                    
+                    // Difficulty Toggle
+                    Toggle(isOn: $switchComplexity) {
+                        VStack(alignment: .leading) {
+                            Text("Svårare Alternativ")
+                                .foregroundColor(.vintageInk)
+                            Text(switchComplexity ? "Visar arter från samma familj" : "Visar slumpmässiga arter")
+                                .font(.caption2)
+                                .foregroundColor(.gray)
+                        }
+                    }
+                    .tint(.vintageAccent)
+                }
+                .padding()
+                .background(Color.white.opacity(0.5))
+                .cornerRadius(12)
+            }
+            .padding(.horizontal, 30)
+            
+            Spacer()
+            
+            // START BUTTON
+            Button(action: startQuiz) {
+                Text("STARTA ÖVNING")
+                    .font(.system(.title3, design: .serif))
+                    .bold()
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.vintageLeather)
+                    .cornerRadius(8)
+                    .shadow(radius: 2, y: 2)
+            }
+            .padding(.horizontal, 40)
+            .padding(.bottom, 40)
+        }
+    }
+    
+    // --- 2. LEVEL START VIEW (Map Mode) ---
+    var levelStartView: some View {
+        VStack(spacing: 30) {
+            Spacer()
+            Image(systemName: "music.mic.circle.fill")
                 .font(.system(size: 80))
                 .foregroundStyle(Color.vintageAccent)
-                .shadow(color: .vintageAccent.opacity(0.3), radius: 10)
             
             VStack(spacing: 8) {
-                Text("Ljudquiz")
+                Text(level?.title ?? "Nivå")
                     .font(.system(size: 40, weight: .bold, design: .serif))
                     .foregroundStyle(Color.vintageInk)
                 
-                Text("Kan du höra vem det är?")
-                    .font(.system(.body, design: .serif))
-                    .foregroundStyle(Color.vintageInk.opacity(0.7))
+                if let level = level {
+                    let birdIds = LevelData.shared.getBirdsForLevel(id: level.id, allBirds: store.birds).map { $0.id }
+                    if QuizPersistence.shared.hasGold(birdIds: birdIds) {
+                        Text("🏆 Mästare (Guld Uppnått!)")
+                            .font(.headline)
+                            .foregroundColor(Color(red: 0.85, green: 0.65, blue: 0.1))
+                    } else if QuizPersistence.shared.hasSilver(birdIds: birdIds) {
+                        Text("🥇 Guldjakt (Endast Ljud)")
+                            .font(.headline)
+                            .foregroundColor(.orange)
+                    } else {
+                        Text("🥈 Silverjakt (Bild & Ljud)")
+                            .font(.headline)
+                            .foregroundColor(.gray)
+                    }
+                }
             }
-            
-            // Filter-sektion (Lite snyggare inramning)
-            VStack(spacing: 16) {
-                filterPicker(title: "Miljö", selection: $selectedHabitat, options: habitats)
-                filterPicker(title: "Kategori", selection: $selectedCategory, options: categories)
-            }
-            .padding()
-            .background(Color.white.opacity(0.5))
-            .cornerRadius(10)
-            .padding(.horizontal)
             
             Spacer()
             
@@ -106,117 +239,261 @@ struct QuizView: View {
                     .padding()
                     .background(Color.vintageLeather)
                     .cornerRadius(8)
-                    .shadow(radius: 4, y: 2)
             }
             .padding(.horizontal, 40)
             .padding(.bottom, 40)
         }
     }
     
-    // --- SPELSKÄRM ---
+    // --- 3. ACTIVE QUIZ VIEW ---
     var activeGameView: some View {
-        VStack(spacing: 20) {
-            // Header med poäng
-            HStack {
-                Text("Poäng: \(quizManager.sessionScore)")
-                    .font(.system(.headline, design: .serif))
-                    .foregroundStyle(Color.vintageInk)
-                Spacer()
-                // Streak-indikator (om du vill ha kvar den, annars ta bort)
-                if let bird = quizManager.currentQuestion?.correctBird {
-                    streakDots(for: bird)
+        let totalBirds = level?.birdNames.count ?? 10
+        return VStack(spacing: 0) {
+            
+            // Header
+            if level != nil {
+                // Map Mode Header
+                VStack(spacing: 4) {
+                    HStack {
+                        Text(quizManager.mode == .image ? "👁️ Visuell Träning" : "👂 Ljudträning")
+                            .font(.caption).bold().foregroundColor(.vintageInk.opacity(0.6))
+                        Spacer()
+                        Text("Bemästrade: \(countMasteredInCurrentMode()) / \(totalBirds)")
+                            .font(.caption).bold().foregroundColor(.vintageAccent)
+                    }
+                    .padding(.horizontal, 20)
+                    
+                    MasteryProgressBar(
+                        total: totalBirds,
+                        current: countMasteredInCurrentMode()
+                    )
+                    .padding(.horizontal, 20)
                 }
+                .padding(.top, 10)
+            } else {
+                // Free Play Header
+                HStack {
+                    Image(systemName: quizManager.mode == .image ? "eye.fill" : "ear.fill")
+                    Text(quizManager.mode == .image ? "Visuell Träning" : "Ljudträning")
+                }
+                .font(.caption).bold().foregroundColor(.vintageInk.opacity(0.4))
+                .padding(.top, 10)
             }
-            .padding()
             
             Spacer()
             
-            // LJUDSPELAREN (Visuellt center)
-            Button {
-                playCurrentQuestionAudio()
-            } label: {
+            // Image (If Mode is Image)
+            if quizManager.mode == .image, let bird = quizManager.currentQuestion?.correctBird {
+                VintagePhotoFrame(image: safeImage(for: bird))
+                    .padding(.horizontal, 25)
+                    .rotationEffect(.degrees(-2))
+                    .layoutPriority(1)
+            } else {
+                // Audio Placeholder
+                VStack(spacing: 20) {
+                    Image(systemName: "music.quarternote.3")
+                        .font(.system(size: 80))
+                        .foregroundColor(.vintageInk.opacity(0.2))
+                    Text("Lyssna noga...")
+                        .font(.system(.title3, design: .serif))
+                        .italic()
+                        .foregroundColor(.vintageInk.opacity(0.5))
+                }
+                .frame(height: 200)
+            }
+            
+            Spacer()
+            
+            // Play Sound Button
+            Button { playCurrentQuestionAudio() } label: {
                 ZStack {
                     Circle()
                         .fill(Color.vintagePaper)
-                        .frame(width: 180, height: 180)
-                        .shadow(color: .black.opacity(0.1), radius: 10, x: 5, y: 5)
+                        .frame(width: 90, height: 90)
+                        .shadow(color: .black.opacity(0.1), radius: 8, x: 4, y: 4)
                         .overlay(Circle().stroke(Color.vintageInk.opacity(0.1), lineWidth: 1))
                     
-                    VStack(spacing: 10) {
-                        Image(systemName: "waveform")
-                            .font(.system(size: 40))
-                            .foregroundStyle(Color.vintageAccent)
-                        Text("Spela Ljud")
-                            .font(.system(.headline, design: .serif))
-                            .foregroundStyle(Color.vintageInk)
-                    }
+                    Image(systemName: "waveform")
+                        .font(.system(size: 28))
+                        .foregroundStyle(Color.vintageAccent)
                 }
             }
+            .padding(.vertical, 10)
             
-            Text("Tryck för att lyssna igen")
-                .font(.system(.caption, design: .serif))
-                .italic()
-                .foregroundStyle(Color.vintageInk.opacity(0.6))
-            
-            Spacer()
-            
-            // SVARSALTERNATIV
+            // Options
             if let question = quizManager.currentQuestion {
                 VStack(spacing: 12) {
                     ForEach(question.options) { bird in
-                        VintageOptionButton(
-                            text: bird.swedishName,
-                            state: buttonState(for: bird),
-                            action: { quizManager.submitAnswer(bird) }
-                        )
+                        ZStack(alignment: .trailing) {
+                            VintageOptionButton(
+                                text: bird.swedishName,
+                                state: buttonState(for: bird),
+                                action: { quizManager.submitAnswer(bird) }
+                            )
+                            streakDots(for: bird)
+                                .padding(.trailing, 16)
+                        }
                     }
                 }
-                .padding()
+                .padding(.horizontal)
             }
+            
+            Spacer()
         }
+        .padding(.bottom, 90)
         .onChange(of: quizManager.currentQuestion?.id) { _, newValue in
             if newValue != nil { playCurrentQuestionAudio() }
         }
     }
     
-    // --- GAME OVER ---
+    // --- 4. GAME OVER VIEW ---
     var gameOverView: some View {
-        VStack(spacing: 30) {
+        let isLevelMode = (level != nil)
+        let birdIds = getBirdIds()
+        let silver = isLevelMode ? QuizPersistence.shared.hasSilver(birdIds: birdIds) : false
+        let gold = isLevelMode ? QuizPersistence.shared.hasGold(birdIds: birdIds) : false
+        let masteredCount = countMasteredInCurrentMode()
+        let totalBirds = level?.birdNames.count ?? 10
+        let required = level?.requiredScore ?? 7
+        
+        return VStack(spacing: 30) {
             Spacer()
             Text("Omgång Avslutad")
                 .font(.system(.largeTitle, design: .serif))
                 .bold()
                 .foregroundStyle(Color.vintageInk)
             
-            VStack(spacing: 5) {
-                Text("Ditt resultat")
-                    .font(.system(.body, design: .serif))
-                    .foregroundStyle(Color.vintageInk.opacity(0.6))
-                Text("\(quizManager.sessionScore) av \(quizManager.questionsAnswered)")
-                    .font(.system(size: 50, weight: .bold, design: .serif))
-                    .foregroundStyle(Color.vintageAccent)
+            VStack(spacing: 10) {
+                if isLevelMode {
+                    Text("Dina framsteg")
+                        .font(.system(.body, design: .serif))
+                        .foregroundColor(.vintageInk.opacity(0.6))
+                    Text("\(masteredCount) / \(totalBirds)")
+                        .font(.system(size: 60, weight: .bold, design: .serif))
+                        .foregroundColor(.vintageAccent)
+                    Divider().padding()
+                    
+                    if silver && !gold {
+                        Text("🥈 SILVER UPPNÅTT!")
+                            .font(.title3).bold().foregroundColor(.gray)
+                        Text("Nu startar guldjakten (endast ljud)!")
+                            .font(.caption).italic().foregroundColor(.orange)
+                    } else if gold {
+                        Text("🥇 GULD UPPNÅTT!")
+                            .font(.title2).bold().foregroundColor(.yellow)
+                    } else {
+                        Text("Du behöver \(required) för att nå Silver.")
+                            .font(.body).foregroundColor(.red)
+                    }
+                } else {
+                    // FREE PLAY SUMMARY
+                    Text("Bra jobbat!")
+                        .font(.title2).bold()
+                        .foregroundColor(.vintageAccent)
+                    Text("Du har tränat på:")
+                        .font(.caption)
+                        .foregroundColor(.vintageInk)
+                    
+                    if selectedLevelId != 0, let lvl = LevelData.shared.getLevel(id: selectedLevelId) {
+                        Text(lvl.title).font(.headline)
+                    } else {
+                        Text("Alla områden").font(.headline)
+                    }
+                    Text(selectedBroadCategory).font(.headline)
+                }
             }
             .padding(40)
-            .background(
-                Circle()
-                    .stroke(Color.vintageInk.opacity(0.1), lineWidth: 2)
-                    .background(Circle().fill(Color.white.opacity(0.4)))
-            )
+            .background(Color.white.opacity(0.5))
+            .cornerRadius(16)
             
             Spacer()
             
-            Button("Spela igen") { quizManager.startQuiz() }
+            Button("Spela igen") { startQuiz() }
                 .buttonStyle(.borderedProminent)
                 .tint(Color.vintageAccent)
             
-            Button("Huvudmeny") { quizManager.isGameOver = false }
-                .buttonStyle(.plain)
-                .foregroundStyle(Color.vintageInk)
-                .padding(.bottom, 20)
+            Button(isLevelMode ? "Tillbaks till kartan" : "Avsluta") {
+                if isLevelMode {
+                    dismiss()
+                } else {
+                    quizManager.isGameOver = false
+                    quizManager.currentQuestion = nil
+                }
+            }
+            .buttonStyle(.plain)
+            .padding(.bottom, 20)
         }
     }
     
-    // --- HJÄLPFUNKTIONER ---
+    // MARK: - LOGIC
+    
+    func startQuiz() {
+        if let level = level {
+            // MAP MODE
+            let birds = LevelData.shared.getBirdsForLevel(id: level.id, allBirds: store.birds)
+            let birdIds = birds.map { $0.id }
+            let hasSilver = QuizPersistence.shared.hasSilver(birdIds: birdIds)
+            
+            quizManager.isFreePlay = false
+            quizManager.useImages = !hasSilver
+            quizManager.useSimilarSpecies = false
+            quizManager.mode = hasSilver ? .audio : .image
+            
+            quizManager.setBirds(birds)
+            quizManager.startQuiz()
+        } else {
+            // FREE PLAY MODE
+            var filtered = store.birds
+            
+            // 1. Filter by Level
+            if selectedLevelId != 0 {
+                filtered = LevelData.shared.getBirdsForLevel(id: selectedLevelId, allBirds: store.birds)
+            }
+            
+            // 2. Filter by Category
+            if selectedBroadCategory != "Alla" {
+                filtered = filtered.filter { $0.broadCategory == selectedBroadCategory }
+            }
+            
+            if filtered.isEmpty { filtered = store.birds }
+            
+            quizManager.isFreePlay = true
+            quizManager.useImages = switchVisuals
+            quizManager.useSimilarSpecies = switchComplexity
+            quizManager.mode = switchVisuals ? .image : .audio
+            
+            quizManager.setBirds(filtered)
+            quizManager.startQuiz()
+        }
+    }
+    
+    // MARK: - HELPERS (Standard)
+    
+    func checkUnlocks() {
+        guard let level = level else { return }
+        let birdIds = LevelData.shared.getBirdsForLevel(id: level.id, allBirds: store.birds).map { $0.id }
+        if QuizPersistence.shared.hasSilver(birdIds: birdIds) {
+            QuizPersistence.shared.unlockNextLevel(currentLevel: level.id)
+        }
+    }
+    
+    func countMasteredInCurrentMode() -> Int {
+        guard let level = level else { return 0 }
+        let birdIds = LevelData.shared.getBirdsForLevel(id: level.id, allBirds: store.birds).map { $0.id }
+        return QuizPersistence.shared.countMastered(birdIds: birdIds, mode: quizManager.mode)
+    }
+    
+    func getBirdIds() -> [String] {
+        guard let level = level else { return [] }
+        return LevelData.shared.getBirdsForLevel(id: level.id, allBirds: store.birds).map { $0.id }
+    }
+    
+    func safeImage(for bird: Bird) -> Image {
+        if let imageName = bird.imageName, let uiImage = UIImage(named: imageName) {
+            return Image(uiImage: uiImage)
+        }
+        return Image(systemName: "bird.fill")
+    }
     
     func buttonState(for bird: Bird) -> VintageOptionButton.ButtonState {
         guard let selected = quizManager.selectedBird else { return .neutral }
@@ -225,49 +502,10 @@ struct QuizView: View {
         return .disabled
     }
     
-    func startQuiz() {
-        let filtered = store.birds.filter { bird in
-            (selectedHabitat == "Alla" || bird.habitats.contains(selectedHabitat)) &&
-            (selectedCategory == "Alla" || bird.broadCategory == selectedCategory)
-        }
-        quizManager.setBirds(filtered)
-        quizManager.startQuiz()
-    }
-    
-    func filterPicker(title: String, selection: Binding<String>, options: [String]) -> some View {
-        HStack {
-            Text(title).font(.system(.caption, design: .serif)).foregroundStyle(Color.vintageInk)
-            Spacer()
-            Menu {
-                Picker(title, selection: selection) {
-                    ForEach(options, id: \.self) { Text($0).tag($0) }
-                }
-            } label: {
-                HStack {
-                    Text(selection.wrappedValue).font(.system(.body, design: .serif)).bold()
-                    Image(systemName: "chevron.down").font(.caption)
-                }
-                .foregroundStyle(Color.vintageLeather)
-            }
-        }
-    }
-    
-    func streakDots(for bird: Bird) -> some View {
-        let streak = QuizPersistence.shared.getStreak(for: bird.id, mode: .audio)
-        return HStack(spacing: 4) {
-            ForEach(0..<3) { i in
-                Circle()
-                    .fill(i < streak ? Color.vintageAccent : Color.vintageInk.opacity(0.1))
-                    .frame(width: 8, height: 8)
-            }
-        }
-    }
-    
     func playCurrentQuestionAudio() {
         player?.stop()
         guard let question = quizManager.currentQuestion,
               let clip = question.correctBird.audioClips.first else { return }
-        
         let name = (clip.fileName as NSString).deletingPathExtension
         let ext = (clip.fileName as NSString).pathExtension
         if let url = Bundle.main.url(forResource: name, withExtension: ext) {
@@ -276,5 +514,41 @@ struct QuizView: View {
             player = try? AVAudioPlayer(contentsOf: url)
             player?.play()
         }
+    }
+    
+    func streakDots(for bird: Bird) -> some View {
+        let streak = QuizPersistence.shared.getStreak(for: bird.id, mode: quizManager.mode)
+        return HStack(spacing: 4) {
+            ForEach(0..<3) { index in
+                Circle()
+                    .strokeBorder(Color.vintageInk.opacity(0.3), lineWidth: 1)
+                    .background(Circle().fill(index < streak ? Color.vintageAccent : Color.clear))
+                    .frame(width: 8, height: 8)
+            }
+        }
+    }
+}
+
+// Progress Bar Helper (Unchanged)
+struct MasteryProgressBar: View {
+    let total: Int
+    let current: Int
+    
+    var body: some View {
+        GeometryReader { geo in
+            ZStack(alignment: .leading) {
+                Capsule().fill(Color.vintageInk.opacity(0.1))
+                Rectangle()
+                    .fill(Color.vintageInk.opacity(0.3))
+                    .frame(width: 2, height: geo.size.height)
+                    .offset(x: geo.size.width * 0.7)
+                
+                Capsule()
+                    .fill(current >= 7 ? Color.vintageAccent : Color(red: 0.85, green: 0.6, blue: 0.4))
+                    .frame(width: max(0, geo.size.width * (Double(current) / Double(max(1, total)))))
+                    .animation(.spring(), value: current)
+            }
+        }
+        .frame(height: 12)
     }
 }
